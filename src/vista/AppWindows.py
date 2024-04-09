@@ -3,7 +3,7 @@ import secrets  # Para generar un salt aleatorio
 import binascii
 import re
 from PyQt6 import QtWidgets
-from ui_files.UI_LogIn import Ui_LogIn
+from ui_files.UI_LogIn import UI_LogIn
 from PyQt6.QtWidgets import QApplication
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
@@ -13,7 +13,7 @@ from src.modelo.Docente import Docente
 class LogInWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.logInWindow = Ui_LogIn()
+        self.logInWindow = UI_LogIn()
         self.logInWindow.setupUi(self)
         self.usernameLoged = ""
         self.passwordLoged = ""
@@ -30,9 +30,11 @@ class LogInWindow(QtWidgets.QWidget):
         self.showMinimized()
 
     def validar_username(self, username):
+        # Pasar a minúsculas para poder validar si se ingresa username con MAYÚSCULAS
+        username_lowerCase = username.lower()
         # Expresión regular para validar el formato del nombre de usuario
         patron = r'^[a-zA-Z0-9_.+-]+@continental\.edu\.pe$'
-        return re.match(patron, username) is not None
+        return re.match(patron, username_lowerCase, re.IGNORECASE) is not None
 
     def hash_password(self, password, salt=None):
         if salt is None:
@@ -45,8 +47,7 @@ class LogInWindow(QtWidgets.QWidget):
 
     def verificarLogeo(self):
         try:
-
-            username = self.logInWindow.lineEditUserName.text()
+            username = (self.logInWindow.lineEditUserName.text()).lower()
             password = self.logInWindow.lineEditPassword.text()
 
             if len(username) == 0:
@@ -62,6 +63,7 @@ class LogInWindow(QtWidgets.QWidget):
 
             if self.validar_username(username):
                 print(f"El nombre de usuario {username} es válido")
+                self.logInWindow.lineEditUserName.setText(username)
             else:
                 self.logInWindow.lineEditUserName.setFocus()
                 MensajesWindow.mostrarMensajeRegistroError("El nombre de usuario no tiene el formato correcto.")
