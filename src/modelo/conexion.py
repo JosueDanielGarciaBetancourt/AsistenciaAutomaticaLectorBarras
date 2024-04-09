@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 
@@ -5,10 +6,21 @@ class Conexion:
     def __init__(self):
         try:
             self.con = sqlite3.connect("src/modelo/AsistenciaAppDB.db")
+            print("Conexión establecida")
             print("Creando tablas")
             self.crearTablas()
         except Exception as ex:
-            print(ex)
+            print("Excepción en Conexion:", ex)
+
+    def eliminarBDExistente(self):
+        try:
+            self.con.close()  # Cerrar la conexión antes de eliminar la base de datos
+            os.remove("src/modelo/AsistenciaAppDB.db")
+            print("Base de datos existente eliminada correctamente")
+        except FileNotFoundError:
+            print("No se encontró la base de datos existente")
+        except Exception as ex:
+            print("Error al eliminar la base de datos existente:", ex)
 
     def crearTablas(self):
         sql_create_table1 = """ CREATE TABLE IF NOT EXISTS tblEstudiantes (
@@ -20,10 +32,10 @@ class Conexion:
                                         docDNI TEXT UNIQUE PRIMARY KEY,
                                         docNombre TEXT, 
                                         docApellidos TEXT,
-                                        docUsername,
-                                        docPassword) """
+                                        docUsername TEXT UNIQUE,
+                                        docPassword TEXT) """
 
-        sql_create_table3 = """ CREATE TABLE IF NOT EXIST tblCursos (
+        sql_create_table3 = """ CREATE TABLE IF NOT EXISTS tblCursos (
                                 curNRC TEXT UNIQUE PRIMARY KEY,
                                 curNombre TEXT,
                                 curAula TEXT) """
@@ -64,6 +76,6 @@ class Conexion:
             print("Ya se creó este docente")
         except Exception as ex:
             print("Error al insertar estudiante:", ex)
-
-    def conectar(self):
-        return self.con
+    @staticmethod
+    def conectar():
+        return sqlite3.connect("src/modelo/AsistenciaAppDB.db")

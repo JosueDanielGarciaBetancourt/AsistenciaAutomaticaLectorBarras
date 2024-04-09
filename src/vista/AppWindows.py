@@ -1,12 +1,13 @@
 import hashlib
 import secrets  # Para generar un salt aleatorio
 import binascii
-
+import re
 from PyQt6 import QtWidgets
 from ui_files.UI_LogIn import Ui_LogIn
 from PyQt6.QtWidgets import QApplication
 from src.vista.Window_Utils import MensajesWindow
-import re
+from src.modelo.DocenteData import DocenteData
+from src.modelo.Docente import Docente
 
 
 class LogInWindow(QtWidgets.QWidget):
@@ -14,6 +15,8 @@ class LogInWindow(QtWidgets.QWidget):
         super().__init__()
         self.logInWindow = Ui_LogIn()
         self.logInWindow.setupUi(self)
+        self.usernameLoged = ""
+        self.passwordLoged = ""
         self.initGUI()
         self.mostrar()
 
@@ -40,51 +43,75 @@ class LogInWindow(QtWidgets.QWidget):
         hashed_password = hashlib.sha256(salted_password).hexdigest()
         return hashed_password, salt
 
+    def verificarLogeo(self):
+        try:
+
+            username = self.logInWindow.lineEditUserName.text()
+            password = self.logInWindow.lineEditPassword.text()
+
+            if len(username) == 0:
+                self.logInWindow.lineEditUserName.setFocus()
+                MensajesWindow.mostrarMensajeRegistroError("Ingrese nombre de usuario")
+                print("Ingrese nombre de usuario")
+                return
+            if len(password) == 0:
+                self.logInWindow.lineEditPassword.setFocus()
+                MensajesWindow.mostrarMensajeRegistroError("Ingrese contraseña")
+                print("Ingrese contraseña")
+                return
+
+            if self.validar_username(username):
+                print(f"El nombre de usuario {username} es válido")
+            else:
+                self.logInWindow.lineEditUserName.setFocus()
+                MensajesWindow.mostrarMensajeRegistroError("El nombre de usuario no tiene el formato correcto.")
+                print("El nombre de usuario no tiene el formato correcto.")
+                return
+
+            # Mostrar la contraseña real (solo para propósitos de prueba)
+            print("Contraseña:", password)
+
+            """
+            # Hashea la contraseña y obtiene el salt
+            hashed_password, salt = self.hash_password(password)
+    
+            # Almacenar el hashed_password y el salt en la BD
+    
+            # Simplemente imprime para demostración
+            print("Contraseña hasheada:", hashed_password)
+            print("Salt:", salt)
+            """
+
+            docente = Docente(username=username, password=password)
+            docenteData = DocenteData()
+            docenteEncontrado = docenteData.login(docente)
+            if docenteEncontrado:  # Encontró el nombre de usuario del docente
+                if docenteEncontrado.getPassword():
+                    self.usernameLoged = username
+                    self.passwordLoged = password
+                    self.ingresarApp()
+                else:
+                    self.logInWindow.lineEditPassword.setFocus()
+                    MensajesWindow.mostrarMensajeRegistroError("Contraseña incorrecta")
+                    print("Contraseña incorrecta")
+            else:
+                MensajesWindow.mostrarMensajeRegistroError("No existe docente con esas credenciales")
+                print("No existe docente con esas credenciales")
+        except Exception as ex:
+            print("Excepción durante la verificacion de login:", ex)
+
     def ingresarApp(self):
-        username = self.logInWindow.lineEditUserName.text()
-        password = self.logInWindow.lineEditPassword.text()
-
-        if len(username) == 0:
-            self.logInWindow.lineEditUserName.setFocus()
-            MensajesWindow.mostrarMensajeRegistroError("Ingrese nombre de usuario")
-            print("Ingrese nombre de usuario")
-            return
-        if len(password) == 0:
-            self.logInWindow.lineEditPassword.setFocus()
-            MensajesWindow.mostrarMensajeRegistroError("Ingrese contraseña")
-            print("Ingrese contraseña")
-            return
-
-        if self.validar_username(username):
-            print("El nombre de usuario es válido.")
-        else:
-            self.logInWindow.lineEditUserName.setFocus()
-            MensajesWindow.mostrarMensajeRegistroError("El nombre de usuario no tiene el formato correcto.")
-            print("El nombre de usuario no tiene el formato correcto.")
-            return
-
-        # Mostrar la contraseña real (solo para propósitos de prueba)
-        print("Contraseña real:", password)
-
-        # Hashea la contraseña y obtiene el salt
-        hashed_password, salt = self.hash_password(password)
-
-        # Almacenar el hashed_password y el salt en la BD
-
-        # Simplemente imprime para demostración
-        print("Contraseña hasheada:", hashed_password)
-        print("Salt:", salt)
-
-        MensajesWindow.mostrarMensajeRegistroExito(username)
+        self.cerrar()
+        MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido {self.usernameLoged}")
         print("Entrando a la APP")
 
-    def wspEntry(self):
+    def whatsappEntry(self):
         print("Entrando a whatsapp")
 
     def initGUI(self):
         try:
-            self.logInWindow.pushButtonIngresar.clicked.connect(self.ingresarApp)
-            self.logInWindow.pushButtonWhatsApp.clicked.connect(self.wspEntry)
+            self.logInWindow.pushButtonIngresar.clicked.connect(self.verificarLogeo)
+            self.logInWindow.pushButtonWhatsApp.clicked.connect(self.whatsappEntry)
             self.logInWindow.pushButtonCloseLogIn.clicked.connect(self.close)
             self.logInWindow.pushButtonMinimizeLogIn.clicked.connect(self.minimizaar)
         except Exception as e:
