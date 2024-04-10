@@ -134,7 +134,7 @@ class LogInWindow(QtWidgets.QWidget):
 
     def initGUI(self):
         try:
-            # Agregar login correcto para pruebas
+            # Agregar login correcto solo para pruebas
             self.logInWindow.lineEditUserName.setText("jcamarenaf@continental.edu.pe")
             self.logInWindow.lineEditPassword.setText("123456")
 
@@ -163,6 +163,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def initGUI(self):
         pass
+
 
 class AsistenciaWindow:
     def __init__(self):
