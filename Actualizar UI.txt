@@ -6,3 +6,5 @@ Form.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
 
 
 self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,color=QtGui.QColor(234, 221, 186, 100)))
+
+class UI_LogIn

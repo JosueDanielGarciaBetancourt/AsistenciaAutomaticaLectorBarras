@@ -4,6 +4,7 @@ import binascii
 import re
 from PyQt6 import QtWidgets
 from ui_files.UI_LogIn import UI_LogIn
+from ui_files.UI_MainWindow import UI_MainWindow
 from PyQt6.QtWidgets import QApplication
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
@@ -13,6 +14,7 @@ from src.modelo.Docente import Docente
 class LogInWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
+        self.main = None
         self.logInWindow = UI_LogIn()
         self.logInWindow.setupUi(self)
         self.usernameLoged = ""
@@ -26,8 +28,17 @@ class LogInWindow(QtWidgets.QWidget):
     def cerrar(self):
         self.close()
 
-    def minimizaar(self):
+    def minimizar(self):
         self.showMinimized()
+
+    def closeLogin(self):
+        self.cerrar()
+        QApplication.quit()
+        print("CERRANDO TODO")
+
+    def limpiarCamposLogin(self):
+        self.logInWindow.lineEditUserName.setText("Nombre de Usuario/Correo Institucional")
+        self.logInWindow.lineEditPassword.setText("Password")
 
     def validar_username(self, username):
         # Pasar a minúsculas para poder validar si se ingresa username con MAYÚSCULAS
@@ -103,22 +114,55 @@ class LogInWindow(QtWidgets.QWidget):
             print("Excepción durante la verificacion de login:", ex)
 
     def ingresarApp(self):
-        self.cerrar()
+        self.hide()
+        self.main = MainWindow()
         MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido {self.usernameLoged}")
         print("Entrando a la APP")
 
     def whatsappEntry(self):
         print("Entrando a whatsapp")
+        self.limpiarCamposLogin()
+
+    def mostrarContrasena(self, state):
+        # Verifica si el estado del checkbox es Qt.Checked (2)
+        if state:
+            # Si está marcado, muestra la contraseña
+            self.logInWindow.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Normal)
+        else:
+            # Si no está marcado, oculta la contraseña
+            self.logInWindow.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
 
     def initGUI(self):
         try:
+            # Agregar login correcto para pruebas
+            self.logInWindow.lineEditUserName.setText("jcamarenaf@continental.edu.pe")
+            self.logInWindow.lineEditPassword.setText("123456")
+
             self.logInWindow.pushButtonIngresar.clicked.connect(self.verificarLogeo)
             self.logInWindow.pushButtonWhatsApp.clicked.connect(self.whatsappEntry)
-            self.logInWindow.pushButtonCloseLogIn.clicked.connect(self.close)
-            self.logInWindow.pushButtonMinimizeLogIn.clicked.connect(self.minimizaar)
+            self.logInWindow.pushButtonCloseLogIn.clicked.connect(self.closeLogin)
+            self.logInWindow.pushButtonMinimizeLogIn.clicked.connect(self.minimizar)
+            self.logInWindow.checkBoxShowPassword.stateChanged.connect(self.mostrarContrasena)
         except Exception as e:
             print(e)
 
+
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.mainWindow = UI_MainWindow()
+        self.mainWindow.setupUi(self)
+        self.initGUI()
+        self.mostrar()
+
+    def mostrar(self):
+        self.showMaximized()
+
+    def cerrar(self):
+        self.close()
+
+    def initGUI(self):
+        pass
 
 class AsistenciaWindow:
     def __init__(self):
