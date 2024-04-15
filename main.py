@@ -6,11 +6,13 @@ from src.vista.app import App
 
 datos_personas = {
     "77043114": {"nombre": "Josué", "apellido_paterno": "García", "apellido_materno": "Betancourt",
-                 "edad": 22, "sexo": "Masculino"},
+                 "edad": 22, "sexo": "Masculino"}, 
     "77331712": {"nombre": "Raul", "apellido_paterno": "Torre", "apellido_materno": "Medina",
                  "edad": 21, "sexo": "Masculino"},
     "74465364": {"nombre": "David", "apellido_paterno": "Contreras", "apellido_materno": "Cerrón",
-                 "edad": 20, "sexo": "Masculino"},
+                 "edad": 20, "sexo": "Femenino"},
+    "78104318": {"nombre": "Yoni", "apellido_paterno": "Orihuela", "apellido_materno": "Gonzales",
+                 "edad": 69, "sexo": "Femenino"},
     "12345678": {"nombre": "María", "apellido_paterno": "Quispe", "apellido_materno": "Mamani",
                  "edad": 30, "sexo": "Femenino"}
 }
