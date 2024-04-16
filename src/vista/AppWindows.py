@@ -37,8 +37,10 @@ class LogInWindow(QtWidgets.QWidget):
         print("CERRANDO TODO")
 
     def limpiarCamposLogin(self):
-        self.logInWindow.lineEditUserName.setText("Nombre de Usuario/Correo Institucional")
-        self.logInWindow.lineEditPassword.setText("Password")
+        self.logInWindow.lineEditUserName.setText("")
+        self.logInWindow.lineEditPassword.setText("")
+        self.logInWindow.lineEditUserName.setPlaceholderText("Nombre de Usuario/Correo Institucional")
+        self.logInWindow.lineEditPassword.setPlaceholderText("Password")
 
     def validar_username(self, username):
         # Pasar a minúsculas para poder validar si se ingresa username con MAYÚSCULAS
@@ -135,9 +137,9 @@ class LogInWindow(QtWidgets.QWidget):
     def initGUI(self):
         try:
             # Agregar login correcto solo para pruebas
+            self.limpiarCamposLogin()
             self.logInWindow.lineEditUserName.setText("jcamarenaf@continental.edu.pe")
             self.logInWindow.lineEditPassword.setText("123456")
-
             self.logInWindow.pushButtonIngresar.clicked.connect(self.verificarLogeo)
             self.logInWindow.pushButtonWhatsApp.clicked.connect(self.whatsappEntry)
             self.logInWindow.pushButtonCloseLogIn.clicked.connect(self.closeLogin)

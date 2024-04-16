@@ -7,8 +7,10 @@ class Conexion:
         try:
             self.con = sqlite3.connect("src/modelo/AsistenciaAppDB.db")
             print("Conexión establecida")
-            print("Creando tablas")
-            self.crearTablas()
+            self.Verdatos()
+            if not self.verificarTablasCreadas():
+                print("Creando tablas")
+                self.crearTablas()
         except Exception as ex:
             print("Excepción en Conexion:", ex)
 
@@ -75,7 +77,45 @@ class Conexion:
         except sqlite3.IntegrityError:
             print("Ya se creó este docente")
         except Exception as ex:
-            print("Error al insertar estudiante:", ex)
+            print("Error al Insertar Docente:", ex)
+
+    def verificarTablasCreadas(self):
+        cursor = self.con.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('tblEstudiantes', 'tblDocentes', 'tblCursos')")
+        tablas_existentes = [tabla[0] for tabla in cursor.fetchall()]
+
+        if len(tablas_existentes) == 3:
+            print("Tablas Existentes Verificadas")
+            return True
+        else:
+            print("Tablas no encontradas ...")
+            return False
+    
+    def Verdatos(self):
+        QueryDatosEstudiantes = "Select * From tblEstudiantes"
+        QueryDatosDocentes = "Select * From tblDocentes"
+        QueryDatosCursos = "Select * From tblCursos"
+        cursorActivo = self.con.cursor()
+        cursorActivo.execute(QueryDatosEstudiantes)
+        datosEstudiantes = cursorActivo.fetchall()
+
+        cursorActivo.execute(QueryDatosDocentes)
+        datosDocentes = cursorActivo.fetchall()
+
+        cursorActivo.execute(QueryDatosCursos)
+        datosCursos = cursorActivo.fetchall()
+
+        print("DATOS DE ESTUDIANTES: ")
+        for fila in datosEstudiantes:
+            print(fila) 
+        print("DATOS DE DOCENTES: ")
+        for fila in datosDocentes:
+            print(fila) 
+        print("DATOS DE CURSOS: ")
+        for fila in datosCursos:
+            print(fila) 
+
+        cursorActivo.close()
     @staticmethod
     def conectar():
         return sqlite3.connect("src/modelo/AsistenciaAppDB.db")
