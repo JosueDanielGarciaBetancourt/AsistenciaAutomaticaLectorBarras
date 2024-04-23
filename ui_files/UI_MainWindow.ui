@@ -162,7 +162,7 @@
                 <string>Inicio</string>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color:#1f232a</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Inicio</string>
