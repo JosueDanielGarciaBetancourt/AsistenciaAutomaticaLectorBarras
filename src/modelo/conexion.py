@@ -5,12 +5,13 @@ import sqlite3
 class Conexion:
     def __init__(self):
         try:
-            self.con = sqlite3.connect("src/modelo/AsistenciaAppDB.db")
+            self.con = sqlite3.connect("src/modelo/DB_Asistencias.db")
             print("Conexión establecida")
-            self.Verdatos()
+            #self.Verdatos()
             if not self.verificarTablasCreadas():
                 print("Creando tablas")
-                self.crearTablas()
+                self.crearTablasDB()
+                self.crearDocentes() #Creacion de datos para Testing
         except Exception as ex:
             print("Excepción en Conexion:", ex)
 
@@ -49,6 +50,74 @@ class Conexion:
         self.crearEstudiantes()
         self.crearDocentes()
 
+    def crearTablasDB(self):
+        sql_create_table_estudiantes = """ CREATE TABLE IF NOT EXISTS tblEstudiantes (
+                                estuDni TEXT UNIQUE PRIMARY KEY,
+                                estuNombre TEXT NOT NULL, 
+                                estuApellidoPaterno TEXT,
+                                estuApellidoMaterno TEXT,
+                                estuCorreo TEXT) """
+        
+        sql_create_table_docentes = """ CREATE TABLE IF NOT EXISTS tblDocentes (
+                                docenteDni TEXT UNIQUE PRIMARY KEY,
+                                docenteNombre TEXT NOT NULL, 
+                                docenteApellidoPaterno TEXT NOT NULL,
+                                docenteApellidoMaterno TEXT,
+                                docenteCorreo TEXT,
+                                docenteContraseña TEXT NOT NULL) """
+        
+        sql_create_table_cursos = """ CREATE TABLE IF NOT EXISTS tblCursos (
+                                cursoId TEXT UNIQUE PRIMARY KEY,
+                                cursoNombre TEXT NOT NULL, 
+                                cursoCredito INTEGER) """
+        
+        sql_create_table_aulas = """ CREATE TABLE IF NOT EXISTS tblAulas (
+                                aulaId TEXT UNIQUE PRIMARY KEY,
+                                aulaPabellon TEXT NOT NULL, 
+                                aulaSalon TEXT,
+                                aulaCapacidad INTEGER) """
+        
+        sql_create_table_secciones = """ CREATE TABLE IF NOT EXISTS tblSecciones (
+                                nrc TEXT UNIQUE PRIMARY KEY,
+                                seccionPeriodo TEXT NOT NULL, 
+                                cursoId TEXT NOT NULL,
+                                FOREIGN KEY (cursoId) REFERENCES tblCursos(cursoId)) """
+
+        sql_create_table_detalle_estudiantes_secciones= """ CREATE TABLE IF NOT EXISTS tblDetalle_Estudiantes_Secciones (
+                                estuDni TEXT NOT NULL,
+                                nrc TEXT NOT NULL,
+                                det_estu_seccion_estadoAsistencia TEXT NOT NULL,
+                                det_estu_seccion_fechaAsistencia TEXT NOT NULL,
+                                FOREIGN KEY (estuDni) REFERENCES tblEstudiantes(estuDni),
+                                FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
+
+        sql_create_table_detalle_secciones_aulas= """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Aulas (
+                                aulaId TEXT NOT NULL,
+                                nrc TEXT NOT NULL,
+                                det_seccion_aula_horaInicio TEXT NOT NULL,
+                                det_seccion_aula_horaFin TEXT NOT NULL,
+                                det_seccion_aula_diaSemana TEXT NOT NULL,
+                                FOREIGN KEY (aulaId) REFERENCES tblAulas(aulaId),
+                                FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
+        
+        sql_create_table_detalle_secciones_docentes= """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Docentes (
+                                docenteDni TEXT NOT NULL,
+                                nrc TEXT NOT NULL,
+                                FOREIGN KEY (docenteDni) REFERENCES tblDocentes(docenteDni),
+                                FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
+        curs = self.con.cursor()
+        curs.execute(sql_create_table_estudiantes)
+        curs.execute(sql_create_table_docentes)
+        curs.execute(sql_create_table_cursos)
+        curs.execute(sql_create_table_aulas)
+        curs.execute(sql_create_table_secciones)
+        curs.execute(sql_create_table_detalle_estudiantes_secciones)
+        curs.execute(sql_create_table_detalle_secciones_aulas)
+        curs.execute(sql_create_table_detalle_secciones_docentes)
+        curs.close()
+
+        
+
     def crearEstudiantes(self):
         try:
             sql_insert = """ INSERT INTO tblEstudiantes (estDNI, estNombre, estApellidos) VALUES (
@@ -65,12 +134,14 @@ class Conexion:
 
     def crearDocentes(self):
         try:
-            sql_insert = """ INSERT INTO tblDocentes (docDNI, docNombre, docApellidos, docUsername, docPassword) VALUES (
-                                                     '41280062', 
-                                                     'Judith',
-                                                     'Camarena Flores',
-                                                     'jcamarenaf@continental.edu.pe',
-                                                     '123456') """
+            sql_insert = """ INSERT INTO tblDocentes 
+            (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, docenteCorreo, docenteContraseña) 
+            VALUES ('41280062', 
+                    'Judith',
+                    'Camarena',
+                    'Flores',
+                    'jcamarenaf@continental.edu.pe',
+                    '123456') """
             cur = self.con.cursor()
             cur.execute(sql_insert)
             self.con.commit()
@@ -81,16 +152,19 @@ class Conexion:
 
     def verificarTablasCreadas(self):
         cursor = self.con.cursor()
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('tblEstudiantes', 'tblDocentes', 'tblCursos')")
+        cursor.execute("""SELECT name FROM sqlite_master WHERE type='table' AND name IN 
+                       ('tblEstudiantes', 'tblDocentes', 'tblCursos', 'tblAulas', 'tblSecciones',
+                       'tblDetalle_Estudiantes_Secciones','tblDetalle_Secciones_Aulas', 'tblDetalle_Secciones_Docentes')""")
         tablas_existentes = [tabla[0] for tabla in cursor.fetchall()]
 
-        if len(tablas_existentes) == 3:
+        if len(tablas_existentes) == 8:
             print("Tablas Existentes Verificadas")
             return True
         else:
             print("Tablas no encontradas ...")
             return False
     
+    #Funcion para Testear Datos (Quitar en las Pruebas Finales)
     def Verdatos(self):
         QueryDatosEstudiantes = "Select * From tblEstudiantes"
         QueryDatosDocentes = "Select * From tblDocentes"
@@ -118,4 +192,4 @@ class Conexion:
         cursorActivo.close()
     @staticmethod
     def conectar():
-        return sqlite3.connect("src/modelo/AsistenciaAppDB.db")
+        return sqlite3.connect("src/modelo/DB_Asistencias.db")

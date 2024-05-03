@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import QApplication
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
+from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
 
 
 class LogInWindow(QtWidgets.QWidget):
@@ -123,7 +124,7 @@ class LogInWindow(QtWidgets.QWidget):
 
     def whatsappEntry(self):
         print("Entrando a whatsapp")
-        self.limpiarCamposLogin()
+        IngresoGrupoWhastApp.ingresarGrupoWhatsApp()
 
     def mostrarContrasena(self, state):
         # Verifica si el estado del checkbox es Qt.Checked (2)
