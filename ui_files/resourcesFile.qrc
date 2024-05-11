@@ -3,6 +3,7 @@
     <file>background.png</file>
   </qresource>
   <qresource prefix="icons">
+    <file>icons/AppIcon.ico</file>
     <file>icons/activity.svg</file>
     <file>icons/airplay.svg</file>
     <file>icons/alert-circle.svg</file>
