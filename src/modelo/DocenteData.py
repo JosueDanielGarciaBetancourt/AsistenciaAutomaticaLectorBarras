@@ -16,13 +16,13 @@ class DocenteData:
         self.cursor = self.db.cursor()
         buscarDocenteUsername = self.cursor.execute(
             "SELECT * FROM tblDocentes "
-            "WHERE docUsername ='{}'".format(docente.getUsername()))
+            "WHERE docenteCorreo ='{}'".format(docente.getUsername()))
         firstRowUsername = buscarDocenteUsername.fetchone()
 
         if firstRowUsername:  # Existe el nombre de usuario
             buscarDocentePassword = self.cursor.execute(
                 "SELECT * FROM tblDocentes "
-                "WHERE docUsername = '{}' AND docPassword = '{}'".format(docente.getUsername(), docente.getPassword()))
+                "WHERE docenteCorreo = '{}' AND docenteContraseña = '{}'".format(docente.getUsername(), docente.getPassword()))
             paswordRow = buscarDocentePassword.fetchone()
             if paswordRow:  # Contraseña sí coincide
                 docente = Docente(paswordRow[0],
