@@ -2,6 +2,8 @@ import hashlib
 import secrets  # Para generar un salt aleatorio
 import binascii
 import re
+import os
+import sys
 from PyQt6 import QtWidgets
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
@@ -10,6 +12,7 @@ from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
+#from Custom-Widgets import *
 
 
 class LogInWindow(QtWidgets.QWidget):
@@ -155,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
         self.mainWindow = UI_MainWindow()
         self.mainWindow.setupUi(self)
+        #loadJsonStyle(self, self.mainWindow)
         self.initGUI()
         self.mostrar()
 
@@ -171,6 +175,6 @@ class MainWindow(QtWidgets.QMainWindow):
 class AsistenciaWindow:
     def __init__(self):
         super().__init__()
-        self.app = QApplication([])
+        self.app = QApplication(sys.argv)
         self.login = LogInWindow()
         self.app.exec()

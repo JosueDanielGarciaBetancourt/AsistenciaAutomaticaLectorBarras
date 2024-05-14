@@ -1,6 +1,7 @@
+TODOS
 import ui_files.resourcesFile
 
-
+LOGIN
 Form.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
 Form.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
 
