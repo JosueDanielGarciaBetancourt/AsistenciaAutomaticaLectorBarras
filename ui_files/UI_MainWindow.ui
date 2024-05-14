@@ -430,7 +430,7 @@
               </widget>
              </item>
              <item alignment="Qt::AlignRight">
-              <widget class="QPushButton" name="pushButtonMoreMenu">
+              <widget class="QPushButton" name="btnCloseMoreMenu">
                <property name="toolTip">
                 <string>Cerrar Menú</string>
                </property>
@@ -582,6 +582,23 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QPushButton" name="btnShowMoreMenu">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="resourcesFile.qrc">
+                 <normaloff>:/icons/icons/arrow-right-circle.svg</normaloff>:/icons/icons/arrow-right-circle.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QLabel" name="tricappIcon">
                <property name="maximumSize">

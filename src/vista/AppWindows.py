@@ -12,7 +12,6 @@ from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
-#from Custom-Widgets import *
 
 
 class LogInWindow(QtWidgets.QWidget):
@@ -154,8 +153,8 @@ class LogInWindow(QtWidgets.QWidget):
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        QtWidgets.QMainWindow.__init__(self)
         self.mainWindow = UI_MainWindow()
         self.mainWindow.setupUi(self)
         #loadJsonStyle(self, self.mainWindow)
@@ -168,9 +167,18 @@ class MainWindow(QtWidgets.QMainWindow):
     def cerrar(self):
         self.close()
 
-    def initGUI(self):
-        pass
+    def closeMoreMenu(self):
+        self.mainWindow.btnShowMoreMenu.show()
+        self.mainWindow.centerMenuSubContainer.hide()
 
+    def showMoreMenu(self):
+        self.mainWindow.btnShowMoreMenu.hide()
+        self.mainWindow.centerMenuSubContainer.show()
+
+    def initGUI(self):
+        self.mainWindow.btnShowMoreMenu.hide()
+        self.mainWindow.btnCloseMoreMenu.clicked.connect(self.closeMoreMenu)
+        self.mainWindow.btnShowMoreMenu.clicked.connect(self.showMoreMenu)
 
 class AsistenciaWindow:
     def __init__(self):
