@@ -5,6 +5,9 @@ LOGIN
 Form.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
 Form.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
 
+MAIN WINDOW (después de resize)
+MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
+
 
 self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,color=QtGui.QColor(234, 221, 186, 100)))
 

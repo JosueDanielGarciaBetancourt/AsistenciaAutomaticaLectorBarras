@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>darkWolf.png</file>
     <file>background.png</file>
   </qresource>
   <qresource prefix="icons">
