@@ -8,7 +8,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QMessageBox
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
@@ -166,9 +166,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def mostrar(self):
         self.showMaximized()
 
-    def cerrar(self):
-        self.close()
-
     def irInicio(self):
         try:
             self.mainWindow.mainStackedWidget.setCurrentIndex(0)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
@@ -214,7 +211,17 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.popupNotificationSubContainer.hide()
 
     def closeApp(self):
-        self.close()
+        # Definir los valores de los parámetros
+        titulo = "Confirmar cierre"
+        mensaje = "¿Estás seguro de que deseas cerrar la aplicación?"
+        icon = QMessageBox.Icon.Question  # Puedes cambiar el icono según tus preferencias
+
+        # Llamar a la función con los parámetros
+        respuesta = MensajesWindow.mostrarMensajeConfirmacion(titulo, mensaje, icon)
+
+        # Verificar la respuesta del usuario
+        if respuesta == "Sí":
+            self.close()
 
     def restoreWindowApp(self):
         if self.isMaximized():
