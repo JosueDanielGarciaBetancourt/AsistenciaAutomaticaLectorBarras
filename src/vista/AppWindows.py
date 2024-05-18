@@ -15,6 +15,10 @@ from src.modelo.Docente import Docente
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
 
 
+def mousePressEvent(self, event):
+    self.clickPosition = event.globallPos()
+
+
 class LogInWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -108,7 +112,7 @@ class LogInWindow(QtWidgets.QWidget):
                 if docenteEncontrado.getPassword():
                     self.usernameLoged = username
                     self.passwordLoged = password
-                    self.ingresarApp()
+                    self.ingresarApp(docenteEncontrado)
                 else:
                     self.logInWindow.lineEditPassword.setFocus()
                     MensajesWindow.mostrarMensajeRegistroError("Contraseña incorrecta")
@@ -119,10 +123,10 @@ class LogInWindow(QtWidgets.QWidget):
         except Exception as ex:
             print("Excepción durante la verificacion de login:", ex)
 
-    def ingresarApp(self):
+    def ingresarApp(self, docenteEncontrado):
         self.hide()
-        self.main = MainWindow()
-        MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido {self.usernameLoged}")
+        self.main = MainWindow(docenteEncontrado)
+        MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido a TRICAPP {docenteEncontrado.getName()}")
         print("Entrando a la APP")
 
     def whatsappEntry(self):
@@ -154,33 +158,41 @@ class LogInWindow(QtWidgets.QWidget):
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, docenteEncontrado):
         super().__init__()
         self.mainWindow = UI_MainWindow()
         self.mainWindow.setupUi(self)
-        #loadJsonStyle(self, self.mainWindow)
-        self.paginaActual = None
+        self.paginaActual = 0
+        self.docente = docenteEncontrado
         self.initGUI()
         self.mostrar()
 
+    def mousePressEvent(self, event):
+        pass
+
     def mostrar(self):
+        self.mainWindow.lblSaludoInicio.setText(f"Hola {self.docente.getName()}")
         self.showMaximized()
+        self.irInicio()
 
     def irInicio(self):
         try:
             self.mainWindow.mainStackedWidget.setCurrentIndex(0)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 0
         except Exception as ex:
             print(ex)
 
     def irAsistencia(self):
         try:
             self.mainWindow.mainStackedWidget.setCurrentIndex(1)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 1
         except Exception as ex:
             print(ex)
 
     def irReporte(self):
         try:
             self.mainWindow.mainStackedWidget.setCurrentIndex(2)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 2
         except Exception as ex:
             print(ex)
 
@@ -214,10 +226,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # Definir los valores de los parámetros
         titulo = "Confirmar cierre"
         mensaje = "¿Estás seguro de que deseas cerrar la aplicación?"
-        icon = QMessageBox.Icon.Question  # Puedes cambiar el icono según tus preferencias
 
         # Llamar a la función con los parámetros
-        respuesta = MensajesWindow.mostrarMensajeConfirmacion(titulo, mensaje, icon)
+        respuesta = MensajesWindow.mostrarMensajeConfirmacion(titulo, mensaje)
 
         # Verificar la respuesta del usuario
         if respuesta == "Sí":

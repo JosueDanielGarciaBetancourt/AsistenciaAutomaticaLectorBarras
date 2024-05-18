@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Gestión de Asistencia en Aula</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resourcesFile.qrc">
+    <normaloff>:/icons/icons/AppIcon.ico</normaloff>:/icons/icons/AppIcon.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">*{
 	border: none;
@@ -1063,7 +1067,7 @@
                   <rect>
                    <x>9</x>
                    <y>9</y>
-                   <width>1200</width>
+                   <width>1150</width>
                    <height>650</height>
                   </rect>
                  </property>
@@ -1092,7 +1096,7 @@
                   <bool>false</bool>
                  </property>
                 </widget>
-                <widget class="QLabel" name="labelaaa">
+                <widget class="QLabel" name="lblSaludoInicio">
                  <property name="geometry">
                   <rect>
                    <x>30</x>
@@ -1115,23 +1119,125 @@ la sociedad
                 </widget>
                </widget>
                <widget class="QWidget" name="page_7">
-                <layout class="QVBoxLayout" name="verticalLayout_16">
-                 <item>
-                  <widget class="QLabel" name="label_11">
-                   <property name="font">
-                    <font>
-                     <pointsize>13</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Asistencia</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                <widget class="QFrame" name="frame_12">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>10</y>
+                   <width>365</width>
+                   <height>38</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_15">
+                  <item alignment="Qt::AlignLeft">
+                   <widget class="QLabel" name="label_11">
+                    <property name="font">
+                     <font>
+                      <pointsize>11</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(104, 199, 107)</string>
+                    </property>
+                    <property name="text">
+                     <string>Asignatura: </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignLeft">
+                   <widget class="QComboBox" name="comboBox">
+                    <property name="font">
+                     <font>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>QUÍMICA 1-31979-202410</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>QUÍMICA-31962-202410</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>DIRECCIÓN DE PROYECTOS-22892-202410</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>DIRECCIÓN DE PROYECTOS-22888-202410</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>QUÍMICA 1-16158-202410</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QFrame" name="frame_13">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>60</y>
+                   <width>173</width>
+                   <height>38</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_16">
+                  <item alignment="Qt::AlignLeft">
+                   <widget class="QLabel" name="label_16">
+                    <property name="font">
+                     <font>
+                      <pointsize>11</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(104, 199, 107)</string>
+                    </property>
+                    <property name="text">
+                     <string>Fecha y hora:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+                   <widget class="QLabel" name="label_5">
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>18/05/2024</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </widget>
                <widget class="QWidget" name="page_8">
                 <layout class="QVBoxLayout" name="verticalLayout_19">
