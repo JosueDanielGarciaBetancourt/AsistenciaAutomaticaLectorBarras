@@ -261,7 +261,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def initGUI(self):
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
-        self.mainWindow.rightMenuContainer.hide()
         self.mainWindow.popupNotificationSubContainer.hide()
 
         # Conectar botones a las distintas acciones

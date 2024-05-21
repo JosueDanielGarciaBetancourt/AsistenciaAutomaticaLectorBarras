@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1220</width>
     <height>550</height>
    </rect>
   </property>
@@ -645,13 +645,13 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>40</height>
+           <height>50</height>
           </size>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -1055,189 +1055,272 @@
           </property>
           <item>
            <widget class="QWidget" name="mainContentsContainer" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <layout class="QVBoxLayout" name="verticalLayout_20">
              <item>
               <widget class="QStackedWidget" name="mainStackedWidget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="page_6">
-                <widget class="QLabel" name="imgWolf">
-                 <property name="geometry">
-                  <rect>
-                   <x>9</x>
-                   <y>9</y>
-                   <width>1150</width>
-                   <height>650</height>
-                  </rect>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <property name="spacing">
+                  <number>0</number>
                  </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>1150</width>
-                   <height>650</height>
-                  </size>
+                 <property name="leftMargin">
+                  <number>0</number>
                  </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>1150</width>
-                   <height>650</height>
-                  </size>
+                 <property name="topMargin">
+                  <number>0</number>
                  </property>
-                 <property name="text">
-                  <string/>
+                 <property name="rightMargin">
+                  <number>0</number>
                  </property>
-                 <property name="pixmap">
-                  <pixmap resource="resourcesFile.qrc">:/images/darkWolf.png</pixmap>
+                 <property name="bottomMargin">
+                  <number>0</number>
                  </property>
-                 <property name="scaledContents">
-                  <bool>true</bool>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="lblSaludoInicio">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>120</y>
-                   <width>331</width>
-                   <height>131</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>20</pointsize>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>El lobo y 
-la sociedad 
-¡PRIVADA! :V</string>
-                 </property>
-                </widget>
+                 <item>
+                  <widget class="QWidget" name="widget" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>100</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: black;</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="lblSaludoInicio">
+                      <property name="font">
+                       <font>
+                        <pointsize>20</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
+                      <property name="text">
+                       <string>Saludar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_10">
+                      <property name="text">
+                       <string>Curso 1</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLabel" name="label_17">
+                      <property name="text">
+                       <string>Curso 2</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="imgWolf">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>100</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>1080</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="resourcesFile.qrc">:/images/darkWolfCutted.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
                <widget class="QWidget" name="page_7">
-                <widget class="QFrame" name="frame_12">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>10</y>
-                   <width>365</width>
-                   <height>38</height>
-                  </rect>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_15">
-                  <item alignment="Qt::AlignLeft">
-                   <widget class="QLabel" name="label_11">
-                    <property name="font">
-                     <font>
-                      <pointsize>11</pointsize>
-                     </font>
+                <layout class="QVBoxLayout" name="verticalLayout_16">
+                 <item>
+                  <widget class="QFrame" name="frame_12">
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_15">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(104, 199, 107)</string>
+                    <property name="leftMargin">
+                     <number>0</number>
                     </property>
-                    <property name="text">
-                     <string>Asignatura: </string>
+                    <property name="topMargin">
+                     <number>0</number>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="rightMargin">
+                     <number>0</number>
                     </property>
-                   </widget>
-                  </item>
-                  <item alignment="Qt::AlignLeft">
-                   <widget class="QComboBox" name="comboBox">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                     </font>
+                    <property name="bottomMargin">
+                     <number>0</number>
                     </property>
-                    <item>
-                     <property name="text">
-                      <string>QUÍMICA 1-31979-202410</string>
-                     </property>
+                    <item alignment="Qt::AlignLeft">
+                     <widget class="QLabel" name="label_11">
+                      <property name="font">
+                       <font>
+                        <pointsize>11</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(104, 199, 107)</string>
+                      </property>
+                      <property name="text">
+                       <string>Asignatura: </string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>QUÍMICA-31962-202410</string>
-                     </property>
+                    <item alignment="Qt::AlignLeft">
+                     <widget class="QComboBox" name="cmbBoxAsignatura">
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>25</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>8</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">        QComboBox {
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #333;
+            color: #FFF;
+        }
+
+        QComboBox::drop-down {
+            subcontrol-origin: padding;
+            subcontrol-position: top right;
+            width: 15px;
+            border-left: 1px solid #444;
+            background-color: #444;
+        }
+
+        QComboBox::down-arrow {
+            image: url(down_arrow.png); /* Coloca tu propia imagen de flecha aquí */
+            width: 10px;
+            height: 10px;
+        }
+
+        QComboBox QAbstractItemView {
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #333;
+            selection-background-color: #555;
+            selection-color: #FFF;
+        }</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>QUÍMICA 1-31979</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>QUÍMICA-31962</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>DIRECCIÓN DE PROYECTOS-22892</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>DIRECCIÓN DE PROYECTOS-22888</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>QUÍMICA 1-16158</string>
+                       </property>
+                      </item>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>DIRECCIÓN DE PROYECTOS-22892-202410</string>
-                     </property>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_13">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_16">
+                    <item alignment="Qt::AlignLeft">
+                     <widget class="QLabel" name="label_16">
+                      <property name="font">
+                       <font>
+                        <pointsize>11</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(104, 199, 107)</string>
+                      </property>
+                      <property name="text">
+                       <string>Fecha y hora:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>DIRECCIÓN DE PROYECTOS-22888-202410</string>
-                     </property>
+                    <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+                     <widget class="QLabel" name="label_5">
+                      <property name="maximumSize">
+                       <size>
+                        <width>70</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>18/05/2024</string>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>QUÍMICA 1-16158-202410</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-                <widget class="QFrame" name="frame_13">
-                 <property name="geometry">
-                  <rect>
-                   <x>10</x>
-                   <y>60</y>
-                   <width>173</width>
-                   <height>38</height>
-                  </rect>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_16">
-                  <item alignment="Qt::AlignLeft">
-                   <widget class="QLabel" name="label_16">
-                    <property name="font">
-                     <font>
-                      <pointsize>11</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(104, 199, 107)</string>
-                    </property>
-                    <property name="text">
-                     <string>Fecha y hora:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
-                   <widget class="QLabel" name="label_5">
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>18/05/2024</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
                <widget class="QWidget" name="page_8">
                 <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -1289,6 +1372,12 @@ la sociedad
              </property>
              <item>
               <widget class="QWidget" name="rightMenuSubContainer" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>250</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
                 <property name="spacing">
                  <number>5</number>
@@ -1353,20 +1442,143 @@ la sociedad
                 <item>
                  <widget class="QStackedWidget" name="stackedWidget_2">
                   <widget class="QWidget" name="page_4">
-                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                   <layout class="QVBoxLayout" name="verticalLayout_21">
                     <item>
-                     <widget class="QLabel" name="label_8">
-                      <property name="font">
-                       <font>
-                        <pointsize>13</pointsize>
-                       </font>
+                     <widget class="QWidget" name="widget_3" native="true">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
                       </property>
-                      <property name="text">
-                       <string>Profile</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_10">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_18">
+                         <property name="maximumSize">
+                          <size>
+                           <width>50</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="pixmap">
+                          <pixmap resource="resourcesFile.qrc">:/images/profesoraFotoRounded.png</pixmap>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>10</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_8">
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Judith Camarena Flores</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_2" native="true">
+                      <layout class="QVBoxLayout" name="verticalLayout_15">
+                       <item>
+                        <widget class="QLabel" name="label_19">
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Dirección de correo
+</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_21">
+                         <property name="text">
+                          <string>jcamarenaf@continental.edu.pe</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_20">
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>País</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_22">
+                         <property name="text">
+                          <string>Perú</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_23">
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Ciudad</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_24">
+                         <property name="text">
+                          <string>Huancayo</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
