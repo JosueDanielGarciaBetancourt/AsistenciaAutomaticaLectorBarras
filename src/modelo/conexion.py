@@ -7,13 +7,13 @@ class Conexion:
         try:
             self.rutaActual = os.path.dirname(__file__)
             self.con = sqlite3.connect(f"{self.rutaActual}\DB_Asistencias.db")
-            print("Conexión establecida con", self.con)
             self.crearTablasDB()
             self.crearDocentes()
             """if not self.verificarTablasCreadas():
                     print("Creando tablas")
                     self.crearTablasDB()
                     self.crearDocentes()"""
+            print("Conexión establecida con", self.con)
         except sqlite3.Error as e:
             print("Error al conectar a la base de datos:", e)
             print("No se pudo establecer la conexión. Creando una nueva base de datos...")
@@ -40,86 +40,64 @@ class Conexion:
         except Exception as ex:
             print("Error al eliminar la base de datos existente:", ex)
 
-    def crearTablas(self):
-        sql_create_table1 = """ CREATE TABLE IF NOT EXISTS tblEstudiantes (
-                                estDNI TEXT UNIQUE PRIMARY KEY,
-                                estNombre TEXT, 
-                                estApellidos TEXT) """
-
-        sql_create_table2 = """ CREATE TABLE IF NOT EXISTS tblDocentes (
-                                        docDNI TEXT UNIQUE PRIMARY KEY,
-                                        docNombre TEXT, 
-                                        docApellidos TEXT,
-                                        docUsername TEXT UNIQUE,
-                                        docPassword TEXT) """
-
-        sql_create_table3 = """ CREATE TABLE IF NOT EXISTS tblCursos (
-                                curNRC TEXT UNIQUE PRIMARY KEY,
-                                curNombre TEXT,
-                                curAula TEXT) """
-        curs = self.con.cursor()
-        curs.execute(sql_create_table1)
-        curs.execute(sql_create_table2)
-        curs.execute(sql_create_table3)
-        curs.close()
-        self.crearEstudiantes()
-        self.crearDocentes()
-
     def crearTablasDB(self):
         sql_create_table_estudiantes = """ CREATE TABLE IF NOT EXISTS tblEstudiantes (
-                                estuDni TEXT UNIQUE PRIMARY KEY,
-                                estuNombre TEXT NOT NULL, 
-                                estuApellidoPaterno TEXT,
-                                estuApellidoMaterno TEXT,
-                                estuCorreo TEXT) """
-
+                                estuDni VARCHAR(10) UNIQUE PRIMARY KEY,
+                                estuNombre VARCHAR(255) NOT NULL, 
+                                estuApellidoPaterno VARCHAR(255),
+                                estuApellidoMaterno VARCHAR(255),
+                                estuCorreo VARCHAR(255)) """
+        
         sql_create_table_docentes = """ CREATE TABLE IF NOT EXISTS tblDocentes (
-                                docenteDni TEXT UNIQUE PRIMARY KEY,
-                                docenteNombre TEXT NOT NULL, 
-                                docenteApellidoPaterno TEXT NOT NULL,
-                                docenteApellidoMaterno TEXT,
-                                docentePais TEXT,
-                                docenteCiudad TEXT,
-                                docenteCorreo TEXT,
-                                docenteContraseña TEXT NOT NULL) """
+                                docenteDni VARCHAR(10) UNIQUE PRIMARY KEY,
+                                docenteNombre VARCHAR(255) NOT NULL, 
+                                docenteApellidoPaterno VARCHAR(255) NOT NULL,
+                                docenteApellidoMaterno VARCHAR(255),
+                                docentePais VARCHAR(255),
+                                docenteCiudad VARCHAR(255),
+                                docenteCorreo VARCHAR(255),
+                                docenteContraseña VARCHAR(255) NOT NULL,
+                                docenteFotoPerfil VARCHAR(255)) """
 
+        
         sql_create_table_cursos = """ CREATE TABLE IF NOT EXISTS tblCursos (
-                                cursoId TEXT UNIQUE PRIMARY KEY,
-                                cursoNombre TEXT NOT NULL, 
+                                cursoId VARCHAR(5) UNIQUE PRIMARY KEY,
+                                cursoNombre VARCHAR(255) NOT NULL, 
                                 cursoCredito INTEGER) """
-
+        
         sql_create_table_aulas = """ CREATE TABLE IF NOT EXISTS tblAulas (
-                                aulaId TEXT UNIQUE PRIMARY KEY,
-                                aulaPabellon TEXT NOT NULL, 
-                                aulaSalon TEXT,
+                                aulaId VARCHAR(5) UNIQUE PRIMARY KEY,
+                                aulaPabellon VARCHAR(5) NOT NULL, 
+                                aulaSalon VARCHAR(5),
                                 aulaCapacidad INTEGER) """
-
+        
         sql_create_table_secciones = """ CREATE TABLE IF NOT EXISTS tblSecciones (
-                                nrc TEXT UNIQUE PRIMARY KEY,
-                                seccionPeriodo TEXT NOT NULL, 
-                                cursoId TEXT NOT NULL,
+                                nrc VARCHAR(5) UNIQUE PRIMARY KEY,
+                                seccionPeriodo VARCHAR(6) NOT NULL, 
+                                cursoId VARCHAR(5) NOT NULL,
                                 FOREIGN KEY (cursoId) REFERENCES tblCursos(cursoId)) """
 
-        sql_create_table_detalle_estudiantes_secciones = """ CREATE TABLE IF NOT EXISTS tblDetalle_Estudiantes_Secciones (
-                                estuDni TEXT NOT NULL,
-                                nrc TEXT NOT NULL,
-                                det_estu_seccion_estadoAsistencia TEXT NOT NULL,
-                                det_estu_seccion_fechaAsistencia TEXT NOT NULL,
+        sql_create_table_detalle_estudiantes_secciones= """ CREATE TABLE IF NOT EXISTS tblDetalle_Estudiantes_Secciones (
+                                estuDni VARCHAR(10) NOT NULL,
+                                nrc VARCHAR(5) NOT NULL,
+                                det_estu_seccion_estadoAsistencia BIT NOT NULL,
+                                det_estu_seccion_fechaAsistencia DATE NOT NULL,
+                                det_estu_seccion_horaAsistencia TIME NOT NULL,
                                 FOREIGN KEY (estuDni) REFERENCES tblEstudiantes(estuDni),
                                 FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
 
-        sql_create_table_detalle_secciones_aulas = """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Aulas (
-                                aulaId TEXT NOT NULL,
-                                nrc TEXT NOT NULL,
-                                det_seccion_aula_horaInicio TEXT NOT NULL,
-                                det_seccion_aula_horaFin TEXT NOT NULL,
-                                det_seccion_aula_diaSemana TEXT NOT NULL,
+        sql_create_table_detalle_secciones_aulas= """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Aulas (
+                                aulaId VARCHAR(5) NOT NULL,
+                                nrc VARCHAR(5) NOT NULL,
+                                det_seccion_aula_horaInicio TIME NOT NULL,
+                                det_seccion_aula_horaFin TIME NOT NULL,
+                                det_seccion_aula_diaSemana VARCHAR(10) NOT NULL,
                                 FOREIGN KEY (aulaId) REFERENCES tblAulas(aulaId),
                                 FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
-
-        sql_create_table_detalle_secciones_docentes = """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Docentes (
-                                docenteDni TEXT NOT NULL,
-                                nrc TEXT NOT NULL,
+        
+        sql_create_table_detalle_secciones_docentes= """ CREATE TABLE IF NOT EXISTS tblDetalle_Secciones_Docentes (
+                                docenteDni VARCHAR(10) NOT NULL,
+                                nrc VARCHAR(5) NOT NULL,
                                 FOREIGN KEY (docenteDni) REFERENCES tblDocentes(docenteDni),
                                 FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
         curs = self.con.cursor()
@@ -132,6 +110,7 @@ class Conexion:
         curs.execute(sql_create_table_detalle_secciones_aulas)
         curs.execute(sql_create_table_detalle_secciones_docentes)
         curs.close()
+
 
     def crearEstudiantes(self):
         try:
