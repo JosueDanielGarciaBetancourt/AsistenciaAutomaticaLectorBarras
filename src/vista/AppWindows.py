@@ -15,10 +15,6 @@ from src.modelo.Docente import Docente
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
 
 
-def mousePressEvent(self, event):
-    self.clickPosition = event.globallPos()
-
-
 class LogInWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -287,6 +283,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
         self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
+
 
 class AsistenciaWindow:
     def __init__(self):
