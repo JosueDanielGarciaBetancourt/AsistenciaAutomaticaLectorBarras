@@ -12,4 +12,7 @@ class Docente:
     def getPassword(self):
         return self._password
 
+    def getName(self):
+        return self._nombre
+
 

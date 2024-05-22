@@ -5,13 +5,18 @@ import re
 import os
 import sys
 from PyQt6 import QtWidgets
+from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication, QMessageBox
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
+
+
+def mousePressEvent(self, event):
+    self.clickPosition = event.globallPos()
 
 
 class LogInWindow(QtWidgets.QWidget):
@@ -107,7 +112,7 @@ class LogInWindow(QtWidgets.QWidget):
                 if docenteEncontrado.getPassword():
                     self.usernameLoged = username
                     self.passwordLoged = password
-                    self.ingresarApp()
+                    self.ingresarApp(docenteEncontrado)
                 else:
                     self.logInWindow.lineEditPassword.setFocus()
                     MensajesWindow.mostrarMensajeRegistroError("Contraseña incorrecta")
@@ -118,10 +123,10 @@ class LogInWindow(QtWidgets.QWidget):
         except Exception as ex:
             print("Excepción durante la verificacion de login:", ex)
 
-    def ingresarApp(self):
+    def ingresarApp(self, docenteEncontrado):
         self.hide()
-        self.main = MainWindow()
-        MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido {self.usernameLoged}")
+        self.main = MainWindow(docenteEncontrado)
+        MensajesWindow.mostrarMensajeRegistroExito(f"Bienvenido a TRICAPP {docenteEncontrado.getName()}")
         print("Entrando a la APP")
 
     def whatsappEntry(self):
@@ -142,7 +147,7 @@ class LogInWindow(QtWidgets.QWidget):
             # Agregar login correcto solo para pruebas
             self.limpiarCamposLogin()
             self.logInWindow.lineEditUserName.setText("jcamarenaf@continental.edu.pe")
-            self.logInWindow.lineEditPassword.setText("123456")
+            self.logInWindow.lineEditPassword.setText("123")
             self.logInWindow.pushButtonIngresar.clicked.connect(self.verificarLogeo)
             self.logInWindow.pushButtonWhatsApp.clicked.connect(self.whatsappEntry)
             self.logInWindow.pushButtonCloseLogIn.clicked.connect(self.closeLogin)
@@ -153,19 +158,43 @@ class LogInWindow(QtWidgets.QWidget):
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        QtWidgets.QMainWindow.__init__(self)
+    def __init__(self, docenteEncontrado):
+        super().__init__()
         self.mainWindow = UI_MainWindow()
         self.mainWindow.setupUi(self)
-        #loadJsonStyle(self, self.mainWindow)
+        self.paginaActual = 0
+        self.docente = docenteEncontrado
         self.initGUI()
         self.mostrar()
 
-    def mostrar(self):
-        self.showMaximized()
+    def mousePressEvent(self, event):
+        pass
 
-    def cerrar(self):
-        self.close()
+    def mostrar(self):
+        self.mainWindow.lblSaludoInicio.setText(f"Hola {self.docente.getName()}")
+        self.showMaximized()
+        self.irInicio()
+
+    def irInicio(self):
+        try:
+            self.mainWindow.mainStackedWidget.setCurrentIndex(0)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 0
+        except Exception as ex:
+            print(ex)
+
+    def irAsistencia(self):
+        try:
+            self.mainWindow.mainStackedWidget.setCurrentIndex(1)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 1
+        except Exception as ex:
+            print(ex)
+
+    def irReporte(self):
+        try:
+            self.mainWindow.mainStackedWidget.setCurrentIndex(2)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
+            self.paginaActual = 2
+        except Exception as ex:
+            print(ex)
 
     def closeMoreMenu(self):
         self.mainWindow.btnShowMoreMenu.show()
@@ -175,10 +204,78 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnShowMoreMenu.hide()
         self.mainWindow.centerMenuSubContainer.show()
 
+    def showProfile(self):
+        if self.mainWindow.rightMenuContainer.isHidden():
+            self.mainWindow.rightMenuContainer.show()
+        else:
+            self.closeProfile()
+
+    def closeProfile(self):
+        self.mainWindow.rightMenuContainer.hide()
+
+    def showNotification(self):
+        if self.mainWindow.popupNotificationSubContainer.isHidden():
+            self.mainWindow.popupNotificationSubContainer.show()
+        else:
+            self.closeNotification()
+
+    def closeNotification(self):
+        self.mainWindow.popupNotificationSubContainer.hide()
+
+    def closeApp(self):
+        # Definir los valores de los parámetros
+        titulo = "Confirmar cierre"
+        mensaje = "¿Estás seguro de que deseas cerrar la aplicación?"
+
+        # Llamar a la función con los parámetros
+        respuesta = MensajesWindow.mostrarMensajeConfirmacion(titulo, mensaje)
+
+        # Verificar la respuesta del usuario
+        if respuesta == "Sí":
+            self.close()
+
+    def restoreWindowApp(self):
+        if self.isMaximized():
+            self.showNormal()  # Normal size
+        else:
+            self.showMaximized()  # Big size
+
+    def switchFullScreen(self):
+        if self.isFullScreen():
+            self.showMaximized()  # Big size
+        else:
+            self.showFullScreen() # Full screen
+
+    def minimizeApp(self):
+        try:
+            self.showMinimized()
+        except Exception as ex:
+            print(ex)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key.Key_F11:
+            self.switchFullScreen()
+        else:
+            super().keyPressEvent(event)
+
     def initGUI(self):
-        self.mainWindow.btnShowMoreMenu.hide()
+        # Ocultar algunos elementos
+        self.mainWindow.centerMenuSubContainer.hide()
+        self.mainWindow.popupNotificationSubContainer.hide()
+
+        # Conectar botones a las distintas acciones
+        self.mainWindow.closeBtn.clicked.connect(self.closeApp)
+        self.mainWindow.restoreBtn.clicked.connect(self.restoreWindowApp)
+        self.mainWindow.minimizeBtn.clicked.connect(self.minimizeApp)
         self.mainWindow.btnCloseMoreMenu.clicked.connect(self.closeMoreMenu)
         self.mainWindow.btnShowMoreMenu.clicked.connect(self.showMoreMenu)
+        self.mainWindow.pushButtonInicio.clicked.connect(self.irInicio)
+        self.mainWindow.pushButtonAsistencia.clicked.connect(self.irAsistencia)
+        self.mainWindow.pushButtonReporte.clicked.connect(self.irReporte)
+        self.mainWindow.btnProfile.clicked.connect(self.showProfile)
+        self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
+        self.mainWindow.btnNotification.clicked.connect(self.showNotification)
+        self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
 
 class AsistenciaWindow:
     def __init__(self):
