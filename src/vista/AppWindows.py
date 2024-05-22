@@ -4,7 +4,7 @@ import binascii
 import re
 import os
 import sys
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
@@ -160,15 +160,14 @@ class LogInWindow(QtWidgets.QWidget):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, docenteEncontrado):
         super().__init__()
+        self.clickPosition = None
+        self.windowRestored = False
         self.mainWindow = UI_MainWindow()
         self.mainWindow.setupUi(self)
         self.paginaActual = 0
         self.docente = docenteEncontrado
         self.initGUI()
         self.mostrar()
-
-    def mousePressEvent(self, event):
-        pass
 
     def mostrar(self):
         self.mainWindow.lblSaludoInicio.setText(f"Hola {self.docente.getName()}")
@@ -237,14 +236,16 @@ class MainWindow(QtWidgets.QMainWindow):
     def restoreWindowApp(self):
         if self.isMaximized():
             self.showNormal()  # Normal size
+            self.windowRestored = True
         else:
             self.showMaximized()  # Big size
+            self.windowRestored = False
 
     def switchFullScreen(self):
         if self.isFullScreen():
             self.showMaximized()  # Big size
         else:
-            self.showFullScreen() # Full screen
+            self.showFullScreen()  # Full screen
 
     def minimizeApp(self):
         try:
@@ -257,6 +258,16 @@ class MainWindow(QtWidgets.QMainWindow):
             self.switchFullScreen()
         else:
             super().keyPressEvent(event)
+
+    def mousePressEvent(self, event):
+        # Esto servirá para poder mover la ventana a la posición del cursor
+        self.clickPosition = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
+            self.move(self.pos() + event.globalPos() - self.clickPosition)
+            self.clickPosition = event.globalPos()
+            event.accept()
 
     def initGUI(self):
         # Ocultar algunos elementos
