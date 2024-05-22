@@ -78,6 +78,8 @@ class Conexion:
                                 docenteNombre TEXT NOT NULL, 
                                 docenteApellidoPaterno TEXT NOT NULL,
                                 docenteApellidoMaterno TEXT,
+                                docentePais TEXT,
+                                docenteCiudad TEXT,
                                 docenteCorreo TEXT,
                                 docenteContraseña TEXT NOT NULL) """
 
@@ -147,16 +149,19 @@ class Conexion:
 
     def crearDocentes(self):
         try:
-            sql_insert = """ INSERT INTO tblDocentes 
-            (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, docenteCorreo, docenteContraseña) 
-            VALUES ('41280062', 
-                    'Judith',
-                    'Camarena',
-                    'Flores',
-                    'jcamarenaf@continental.edu.pe',
-                    '123456') """
             cur = self.con.cursor()
-            cur.execute(sql_insert)
+
+            sql_insert = """INSERT INTO tblDocentes 
+                        (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, 
+                        docentePais, docenteCiudad, docenteCorreo, docenteContraseña) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
+
+            docentes = [
+                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123'),
+                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123')
+            ]
+
+            cur.executemany(sql_insert, docentes)
             self.con.commit()
         except sqlite3.IntegrityError:
             print("Ya se creó este docente")
