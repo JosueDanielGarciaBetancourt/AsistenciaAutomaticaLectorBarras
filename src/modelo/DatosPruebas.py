@@ -1,6 +1,7 @@
 import sqlite3
 import conexion
 
+
 class DatosPruebas:
     def __init__(self):
          pass
