@@ -1,8 +1,16 @@
 import os
+import sqlite3
 
+def crear_db_nueva(rutaActual):
+    try:
+        con = sqlite3.connect(os.path.join(rutaActual, 'DB_Asistencias.db'))
+        print("Base de datos creada")
+        crear_tablas()
+    except Exception as ex:
+        print("Excepción al crear la base de datos:", ex)
+        raise ex
 
-
-def crearTablasDB(self):
+def crear_tablas(con):
         sql_create_table_estudiantes = """ CREATE TABLE IF NOT EXISTS tblEstudiantes (
                                 estuDni VARCHAR(10) UNIQUE PRIMARY KEY,
                                 estuNombre VARCHAR(255) NOT NULL, 
@@ -18,7 +26,9 @@ def crearTablasDB(self):
                                 docentePais VARCHAR(255),
                                 docenteCiudad VARCHAR(255),
                                 docenteCorreo VARCHAR(255),
-                                docenteContraseña VARCHAR(255) NOT NULL) """
+                                docenteContraseña VARCHAR(255) NOT NULL,
+                                docenteFotoPerfil VARCHAR(255)) """
+
         
         sql_create_table_cursos = """ CREATE TABLE IF NOT EXISTS tblCursos (
                                 cursoId VARCHAR(5) UNIQUE PRIMARY KEY,
@@ -60,7 +70,7 @@ def crearTablasDB(self):
                                 nrc VARCHAR(5) NOT NULL,
                                 FOREIGN KEY (docenteDni) REFERENCES tblDocentes(docenteDni),
                                 FOREIGN KEY (nrc) REFERENCES tblSecciones(nrc)) """
-        curs = self.con.cursor()
+        curs = con.cursor()
         curs.execute(sql_create_table_estudiantes)
         curs.execute(sql_create_table_docentes)
         curs.execute(sql_create_table_cursos)
@@ -71,11 +81,51 @@ def crearTablasDB(self):
         curs.execute(sql_create_table_detalle_secciones_docentes)
         curs.close()
 
-def eliminarBDExistente(self):
+def verificar_tablas_db(con):
+    try:
+        cursor = con.cursor()
+        tablas_necesarias = [
+            'tblEstudiantes', 
+            'tblDocentes', 
+            'tblCursos', 
+            'tblAulas', 
+            'tblSecciones', 
+            'tblDetalle_Estudiantes_Secciones', 
+            'tblDetalle_Secciones_Aulas', 
+            'tblDetalle_Secciones_Docentes'
+        ]
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tablas_existentes = [tabla[0] for tabla in cursor.fetchall()]
+
+        for tabla in tablas_necesarias:
+            if tabla not in tablas_existentes:
+                print(f"Tabla faltante: {tabla}")
+                return False
+
+        return True
+    except sqlite3.Error as e:
+        print("Error al verificar las tablas en la base de datos:", e)
+        return False
+
+def eliminar_tablas(con):
+    cursor = con.cursor()
+    cursor.execute("DROP TABLE IF EXISTS tblDetalle_Secciones_Docentes")
+    cursor.execute("DROP TABLE IF EXISTS tblDetalle_Secciones_Aulas")
+    cursor.execute("DROP TABLE IF EXISTS tblDetalle_Estudiantes_Secciones")
+    cursor.execute("DROP TABLE IF EXISTS tblSecciones")
+    cursor.execute("DROP TABLE IF EXISTS tblAulas")
+    cursor.execute("DROP TABLE IF EXISTS tblCursos")
+    cursor.execute("DROP TABLE IF EXISTS tblDocentes")
+    cursor.execute("DROP TABLE IF EXISTS tblEstudiantes")
+    con.commit()
+    cursor.close()
+
+def eliminar_db_existente(con, rutaActual):
         try:
-            os.remove("src/modelo/DB_Asistencias.db")
+            con.close()
+            os.remove(os.path.join(rutaActual, 'DB_Asistencias.db'))
             print("Base de datos existente eliminada correctamente")
         except FileNotFoundError:
             print("No se encontró la base de datos existente")
         except Exception as ex:
-            print("Error al eliminar la base de datos existente:", ex) 
+            print("Error al eliminar la base de datos existente:", ex)
