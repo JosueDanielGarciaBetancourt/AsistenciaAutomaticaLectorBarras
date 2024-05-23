@@ -20,8 +20,8 @@ class Conexion:
                     self.crearTablasDB()
                 else:
                     print("Tablas existentes verificadas.")
-                self.crearDocentes()
-                self.crearEstudiantes()
+                self.crearDocentes()  #DATOS PARA PRUEBAS (CAMBIAR EN LAS FUTURAS VERSIONES)
+                self.crearEstudiantes() #DATOS PARA PRUEBAS (CAMBIAR EN LAS FUTURAS VERSIONES)
                 print("Conexión establecida con", self.con)
         except sqlite3.Error as e:
             print("Error al conectar a la base de datos:", e)
