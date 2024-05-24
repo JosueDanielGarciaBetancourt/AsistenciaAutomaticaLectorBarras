@@ -324,10 +324,18 @@ class MainWindow(QtWidgets.QMainWindow):
             self.mainWindow.tablaTomarAsistencia.clearContents()
             self.mainWindow.tablaTomarAsistencia.setRowCount(0)
 
-            if seccionEncontrada:  # Encontró  el NRC de la sección
+            if seccionEncontrada:  # Encontró el NRC de la sección
                 NRC = seccionEncontrada.getNRC()
-                #  Consultar estudiantes con NRC encontrado
-                listaObjetosEstudiantes = seccionData.searchEstudiantes_by_NRC(NRC)
+                # Consultar estudiantes con NRC encontrado
+                try:
+                    listaObjetosEstudiantes = seccionData.searchEstudiantes_by_NRC(NRC)
+                    if listaObjetosEstudiantes is None:
+                        raise ValueError("No se encontraron estudiantes para el NRC proporcionado.")
+                except Exception as e:
+                    print("Error al ejecutar searchEstudiantes_by_NRC:", e)
+                    mensaje = "Error al buscar estudiantes por NRC"
+                    MensajesWindow.mostrarMensajeRegistroError(mensaje)
+                    return
 
                 for estudiante in listaObjetosEstudiantes:
                     fila = self.mainWindow.tablaTomarAsistencia.rowCount()
