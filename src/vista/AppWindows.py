@@ -253,19 +253,28 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def buscar_y_marcar_item(self, texto_busqueda):
         num_filas = self.mainWindow.tablaTomarAsistencia.rowCount()
+        DNI_Encontrado = False
+
         for fila in range(num_filas):
             item = self.mainWindow.tablaTomarAsistencia.item(fila, 0)
             if item and item.text() == texto_busqueda:
+                DNI_Encontrado = True
                 # Se encontró el texto en la columna 0, ahora se cambia el estado de la columna 3
                 item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
+
+        if DNI_Encontrado:
+            self.mainWindow.labelRegistrado.setText(f"{texto_busqueda} registrado")
+        else:
+            self.mainWindow.labelRegistrado.setText("No encontrado")
 
     def validarTextoAsistenciaPorDNI(self, text):
         # Verificar si todos los caracteres son dígitos y la longitud es 8
         if text.isdigit() and len(text) == 8:
             print(f"El texto {text} es un número de 8 dígitos.")
             self.buscar_y_marcar_item(text)
+            self.mainWindow.lineEditDNI.setText("")
         else:
             print(f"El texto {text} no es un número de 8 dígitos.")
 
@@ -395,7 +404,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
         self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
-        self.mainWindow.lineEditDNI
 
 
 class AsistenciaWindow:

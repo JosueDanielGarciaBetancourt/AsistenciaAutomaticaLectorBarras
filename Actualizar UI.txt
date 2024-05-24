@@ -13,3 +13,8 @@ MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
 
 self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,color=QtGui.QColor(234, 221, 186, 100)))
 
+
+
+
+
+
