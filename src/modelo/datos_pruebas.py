@@ -1,9 +1,8 @@
 import sqlite3
 
 
-def insertar_estudiantes(con):
-    estudiantes = [
-        {'dni': '77348389', 'nombre': 'CARLOS ENRIQUE ALEJANDRO', 'apellido_paterno': 'PAUCARCHUCO', 'apellido_materno': '', 'correo': '77348389@continental.edu.pe'},
+estudiantes_DP = [
+        {'dni': '77348389', 'nombre': 'CARLOS ENRIQUE', 'apellido_paterno': 'ALEJANDRO', 'apellido_materno': 'PAUCARCHUCO', 'correo': '77348389@continental.edu.pe'},
         {'dni': '74651261', 'nombre': 'OLENKA NOELIA', 'apellido_paterno': 'ALMONACID', 'apellido_materno': 'TAPIA', 'correo': '74651261@continental.edu.pe'},
         {'dni': '76418687', 'nombre': 'JACK JEYSON', 'apellido_paterno': 'AUCCATOMA', 'apellido_materno': 'ROJAS', 'correo': '76418687@continental.edu.pe'},
         {'dni': '71257598', 'nombre': 'DERIANN URIEL', 'apellido_paterno': 'BALDEON', 'apellido_materno': 'GUZMAN', 'correo': '71257598@continental.edu.pe'},
@@ -48,44 +47,202 @@ def insertar_estudiantes(con):
         {'dni': '71864080', 'nombre': 'IRVING JHAIR', 'apellido_paterno': 'YUPANQUI', 'apellido_materno': 'PAQUIYAURI', 'correo': '71864080@continental.edu.pe'}
     ]
 
-    try:
-        cur = con.cursor()
-        sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
-                        VALUES (?, ?, ?, ?, ?)"""
-        
-        for estudiante in estudiantes:
-            cur.execute(sql_insert, (
-                estudiante['dni'], 
-                estudiante['nombre'], 
-                estudiante['apellido_paterno'], 
-                estudiante['apellido_materno'], 
-                estudiante['correo']
-            ))
-        
-        con.commit()
-        print("Estudiantes insertados correctamente")
-    except sqlite3.IntegrityError as e:
-        print("Error de integridad al insertar estudiante:", e)
-    except Exception as ex:
-        print("Error al insertar estudiante:", ex)
+# Verificar si una tabla está vacía antes de insertar datos
+def tabla_vacia(con, tabla):
+    cur = con.cursor()
+    cur.execute(f"SELECT COUNT(*) FROM {tabla}")
+    count = cur.fetchone()[0]
+    return count == 0
 
+
+def insertar_estudiantes(con):
+    if tabla_vacia(con, 'tblEstudiantes'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
+                            VALUES (?, ?, ?, ?, ?)"""
+            
+            for estudiante in estudiantes_DP:
+                cur.execute(sql_insert, (
+                    estudiante['dni'], 
+                    estudiante['nombre'], 
+                    estudiante['apellido_paterno'], 
+                    estudiante['apellido_materno'], 
+                    estudiante['correo']
+                ))
+            
+            con.commit()
+            print("Estudiantes insertados correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar estudiante:", e)
+        except Exception as ex:
+            print("Error al insertar estudiante:", ex)
+    else:
+        print("La tabla tblEstudiantes ya tiene datos")
 
 def insertar_docentes(con):
-    try:
-        cur = con.cursor()
-        sql_insert = """INSERT INTO tblDocentes 
-                        (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, 
-                        docentePais, docenteCiudad, docenteCorreo, docenteContraseña) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
-        
-        docentes = [
-            ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123'),
-            ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123')
-        ]
-        
-        cur.executemany(sql_insert, docentes)
-        con.commit()
-    except sqlite3.IntegrityError:
-        print("Ya se creó este docente")
-    except Exception as ex:
-        print("Error al insertar docente:", ex)
+    if tabla_vacia(con, 'tblDocentes'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblDocentes 
+                            (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, 
+                            docentePais, docenteCiudad, docenteCorreo, docenteContraseña) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
+            
+            docentes = [
+                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123'),
+                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123')
+            ]
+            
+            cur.executemany(sql_insert, docentes)
+            con.commit()
+            print("Docentes insertados correctamente")
+        except sqlite3.IntegrityError:
+            print("Ya se creó este docente")
+        except Exception as ex:
+            print("Error al insertar docente:", ex)
+    else:
+        print("La tabla tblDocentes ya tiene datos")
+
+def insertar_aulas(con):
+    if tabla_vacia(con, 'tblAulas'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblAulas (aulaId, aulaPabellon, aulaSalon, aulaCapacidad) VALUES (?, ?, ?, ?)"""
+            
+            aulas = [
+                ('E202', 'E', '202', 50),
+                ('C401', 'C', '401', 50),
+                ('H704', 'H', '704', 40)
+            ]
+            
+            cur.executemany(sql_insert, aulas)
+            con.commit()
+            print("Aulas insertadas correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar aulas:", e)
+        except Exception as ex:
+            print("Error al insertar aulas:", ex)
+    else:
+        print("La tabla tblAulas ya tiene datos")
+
+def insertar_cursos(con):
+    if tabla_vacia(con, 'tblCursos'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblCursos (cursoId, cursoNombre, cursoCredito) VALUES (?, ?, ?)"""
+            
+            cursos = [
+                ('ASUC01365', 'INNOVACIÓN SOCIAL', 2),
+                ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4)
+            ]
+            
+            cur.executemany(sql_insert, cursos)
+            con.commit()
+            print("Cursos insertados correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar cursos:", e)
+        except Exception as ex:
+            print("Error al insertar cursos:", ex)
+    else:
+        print("La tabla tblCursos ya tiene datos")
+
+def insertar_secciones(con):
+    if tabla_vacia(con, 'tblSecciones'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblSecciones (nrc, seccionPeriodo, cursoId) VALUES (?, ?, ?)"""
+            
+            secciones = [
+                ('30246', '202410', 'ASUC01365'),
+                ('22888', '202410', 'ASUC01235')
+            ]
+            
+            cur.executemany(sql_insert, secciones)
+            con.commit()
+            print("Secciones insertadas correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar secciones:", e)
+        except Exception as ex:
+            print("Error al insertar secciones:", ex)
+    else:
+        print("La tabla tblSecciones ya tiene datos")
+
+def insertar_detalles_estudiantes_secciones(con):
+    if tabla_vacia(con, 'tblDetalle_Estudiantes_Secciones'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblDetalle_Estudiantes_Secciones 
+                            (estuDni, nrc, det_estu_seccion_estadoAsistencia, 
+                            det_estu_seccion_fechaAsistencia, det_estu_seccion_horaAsistencia) 
+                            VALUES (?, ?, ?, ?, ?)"""
+            
+            detalles_estudiantes = []
+            for estudiante in estudiantes_DP:
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '22888',  # NRC de DIRECCIÓN DE PROYECTOS
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+            
+            cur.executemany(sql_insert, detalles_estudiantes)
+            con.commit()
+            print("Detalles de estudiantes en secciones insertados correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar detalles de estudiantes en secciones:", e)
+        except Exception as ex:
+            print("Error al insertar detalles de estudiantes en secciones:", ex)
+    else:
+        print("La tabla tblDetalle_Estudiantes_Secciones ya tiene datos")
+
+def insertar_detalles_secciones_aulas(con):
+    if tabla_vacia(con, 'tblDetalle_Secciones_Aulas'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblDetalle_Secciones_Aulas 
+                            (nrc, aulaId, det_seccion_aula_horaInicio
+                            , det_seccion_aula_horaFin, det_seccion_aula_diaSemana) 
+                            VALUES (?, ?, ?, ?, ?)"""
+            
+            detalles_aulas = [
+                ('22888', 'E202', '14:00', '17:09', 'Martes'),
+                ('30246', 'H704', '10:20', '11:49', 'Viernes'),
+                ('22888', 'C401', '14:00', '15:29', 'Miercoles')
+            ]
+            
+            cur.executemany(sql_insert, detalles_aulas)
+            con.commit()
+            print("Detalles de secciones en aulas insertados correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar detalles de secciones en aulas:", e)
+        except Exception as ex:
+            print("Error al insertar detalles de secciones en aulas:", ex)
+    else:
+        print("La tabla tblDetalle_Secciones_Aulas ya tiene datos")
+
+def insertar_detalles_secciones_docentes(con):
+    if tabla_vacia(con, 'tblDetalle_Secciones_Docentes'):
+        try:
+            cur = con.cursor()
+            sql_insert = """INSERT INTO tblDetalle_Secciones_Docentes 
+                            (nrc, docenteDni) 
+                            VALUES (?, ?)"""
+            
+            detalles_docentes = [
+                ('22888', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
+                ('30246', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
+            ]
+            
+            cur.executemany(sql_insert, detalles_docentes)
+            con.commit()
+            print("Detalles de secciones en docentes insertados correctamente")
+        except sqlite3.IntegrityError as e:
+            print("Error de integridad al insertar detalles de secciones en docentes:", e)
+        except Exception as ex:
+            print("Error al insertar detalles de secciones en docentes:", ex)
+    else:
+        print("La tabla tblDetalle_Secciones_Docentes ya tiene datos")
+
+

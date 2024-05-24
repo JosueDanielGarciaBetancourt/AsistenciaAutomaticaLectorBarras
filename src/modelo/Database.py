@@ -5,7 +5,6 @@ def crear_db_nueva(rutaActual):
     try:
         con = sqlite3.connect(os.path.join(rutaActual, 'DB_Asistencias.db'))
         print("Base de datos creada")
-        crear_tablas()
     except Exception as ex:
         print("Excepción al crear la base de datos:", ex)
         raise ex
@@ -31,7 +30,7 @@ def crear_tablas(con):
 
         
         sql_create_table_cursos = """ CREATE TABLE IF NOT EXISTS tblCursos (
-                                cursoId VARCHAR(5) UNIQUE PRIMARY KEY,
+                                cursoId VARCHAR(9) UNIQUE PRIMARY KEY,
                                 cursoNombre VARCHAR(255) NOT NULL, 
                                 cursoCredito INTEGER) """
         
@@ -44,7 +43,7 @@ def crear_tablas(con):
         sql_create_table_secciones = """ CREATE TABLE IF NOT EXISTS tblSecciones (
                                 nrc VARCHAR(5) UNIQUE PRIMARY KEY,
                                 seccionPeriodo VARCHAR(6) NOT NULL, 
-                                cursoId VARCHAR(5) NOT NULL,
+                                cursoId VARCHAR(9) NOT NULL,
                                 FOREIGN KEY (cursoId) REFERENCES tblCursos(cursoId)) """
 
         sql_create_table_detalle_estudiantes_secciones= """ CREATE TABLE IF NOT EXISTS tblDetalle_Estudiantes_Secciones (
