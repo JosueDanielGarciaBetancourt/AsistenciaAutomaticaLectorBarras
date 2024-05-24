@@ -8,7 +8,7 @@ from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt6.QtWidgets import QApplication, QTableWidgetItem
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.DocenteData import DocenteData
 from src.modelo.Docente import Docente
@@ -266,7 +266,30 @@ class MainWindow(QtWidgets.QMainWindow):
             self.clickPosition = event.globalPos()
             event.accept()
 
+    def configTablaTomaAsistencia(self):
+        try:
+            num_filas = self.mainWindow.tablaTomarAsistencia.rowCount()
+            columna = 3
+
+            for fila in range(num_filas):
+                # Crear un nuevo item checkable
+                item = QTableWidgetItem()
+                item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+                item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+
+                # Establecer el nuevo item en la tercera columna
+                self.mainWindow.tablaTomarAsistencia.setItem(fila, columna, item)
+
+        except Exception as ex:
+            mensaje = "Ocurrió un error inesperado al intentar configurar como checkbox la tercera columna de la tablaTomarAsistencia"
+            print(mensaje)
+            print(ex)
+
     def initGUI(self):
+
+        # Configurar tablaTomarAsistencia
+        self.configTablaTomaAsistencia()
+
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
         self.mainWindow.popupNotificationSubContainer.hide()
