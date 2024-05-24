@@ -1154,12 +1154,30 @@
                 </layout>
                </widget>
                <widget class="QWidget" name="page_7">
-                <layout class="QVBoxLayout" name="verticalLayout_16">
-                 <item>
+                <layout class="QFormLayout" name="formLayout">
+                 <property name="horizontalSpacing">
+                  <number>0</number>
+                 </property>
+                 <property name="verticalSpacing">
+                  <number>15</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item row="0" column="0">
                   <widget class="QFrame" name="frame_12">
                    <property name="maximumSize">
                     <size>
-                     <width>300</width>
+                     <width>700</width>
                      <height>50</height>
                     </size>
                    </property>
@@ -1274,11 +1292,75 @@
                       </item>
                      </widget>
                     </item>
+                    <item>
+                     <spacer name="horizontalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>200</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_14">
+                      <property name="minimumSize">
+                       <size>
+                        <width>60</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>200</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_17">
+                       <item>
+                        <widget class="QLabel" name="label_25">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(104, 199, 107)</string>
+                         </property>
+                         <property name="text">
+                          <string>DNI:</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="lineEdit">
+                         <property name="styleSheet">
+                          <string notr="true">color: black;
+background-color: white;</string>
+                         </property>
+                         <property name="text">
+                          <string>wwwrwrw</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
-                 <item>
+                 <item row="1" column="0">
                   <widget class="QFrame" name="frame_13">
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>60</height>
+                    </size>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -1286,6 +1368,21 @@
                     <enum>QFrame::Raised</enum>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_16">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QLabel" name="label_16">
                       <property name="font">
@@ -1297,14 +1394,14 @@
                        <string notr="true">color: rgb(104, 199, 107)</string>
                       </property>
                       <property name="text">
-                       <string>Fecha y hora:</string>
+                       <string>Fecha:</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+                    <item>
                      <widget class="QLabel" name="label_5">
                       <property name="maximumSize">
                        <size>
@@ -1315,6 +1412,194 @@
                       <property name="text">
                        <string>18/05/2024</string>
                       </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QWidget" name="widget_4" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>1500</width>
+                     <height>300</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>1500</width>
+                     <height>300</height>
+                    </size>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item alignment="Qt::AlignLeft">
+                     <widget class="QTableWidget" name="tableWidget">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>600</width>
+                        <height>10</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>600</width>
+                        <height>300</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QHeaderView::section {
+   background-color: rgb(43, 69, 34);
+   color: white;
+}
+
+QTableWidget::item {
+    text-align: center; 
+}</string>
+                      </property>
+                      <property name="verticalScrollBarPolicy">
+                       <enum>Qt::ScrollBarAlwaysOn</enum>
+                      </property>
+                      <property name="horizontalScrollBarPolicy">
+                       <enum>Qt::ScrollBarAlwaysOff</enum>
+                      </property>
+                      <property name="autoScroll">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoScrollMargin">
+                       <number>4</number>
+                      </property>
+                      <property name="verticalScrollMode">
+                       <enum>QAbstractItemView::ScrollPerItem</enum>
+                      </property>
+                      <row>
+                       <property name="text">
+                        <string>1</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>2</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>3</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>4</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>5</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>6</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>7</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>8</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>9</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>10</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>11</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>12</string>
+                       </property>
+                      </row>
+                      <row>
+                       <property name="text">
+                        <string>13</string>
+                       </property>
+                      </row>
+                      <column>
+                       <property name="text">
+                        <string>DNI</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Estudiante</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>% Asistencia</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Estado</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Hora</string>
+                       </property>
+                      </column>
+                      <item row="0" column="0">
+                       <property name="text">
+                        <string>wdwdwdw</string>
+                       </property>
+                      </item>
+                      <item row="0" column="3">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="checkState">
+                        <enum>Checked</enum>
+                       </property>
+                      </item>
+                      <item row="1" column="3">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="checkState">
+                        <enum>Checked</enum>
+                       </property>
+                      </item>
                      </widget>
                     </item>
                    </layout>
@@ -1479,7 +1764,7 @@
                           <string/>
                          </property>
                          <property name="pixmap">
-                          <pixmap resource="resourcesFile.qrc">:/images/profesoraFotoRounded.png</pixmap>
+                          <pixmap>:/images/profesoraFotoRounded.png</pixmap>
                          </property>
                          <property name="scaledContents">
                           <bool>true</bool>

@@ -257,7 +257,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def mousePressEvent(self, event):
         # Esto servirá para poder mover la ventana a la posición del cursor
-        self.clickPosition = event.globalPos()
+        #self.clickPosition = event.globalPos()
+        pass
 
     def mouseMoveEvent(self, event):
         if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
