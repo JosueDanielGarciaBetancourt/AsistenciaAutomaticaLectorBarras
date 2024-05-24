@@ -70,30 +70,60 @@ class SeccionData:
             return None
 
     def searchEstudiantes_by_NRC(self, NRC):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
-        buscarDNIEstudiantesByNRC = self.cursor.execute(
-            "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones "
-            "WHERE nrc ='{}'".format(NRC))
-
-        if buscarDNIEstudiantesByNRC.fetchone() is None:  # No existen estudiantes con el NRC solicitado
-            print("No existen estudiantes con el NRC solicitado")
+        try:
+            self.db = Conexion.conectar()
+            self.cursor = self.db.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+        
+        try:
+            # Consulta para obtener los DNIs de los estudiantes por NRC
+            self.cursor.execute(
+                "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones WHERE nrc = ?", 
+                (NRC,)
+            )
+            DNIs = self.cursor.fetchall()
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener DNIs: {e}")
             self.cerrarConexion()
             return None
-        else:
-            # Consulta para obtener los DNIs de los estudiantes encontrados
-            DNIs = buscarDNIEstudiantesByNRC.fetchall()
-            listaObjetosEstudiante = []
-            for dni in DNIs:  # dni es una tupla, ejem: ('73125046',)
-                valor_dni = dni[0]
-                buscarEstudianteByDNI = self.cursor.execute(
-                    "SELECT * FROM tblEstudiantes "
-                    "WHERE estuDni ='{}'".format(valor_dni))
-                estudianteEncontrado = buscarEstudianteByDNI.fetchone()
-                estudiante = Estudiante(estudianteEncontrado[0], estudianteEncontrado[1], estudianteEncontrado[2],
-                                        estudianteEncontrado[3], estudianteEncontrado[4])
-                listaObjetosEstudiante.append(estudiante)
+        
+        if not DNIs:  # No existen estudiantes con el NRC solicitado
+            print(f"No existen estudiantes con el NRC solicitado: {NRC}")
             self.cerrarConexion()
-            return listaObjetosEstudiante  # Retornar lista de objetos estudiante con los atributos correctos
+            return None
+
+        listaObjetosEstudiante = []
+        for dni in DNIs:
+            try:
+                valor_dni = dni[0]
+                self.cursor.execute(
+                    "SELECT * FROM tblEstudiantes WHERE estuDni = ?", 
+                    (valor_dni,)
+                )
+                estudianteEncontrado = self.cursor.fetchone()
+                
+                if estudianteEncontrado:
+                    estudiante = Estudiante(
+                        estudianteEncontrado[0], estudianteEncontrado[1], 
+                        estudianteEncontrado[2], estudianteEncontrado[3], 
+                        estudianteEncontrado[4]
+                    )
+                    listaObjetosEstudiante.append(estudiante)
+                else:
+                    print(f"No se encontró estudiante con DNI {valor_dni}")
+            except Exception as e:
+                print(f"Error al obtener o procesar los datos del estudiante con DNI {valor_dni}: {e}")
+        
+        try:
+            self.cerrarConexion()
+        except Exception as e:
+            print(f"Error al cerrar la conexión a la base de datos: {e}")
+
+        return listaObjetosEstudiante
+
+
+  # Retornar lista de objetos estudiante con los atributos correctos
 
     #def insertEstudiantes_by_NRC(self, NRC):
