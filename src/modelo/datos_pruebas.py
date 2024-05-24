@@ -168,6 +168,7 @@ def insertar_secciones(con):
     else:
         print("La tabla tblSecciones ya tiene datos")
 
+
 def insertar_detalles_estudiantes_secciones(con):
     if tabla_vacia(con, 'tblDetalle_Estudiantes_Secciones'):
         try:
@@ -196,6 +197,7 @@ def insertar_detalles_estudiantes_secciones(con):
             print("Error al insertar detalles de estudiantes en secciones:", ex)
     else:
         print("La tabla tblDetalle_Estudiantes_Secciones ya tiene datos")
+
 
 def insertar_detalles_secciones_aulas(con):
     if tabla_vacia(con, 'tblDetalle_Secciones_Aulas'):

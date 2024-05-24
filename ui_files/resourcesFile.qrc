@@ -1,8 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>fotoIngJudithRounded.png</file>
+    <file>fotoIngMelitonRounded.png</file>
     <file>darkWolfCutted.png</file>
     <file>darkWolf.png</file>
-    <file>profesoraFotoRounded.png</file>
     <file>background.png</file>
   </qresource>
   <qresource prefix="icons">
