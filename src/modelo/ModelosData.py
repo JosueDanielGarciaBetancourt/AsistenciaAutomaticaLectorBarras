@@ -76,11 +76,11 @@ class SeccionData:
         except Exception as e:
             print(f"Error al conectar a la base de datos: {e}")
             return None
-        
+
         try:
-            # Consulta para obtener los DNIs de los estudiantes por NRC
+            # Obtener los DNIs de los estudiantes por NRC
             self.cursor.execute(
-                "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones WHERE nrc = ?", 
+                "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones WHERE nrc = ?",
                 (NRC,)
             )
             DNIs = self.cursor.fetchall()
@@ -88,7 +88,7 @@ class SeccionData:
             print(f"Error al ejecutar la consulta para obtener DNIs: {e}")
             self.cerrarConexion()
             return None
-        
+
         if not DNIs:  # No existen estudiantes con el NRC solicitado
             print(f"No existen estudiantes con el NRC solicitado: {NRC}")
             self.cerrarConexion()
@@ -99,15 +99,15 @@ class SeccionData:
             try:
                 valor_dni = dni[0]
                 self.cursor.execute(
-                    "SELECT * FROM tblEstudiantes WHERE estuDni = ?", 
+                    "SELECT * FROM tblEstudiantes WHERE estuDni = ?",
                     (valor_dni,)
                 )
                 estudianteEncontrado = self.cursor.fetchone()
-                
+
                 if estudianteEncontrado:
                     estudiante = Estudiante(
-                        estudianteEncontrado[0], estudianteEncontrado[1], 
-                        estudianteEncontrado[2], estudianteEncontrado[3], 
+                        estudianteEncontrado[0], estudianteEncontrado[1],
+                        estudianteEncontrado[2], estudianteEncontrado[3],
                         estudianteEncontrado[4]
                     )
                     listaObjetosEstudiante.append(estudiante)
@@ -115,7 +115,7 @@ class SeccionData:
                     print(f"No se encontró estudiante con DNI {valor_dni}")
             except Exception as e:
                 print(f"Error al obtener o procesar los datos del estudiante con DNI {valor_dni}: {e}")
-        
+
         try:
             self.cerrarConexion()
         except Exception as e:

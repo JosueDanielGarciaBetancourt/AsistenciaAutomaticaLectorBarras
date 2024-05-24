@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 def crear_db_nueva(rutaActual):
     try:
         con = sqlite3.connect(os.path.join(rutaActual, 'DB_Asistencias.db'))

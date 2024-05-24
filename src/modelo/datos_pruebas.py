@@ -195,6 +195,7 @@ def insertar_cursos(con):
     else:
         print("La tabla tblCursos ya tiene datos")
 
+
 def insertar_secciones(con):
     if tabla_vacia(con, 'tblSecciones'):
         try:
@@ -239,7 +240,7 @@ def insertar_detalles_estudiantes_secciones(con):
             for estudiante in estudiantes_IS:
                 detalles_estudiantes.append((
                     estudiante['dni'],
-                    '30246',  # NRC de DIRECCIÓN DE PROYECTOS
+                    '30246',  # NRC de INNOVACIÓN SOCIAL
                     0,  # estadoAsistencia sin registrar
                     '2000-01-01',  # Fecha genérica
                     '00:00:00'  # Hora genérica

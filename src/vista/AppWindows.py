@@ -264,6 +264,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
 
+                # Desplazar y enfocar en la fila encontrada
+                self.mainWindow.tablaTomarAsistencia.scrollToItem(item,
+                                                                  QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
+                self.mainWindow.tablaTomarAsistencia.setCurrentCell(fila, 0)
+                break  # Terminar el bucle después de encontrar el primer DNI
+
         if DNI_Encontrado:
             self.mainWindow.labelRegistrado.setText(f"{texto_busqueda} registrado")
         else:
