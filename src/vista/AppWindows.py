@@ -164,6 +164,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.docente = docenteEncontrado
         self.initGUI()
         self.mostrar()
+        self.configTablaTomaAsistencia()
 
     def mostrar(self):
         self.mainWindow.lblSaludoInicio.setText(f"Hola {self.docente.getName()}")
@@ -267,28 +268,48 @@ class MainWindow(QtWidgets.QMainWindow):
             event.accept()
 
     def configTablaTomaAsistencia(self):
-        try:
-            num_filas = self.mainWindow.tablaTomarAsistencia.rowCount()
-            columna = 3
+        import sqlite3
+        # Conectar a la base de datos
+        con = sqlite3.connect("src/modelo/DB_Asistencias.db")
+        cursor = con.cursor()
 
-            for fila in range(num_filas):
-                # Crear un nuevo item checkable
-                item = QTableWidgetItem()
-                item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
-                item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+        consulta = """
+        SELECT 
+            tblEstudiantes.estuDni, 
+            tblEstudiantes.estuNombre || ' ' || tblEstudiantes.estuApellidoPaterno || ' ' || tblEstudiantes.estuApellidoMaterno AS nombre_completo, 
+            '0%' AS asistencia, 
+            tblDetalle_Estudiantes_Secciones.det_estu_seccion_estadoAsistencia AS estado, 
+            tblDetalle_Estudiantes_Secciones.det_estu_seccion_horaAsistencia AS hora_asistencia
+        FROM 
+            tblEstudiantes
+        INNER JOIN 
+            tblDetalle_Estudiantes_Secciones 
+        ON 
+            tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni
 
-                # Establecer el nuevo item en la tercera columna
-                self.mainWindow.tablaTomarAsistencia.setItem(fila, columna, item)
+        """
+        tabla = self.mainWindow.tablaTomarAsistencia
+        tabla.setRowCount(0)
+        cursor.execute(consulta)
+        datos = cursor.fetchall()
+        for fila, dato in enumerate(datos):
+            # Agregar una fila nueva a la tabla
+            tabla.insertRow(fila)
 
-        except Exception as ex:
-            mensaje = "Ocurrió un error inesperado al intentar configurar como checkbox la tercera columna de la tablaTomarAsistencia"
-            print(mensaje)
-            print(ex)
+            # Rellenar cada celda con los datos correspondientes
+            for columna, valor in enumerate(dato):
+                if columna == 3:  # Si es la columna del estado
+                    estado_item = QTableWidgetItem()
+                    estado_item.setFlags(estado_item.flags() | Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+                    estado_item.setCheckState(Qt.CheckState.Checked if valor == 1 else Qt.CheckState.Unchecked)
+                    tabla.setItem(fila, columna, estado_item)
+                else:
+                    item = QTableWidgetItem(str(valor))  # Convertir el valor a cadena
+                    tabla.setItem(fila, columna, item)
+        con.close()
 
     def initGUI(self):
-
-        # Configurar tablaTomarAsistencia
-        self.configTablaTomaAsistencia()
+        
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
