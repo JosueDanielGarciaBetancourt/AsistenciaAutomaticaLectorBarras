@@ -259,21 +259,34 @@ class MainWindow(QtWidgets.QMainWindow):
             item = self.mainWindow.tablaTomarAsistencia.item(fila, 0)
             if item and item.text() == texto_busqueda:
                 DNI_Encontrado = True
+
                 # Se encontró el texto en la columna 0, ahora se cambia el estado de la columna 3
                 item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
 
+                # Marcar la hora actual en la fila
+                item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 4)
+                hora_actual = datetime.now().strftime("%H:%M:%S")
+                item_hour.setText(hora_actual)
+
                 # Desplazar y enfocar en la fila encontrada
-                self.mainWindow.tablaTomarAsistencia.scrollToItem(item,
-                                                                  QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
+                self.mainWindow.tablaTomarAsistencia.scrollToItem(item, QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
                 self.mainWindow.tablaTomarAsistencia.setCurrentCell(fila, 0)
                 break  # Terminar el bucle después de encontrar el primer DNI
 
+        self.mainWindow.labelRegistrado.show()
+
         if DNI_Encontrado:
+            self.mainWindow.labelRegistrado.setStyleSheet("""
+            color: rgb(46, 255, 60);
+            """)
             self.mainWindow.labelRegistrado.setText(f"{texto_busqueda} registrado")
         else:
-            self.mainWindow.labelRegistrado.setText("No encontrado")
+            self.mainWindow.labelRegistrado.setStyleSheet("""
+                        color: rgb(220, 50, 60);
+                        """)
+            self.mainWindow.labelRegistrado.setText(f"{texto_busqueda} no encontrado")
 
     def validarTextoAsistenciaPorDNI(self, text):
         # Verificar si todos los caracteres son dígitos y la longitud es 8
@@ -366,14 +379,17 @@ class MainWindow(QtWidgets.QMainWindow):
                         f"{nombre} {ap_paterno} {ap_materno}"))
                     self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, self.crear_item_no_editable("0%"))
 
-                    hora_actual = datetime.now().strftime("%H:%M:%S")
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 4, self.crear_item_no_editable(hora_actual))
-
                     # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
                     item = QTableWidgetItem()
                     item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
                     item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
                     self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, item)
+                    self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
+                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(3, 100)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 4, self.crear_item_no_editable("-"))
+
+                    # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
+
             else:
                 mensaje = "Aún no existe sección con el NRC solicitado en la base de datos"
                 MensajesWindow.mostrarMensajeRegistroError(mensaje)
@@ -394,13 +410,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.configTablaTomaAsistencia()
 
     def initGUI(self):
-
         # Configurar tablaTomarAsistencia
-        self.configTablaTomaAsistencia()
+        self.getCurrentTextCmbBoxAsignatura(self.mainWindow.cmbBoxAsignatura.currentText())
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
         self.mainWindow.popupNotificationSubContainer.hide()
+        self.mainWindow.labelRegistrado.hide()
 
         # Obtener el NRC actual del combo box
         self.mainWindow.cmbBoxAsignatura.currentTextChanged.connect(self.getCurrentTextCmbBoxAsignatura)
