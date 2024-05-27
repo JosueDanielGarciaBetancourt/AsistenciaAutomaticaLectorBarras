@@ -1,3 +1,4 @@
+from datetime import datetime
 import hashlib
 import secrets  # Para generar un salt aleatorio
 import binascii
@@ -10,8 +11,8 @@ from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
 from PyQt6.QtWidgets import QApplication, QTableWidgetItem
 from src.vista.Window_Utils import MensajesWindow
-from src.modelo.DocenteData import DocenteData
-from src.modelo.Docente import Docente
+from src.modelo.Modelos import Docente, Seccion
+from src.modelo.ModelosData import DocenteData, SeccionData
 from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
 
 
@@ -162,6 +163,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.setupUi(self)
         self.paginaActual = 0
         self.docente = docenteEncontrado
+        self.comboBoxAsignaturaCurrentNRC = ""
         self.initGUI()
         self.mostrar()
         self.configTablaTomaAsistencia()
@@ -250,63 +252,132 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as ex:
             print(ex)
 
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key.Key_F11:
-            self.switchFullScreen()
+    def buscar_y_marcar_item(self, texto_busqueda):
+        num_filas = self.mainWindow.tablaTomarAsistencia.rowCount()
+        for fila in range(num_filas):
+            item = self.mainWindow.tablaTomarAsistencia.item(fila, 0)
+            if item and item.text() == texto_busqueda:
+                # Se encontró el texto en la columna 0, ahora se cambia el estado de la columna 3
+                item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
+                if item_checkbox:
+                    item_checkbox.setCheckState(Qt.CheckState.Checked)
+
+    def validarTextoAsistenciaPorDNI(self, text):
+        # Verificar si todos los caracteres son dígitos y la longitud es 8
+        if text.isdigit() and len(text) == 8:
+            print(f"El texto {text} es un número de 8 dígitos.")
+            self.buscar_y_marcar_item(text)
         else:
-            super().keyPressEvent(event)
+            print(f"El texto {text} no es un número de 8 dígitos.")
+
+    def keyPressEvent(self, event):
+        try:
+            if event.key() == Qt.Key.Key_F11:
+                self.switchFullScreen()
+            elif event.key() == Qt.Key.Key_Return:
+                lineEdit = self.mainWindow.lineEditDNI
+                if lineEdit.hasFocus():
+                    self.validarTextoAsistenciaPorDNI(lineEdit.text())
+            else:
+                super().keyPressEvent(event)
+        except Exception as ex:
+            print(ex)
 
     def mousePressEvent(self, event):
+        try:
+            # Esto servirá para poder mover la ventana a la posición del cursor
+            self.clickPosition = event.globalPos()
+        except Exception as ex:
+            print(ex)
+
+    def mouseMoveEvent(self, event):
+        try:
+            if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
+                self.move(self.pos() + event.globalPos() - self.clickPosition)
+                self.clickPosition = event.globalPos()
+                event.accept()
+        except Exception as ex:
+            print(ex)
+
         # Esto servirá para poder mover la ventana a la posición del cursor
-        #self.clickPosition = event.globalPos()
+        # self.clickPosition = event.globalPos()
         pass
 
     def mouseMoveEvent(self, event):
-        if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
+        pass
+        """if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
             self.move(self.pos() + event.globalPos() - self.clickPosition)
             self.clickPosition = event.globalPos()
-            event.accept()
+            event.accept()"""
+
+    def crear_item_no_editable(self, texto):
+        item = QTableWidgetItem(texto)
+        item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEditable)
+        return item
 
     def configTablaTomaAsistencia(self):
-        import sqlite3
-        # Conectar a la base de datos
-        con = sqlite3.connect("src/modelo/DB_Asistencias.db")
-        cursor = con.cursor()
+        try:
+            # Consultar NRC en la base de datos
+            seccion = Seccion(NRC=self.comboBoxAsignaturaCurrentNRC)
+            seccionData = SeccionData()
+            seccionEncontrada = seccionData.searchSeccion(seccion)
 
-        consulta = """
-        SELECT 
-            tblEstudiantes.estuDni, 
-            tblEstudiantes.estuNombre || ' ' || tblEstudiantes.estuApellidoPaterno || ' ' || tblEstudiantes.estuApellidoMaterno AS nombre_completo, 
-            '0%' AS asistencia, 
-            tblDetalle_Estudiantes_Secciones.det_estu_seccion_estadoAsistencia AS estado, 
-            tblDetalle_Estudiantes_Secciones.det_estu_seccion_horaAsistencia AS hora_asistencia
-        FROM 
-            tblEstudiantes
-        INNER JOIN 
-            tblDetalle_Estudiantes_Secciones 
-        ON 
-            tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni
+            self.mainWindow.tablaTomarAsistencia.clearContents()
+            self.mainWindow.tablaTomarAsistencia.setRowCount(0)
 
-        """
-        tabla = self.mainWindow.tablaTomarAsistencia
-        tabla.setRowCount(0)
-        cursor.execute(consulta)
-        datos = cursor.fetchall()
-        for fila, dato in enumerate(datos):
-            # Agregar una fila nueva a la tabla
-            tabla.insertRow(fila)
+            if seccionEncontrada:  # Encontró el NRC de la sección
+                NRC = seccionEncontrada.getNRC()
+                # Consultar estudiantes con NRC encontrado
+                try:
+                    listaObjetosEstudiantes = seccionData.searchEstudiantes_by_NRC(NRC)
+                    if listaObjetosEstudiantes is None:
+                        raise ValueError("No se encontraron estudiantes para el NRC proporcionado.")
+                except Exception as e:
+                    print("Error al ejecutar searchEstudiantes_by_NRC:", e)
+                    mensaje = "Error al buscar estudiantes por NRC"
+                    MensajesWindow.mostrarMensajeRegistroError(mensaje)
+                    return
 
-            # Rellenar cada celda con los datos correspondientes
-            for columna, valor in enumerate(dato):
-                if columna == 3:  # Si es la columna del estado
-                    estado_item = QTableWidgetItem()
-                    estado_item.setFlags(estado_item.flags() | Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
-                    estado_item.setCheckState(Qt.CheckState.Checked if valor == 1 else Qt.CheckState.Unchecked)
-                    tabla.setItem(fila, columna, estado_item)
-                else:
-                    item = QTableWidgetItem(str(valor))  # Convertir el valor a cadena
-                    tabla.setItem(fila, columna, item)
-        con.close()
+                for estudiante in listaObjetosEstudiantes:
+                    fila = self.mainWindow.tablaTomarAsistencia.rowCount()
+                    self.mainWindow.tablaTomarAsistencia.insertRow(fila)
+
+                    # Datos del estudiante
+                    dni, nombre, ap_paterno, ap_materno, correo = estudiante.getEstudianteAttributes()
+
+                    # Establecer los datos en las celdas de la fila
+                    # Hacer no editable las columnas DNI(0), Estudiante(1), Asistencia(2) y Hora(4)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, self.crear_item_no_editable(dni))
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, self.crear_item_no_editable(
+                        f"{nombre} {ap_paterno} {ap_materno}"))
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, self.crear_item_no_editable("0%"))
+
+                    hora_actual = datetime.now().strftime("%H:%M:%S")
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 4, self.crear_item_no_editable(hora_actual))
+
+                    # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
+                    item = QTableWidgetItem()
+                    item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+                    item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, item)
+            else:
+                mensaje = "Aún no existe sección con el NRC solicitado en la base de datos"
+                MensajesWindow.mostrarMensajeRegistroError(mensaje)
+                print(mensaje)
+        except Exception as ex:
+            mensaje = "Ocurrió un error inesperado al intentar configurar la tablaTomarAsistencia"
+            print(mensaje)
+            print(ex)
+
+    def getCurrentTextCmbBoxAsignatura(self, text):
+        # Dividir la cadena en partes usando el guion como delimitador
+        partes = text.split("-")
+
+        # Seleccionar la parte después del guion (el segundo elemento de la lista resultante)
+        nrc = partes[1]
+
+        self.comboBoxAsignaturaCurrentNRC = nrc
+        self.configTablaTomaAsistencia()
 
     def initGUI(self):
         
@@ -314,6 +385,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
         self.mainWindow.popupNotificationSubContainer.hide()
+
+        # Obtener el NRC actual del combo box
+        self.mainWindow.cmbBoxAsignatura.currentTextChanged.connect(self.getCurrentTextCmbBoxAsignatura)
 
         # Conectar botones a las distintas acciones
         self.mainWindow.closeBtn.clicked.connect(self.closeApp)
@@ -328,6 +402,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
         self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
+        self.mainWindow.lineEditDNI
 
 
 class AsistenciaWindow:

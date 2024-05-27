@@ -47,6 +47,45 @@ estudiantes_DP = [
         {'dni': '71864080', 'nombre': 'IRVING JHAIR', 'apellido_paterno': 'YUPANQUI', 'apellido_materno': 'PAQUIYAURI', 'correo': '71864080@continental.edu.pe'}
     ]
 
+estudiantes_IS = [
+    {'dni': '73881650', 'nombre': 'CARLOS DANIEL', 'apellido_paterno': 'AGUIRRE', 'apellido_materno': 'SOLIS', 'correo': '73881650@continental.edu.pe'},
+    {'dni': '76324510', 'nombre': 'MARICRUZ', 'apellido_paterno': 'ARTICA', 'apellido_materno': 'CASALLO', 'correo': '76324510@continental.edu.pe'},
+    {'dni': '71099298', 'nombre': 'JUBALY EMILY', 'apellido_paterno': 'AYLAS', 'apellido_materno': 'AQUINO', 'correo': '71099298@continental.edu.pe'},
+    {'dni': '71037976', 'nombre': 'NIELS BINET', 'apellido_paterno': 'AYALA', 'apellido_materno': 'AYLAS', 'correo': '71037976@continental.edu.pe'},
+    {'dni': '71896621', 'nombre': 'YUNIOR', 'apellido_paterno': 'CAMARENA', 'apellido_materno': 'SUAREZ', 'correo': '71896621@continental.edu.pe'},
+    {'dni': '71245653', 'nombre': 'GUIDO ARMANDO', 'apellido_paterno': 'BARRETO', 'apellido_materno': 'POVES', 'correo': '71245653@continental.edu.pe'},
+    {'dni': '73041644', 'nombre': 'ADIEL ALESSANDRO', 'apellido_paterno': 'CAPARACHIN', 'apellido_materno': 'MONTES', 'correo': '73041644@continental.edu.pe'},
+    {'dni': '75756546', 'nombre': 'CRISTIAN', 'apellido_paterno': 'CCAPA', 'apellido_materno': 'CAPANI', 'correo': '75756546@continental.edu.pe'},
+    {'dni': '76038672', 'nombre': 'LETICIA RAQUEL', 'apellido_paterno': 'ESPAÑA', 'apellido_materno': 'SALINAS', 'correo': '76038672@continental.edu.pe'},
+    {'dni': '76370944', 'nombre': 'SAMANTHA VANESA', 'apellido_paterno': 'FALCONI', 'apellido_materno': 'NUÑEZ', 'correo': '76370944@continental.edu.pe'},
+    {'dni': '72798350', 'nombre': 'JULHINO', 'apellido_paterno': 'HUINCHO', 'apellido_materno': 'CAHUANA', 'correo': '72798350@continental.edu.pe'},
+    {'dni': '72458313', 'nombre': 'ALEXANDRA JAZMIN', 'apellido_paterno': 'IVALA', 'apellido_materno': 'CARHUANCHO', 'correo': '72458313@continental.edu.pe'},
+    {'dni': '75193764', 'nombre': 'SUSAN NAHOMY', 'apellido_paterno': 'JÁUREGUI', 'apellido_materno': 'ESPINOZA', 'correo': '75193764@continental.edu.pe'},
+    {'dni': '70921932', 'nombre': 'KATHERINE', 'apellido_paterno': 'LLANCARI', 'apellido_materno': 'BUJAICO', 'correo': '70921932@continental.edu.pe'},
+    {'dni': '74532558', 'nombre': 'ANDREA MILAGROS', 'apellido_paterno': 'LLANOS', 'apellido_materno': 'QUISPE', 'correo': '74532558@continental.edu.pe'},
+    {'dni': '74363667', 'nombre': 'MARIA CELESTE', 'apellido_paterno': 'LOPEZ', 'apellido_materno': 'CCACCRO', 'correo': '74363667@continental.edu.pe'},
+    {'dni': '81117052', 'nombre': 'VANNYA PALOMA', 'apellido_paterno': 'LOPEZ', 'apellido_materno': 'TANTAVILCA', 'correo': '81117052@continental.edu.pe'},
+    {'dni': '70867819', 'nombre': 'JUAN ELIAS', 'apellido_paterno': 'MALLMA', 'apellido_materno': 'QUISPE', 'correo': '70867819@continental.edu.pe'},
+    {'dni': '73610089', 'nombre': 'JEFERSON RYDER', 'apellido_paterno': 'MARTINEZ', 'apellido_materno': 'GOMEZ', 'correo': '73610089@continental.edu.pe'},
+    {'dni': '74969709', 'nombre': 'FLOR JEMINA', 'apellido_paterno': 'MELCHOR', 'apellido_materno': 'VILLA', 'correo': '74969709@continental.edu.pe'},
+    {'dni': '73870854', 'nombre': 'INDIRA PAOLA', 'apellido_paterno': 'PALOMINO', 'apellido_materno': 'CAMPOS', 'correo': '73870854@continental.edu.pe'},
+    {'dni': '76304403', 'nombre': 'ABDEL HARUKO', 'apellido_paterno': 'NAKAMURA', 'apellido_materno': 'MOYA', 'correo': '76304403@continental.edu.pe'},
+    {'dni': '70238629', 'nombre': 'ANDY JOHAN', 'apellido_paterno': 'RIVAS', 'apellido_materno': 'OSEJO', 'correo': '70238629@continental.edu.pe'},
+    {'dni': '70865667', 'nombre': 'SHAYD ALBIERY', 'apellido_paterno': 'QUILCA', 'apellido_materno': 'OLIVERA', 'correo': '70865667@continental.edu.pe'},
+    {'dni': '71817092', 'nombre': 'Ronaldo Shande', 'apellido_paterno': 'Rivera', 'apellido_materno': 'Simeon', 'correo': '71817092@continental.edu.pe'},
+    {'dni': '75221146', 'nombre': 'MARCOS RENE', 'apellido_paterno': 'RODRIGUEZ', 'apellido_materno': 'PAUCAR', 'correo': '75221146@continental.edu.pe'},
+    {'dni': '71277369', 'nombre': 'NAYLA', 'apellido_paterno': 'ROJAS', 'apellido_materno': 'GALLEGOS', 'correo': '71277369@continental.edu.pe'},
+    {'dni': '72666523', 'nombre': 'ALEJANDRO FABRIZIO', 'apellido_paterno': 'SALGUERAN', 'apellido_materno': 'PORRAS', 'correo': '72666523@continental.edu.pe'},
+    {'dni': '73666565', 'nombre': 'MAURO FABIAN', 'apellido_paterno': 'SINCHE', 'apellido_materno': 'MOLINA', 'correo': '73666565@continental.edu.pe'},
+    {'dni': '77331712', 'nombre': 'RAUL ALEJANDRO', 'apellido_paterno': 'TORRE', 'apellido_materno': 'MEDINA', 'correo': '77331712@continental.edu.pe'},
+    {'dni': '75838493', 'nombre': 'JOSE MANUEL', 'apellido_paterno': 'SULLCA', 'apellido_materno': 'ARONE', 'correo': '75838493@continental.edu.pe'},
+    {'dni': '72870880', 'nombre': 'JHORDAN KEITH', 'apellido_paterno': 'VELASQUEZ', 'apellido_materno': 'KNUTZEN', 'correo': '72870880@continental.edu.pe'},
+    {'dni': '72851787', 'nombre': 'RENATO SEBASTIAN', 'apellido_paterno': 'VELIZ', 'apellido_materno': 'VELASQUEZ', 'correo': '72851787@continental.edu.pe'},
+    {'dni': '75863060', 'nombre': 'MARYORIE GABRIELA', 'apellido_paterno': 'VERA', 'apellido_materno': 'MUÑOZ', 'correo': '75863060@continental.edu.pe'},
+    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'}
+]
+
+
 # Verificar si una tabla está vacía antes de insertar datos
 def tabla_vacia(con, tabla):
     cur = con.cursor()
@@ -63,6 +102,15 @@ def insertar_estudiantes(con):
                             VALUES (?, ?, ?, ?, ?)"""
             
             for estudiante in estudiantes_DP:
+                cur.execute(sql_insert, (
+                    estudiante['dni'], 
+                    estudiante['nombre'], 
+                    estudiante['apellido_paterno'], 
+                    estudiante['apellido_materno'], 
+                    estudiante['correo']
+                ))
+            
+            for estudiante in estudiantes_IS:
                 cur.execute(sql_insert, (
                     estudiante['dni'], 
                     estudiante['nombre'], 
@@ -183,6 +231,15 @@ def insertar_detalles_estudiantes_secciones(con):
                 detalles_estudiantes.append((
                     estudiante['dni'],
                     '22888',  # NRC de DIRECCIÓN DE PROYECTOS
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+            
+            for estudiante in estudiantes_IS:
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '30246',  # NRC de DIRECCIÓN DE PROYECTOS
                     0,  # estadoAsistencia sin registrar
                     '2000-01-01',  # Fecha genérica
                     '00:00:00'  # Hora genérica
