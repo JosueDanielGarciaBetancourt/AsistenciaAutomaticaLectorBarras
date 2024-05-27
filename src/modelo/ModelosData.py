@@ -4,16 +4,26 @@ from src.modelo.conexion import Conexion
 
 class DocenteData:
     def __init__(self):
+        self.con = None
         self.cursor = None
-        self.db = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+        
 
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
     def login(self, docente: Docente):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+        
+        self.iniciarConexion()
+
         buscarDocenteUsername = self.cursor.execute(
             "SELECT * FROM tblDocentes "
             "WHERE docenteCorreo ='{}'".format(docente.getUsername()))
@@ -45,15 +55,24 @@ class DocenteData:
 class SeccionData:
     def __init__(self):
         self.cursor = None
-        self.db = None
+        self.con = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
 
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
     def searchSeccion(self, seccion: Seccion):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+        
+        self.iniciarConexion()
+
         buscarSeccionNRC = self.cursor.execute(
             "SELECT * FROM tblSecciones "
             "WHERE nrc ='{}'".format(seccion.getNRC()))
@@ -70,12 +89,8 @@ class SeccionData:
             return None
 
     def searchEstudiantes_by_NRC(self, NRC):
-        try:
-            self.db = Conexion.conectar()
-            self.cursor = self.db.cursor()
-        except Exception as e:
-            print(f"Error al conectar a la base de datos: {e}")
-            return None
+        
+        self.iniciarConexion()
 
         try:
             # Obtener los DNIs de los estudiantes por NRC
