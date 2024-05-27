@@ -974,7 +974,7 @@ class UI_MainWindow(object):
         self.cmbBoxAsignatura.setItemText(1, _translate("MainWindow", "QUÍMICA-31962"))
         self.cmbBoxAsignatura.setItemText(2, _translate("MainWindow", "DIRECCIÓN DE PROYECTOS-22892"))
         self.cmbBoxAsignatura.setItemText(3, _translate("MainWindow", "DIRECCIÓN DE PROYECTOS-22888"))
-        self.cmbBoxAsignatura.setItemText(4, _translate("MainWindow", "QUÍMICA 1-16158"))
+        self.cmbBoxAsignatura.setItemText(4, _translate("MainWindow", "INNOVACIÓN SOCIAL-30246"))
         self.lineEditDNI.setToolTip(_translate("MainWindow", "Enter para registrar asistencia"))
         self.lineEditDNI.setPlaceholderText(_translate("MainWindow", "12345678"))
         self.labelAsistioDNI.setText(_translate("MainWindow", "Asistencia por DNI:"))

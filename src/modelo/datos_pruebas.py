@@ -72,7 +72,7 @@ estudiantes_IS = [
     {'dni': '76304403', 'nombre': 'ABDEL HARUKO', 'apellido_paterno': 'NAKAMURA', 'apellido_materno': 'MOYA', 'correo': '76304403@continental.edu.pe'},
     {'dni': '70238629', 'nombre': 'ANDY JOHAN', 'apellido_paterno': 'RIVAS', 'apellido_materno': 'OSEJO', 'correo': '70238629@continental.edu.pe'},
     {'dni': '70865667', 'nombre': 'SHAYD ALBIERY', 'apellido_paterno': 'QUILCA', 'apellido_materno': 'OLIVERA', 'correo': '70865667@continental.edu.pe'},
-    {'dni': '71817092', 'nombre': 'Ronaldo Shande', 'apellido_paterno': 'Rivera', 'apellido_materno': 'Simeon', 'correo': '71817092@continental.edu.pe'},
+    {'dni': '71817092', 'nombre': 'RONALDO SHANDE', 'apellido_paterno': 'RIVERA', 'apellido_materno': 'SIMEON', 'correo': '71817092@continental.edu.pe'},
     {'dni': '75221146', 'nombre': 'MARCOS RENE', 'apellido_paterno': 'RODRIGUEZ', 'apellido_materno': 'PAUCAR', 'correo': '75221146@continental.edu.pe'},
     {'dni': '71277369', 'nombre': 'NAYLA', 'apellido_paterno': 'ROJAS', 'apellido_materno': 'GALLEGOS', 'correo': '71277369@continental.edu.pe'},
     {'dni': '72666523', 'nombre': 'ALEJANDRO FABRIZIO', 'apellido_paterno': 'SALGUERAN', 'apellido_materno': 'PORRAS', 'correo': '72666523@continental.edu.pe'},
@@ -82,7 +82,10 @@ estudiantes_IS = [
     {'dni': '72870880', 'nombre': 'JHORDAN KEITH', 'apellido_paterno': 'VELASQUEZ', 'apellido_materno': 'KNUTZEN', 'correo': '72870880@continental.edu.pe'},
     {'dni': '72851787', 'nombre': 'RENATO SEBASTIAN', 'apellido_paterno': 'VELIZ', 'apellido_materno': 'VELASQUEZ', 'correo': '72851787@continental.edu.pe'},
     {'dni': '75863060', 'nombre': 'MARYORIE GABRIELA', 'apellido_paterno': 'VERA', 'apellido_materno': 'MUÑOZ', 'correo': '75863060@continental.edu.pe'},
-    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'}
+    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'},
+    {'dni': '71853995', 'nombre': 'ESTEFANY MAYUMI', 'apellido_paterno': 'MUÑICO', 'apellido_materno': 'SOTO', 'correo': '71853995@continental.edu.pe'},
+    {'dni': '73975773', 'nombre': 'DANIEL EDGARDO', 'apellido_paterno': 'GIRALDEZ', 'apellido_materno': 'VIVAR', 'correo': '73975773@continental.edu.pe'},
+    {'dni': '76279987', 'nombre': 'JHANET MAYORY', 'apellido_paterno': 'HINOSTROZA', 'apellido_materno': 'MELENDEZ', 'correo': '76279987@continental.edu.pe'}
 ]
 
 
