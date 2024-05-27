@@ -5,6 +5,7 @@ from src.modelo.conexion import Conexion
 class DocenteData:
     def __init__(self):
         self.con = None
+        self.con = None
         self.cursor = None
 
     def iniciarConexion(self):
