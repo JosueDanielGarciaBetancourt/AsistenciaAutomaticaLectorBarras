@@ -91,11 +91,23 @@ estudiantes_IS = [
 
 # Verificar si una tabla está vacía antes de insertar datos
 def tabla_vacia(con, tabla):
-    cur = con.cursor()
-    cur.execute(f"SELECT COUNT(*) FROM {tabla}")
-    count = cur.fetchone()[0]
-    return count == 0
+    try:
+        cur = con.cursor()
+        cur.execute(f"SELECT COUNT(*) FROM {tabla}")
+        count = cur.fetchone()[0]
+        return count == 0
+    except Exception as e:
+        print(f"Error al verificar si la tabla {tabla} está vacía:", e)
+        return False
 
+def estudiante_existe(con, dni):
+    try:
+        cur = con.cursor()
+        cur.execute("SELECT 1 FROM tblEstudiantes WHERE estuDni = ?", (dni,))
+        return cur.fetchone() is not None
+    except Exception as e:
+        print(f"Error al verificar si el estudiante existe:", e)
+        return False
 
 def insertar_estudiantes(con):
     if tabla_vacia(con, 'tblEstudiantes'):
@@ -104,23 +116,15 @@ def insertar_estudiantes(con):
             sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
                             VALUES (?, ?, ?, ?, ?)"""
             
-            for estudiante in estudiantes_DP:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
-            
-            for estudiante in estudiantes_IS:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
+            for estudiante in estudiantes_DP + estudiantes_IS:
+                if not estudiante_existe(con, estudiante['dni']):
+                    cur.execute(sql_insert, (
+                        estudiante['dni'], 
+                        estudiante['nombre'], 
+                        estudiante['apellido_paterno'], 
+                        estudiante['apellido_materno'], 
+                        estudiante['correo']
+                    ))
             
             con.commit()
             print("Estudiantes insertados correctamente")
