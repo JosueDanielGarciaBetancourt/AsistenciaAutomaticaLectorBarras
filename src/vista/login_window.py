@@ -147,7 +147,7 @@ class LogInWindow(QtWidgets.QWidget):
         try:
             # Agregar login correcto solo para pruebas
             self.limpiarCamposLogin()
-            self.logInWindow.lineEditUserName.setText("jcamarenaf@continental.edu.pe")
+            self.logInWindow.lineEditUserName.setText("mrosales@continental.edu.pe")
             self.logInWindow.lineEditPassword.setText("123")
             self.logInWindow.pushButtonIngresar.clicked.connect(self.verificarLogeo)
             self.logInWindow.pushButtonWhatsApp.clicked.connect(self.whatsappEntry)
