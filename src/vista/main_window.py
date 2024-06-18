@@ -13,7 +13,6 @@ from PyQt6.QtWidgets import QApplication, QTableWidgetItem
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.Modelos import Docente, Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData
-from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
 
 
 class MainWindow(QtWidgets.QMainWindow):

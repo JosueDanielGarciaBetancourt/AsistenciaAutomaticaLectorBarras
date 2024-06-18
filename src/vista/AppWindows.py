@@ -4,8 +4,6 @@ from PyQt6.QtWidgets import QApplication
 from src.vista.login_window import LogInWindow
 from src.vista.main_window import MainWindow
 
-
-
 class AsistenciaWindow:
     def __init__(self):
         super().__init__()

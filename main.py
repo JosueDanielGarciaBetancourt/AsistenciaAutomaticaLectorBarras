@@ -2,7 +2,7 @@ import datetime
 from src.vista.Window_Utils import MensajesWindow
 from src.vista.AppWindows import AsistenciaWindow
 from src.modelo.conexion import Conexion
-from src.vista.app import App
+
 
 datos_personas = {
     "77043114": {"nombre": "Josué", "apellido_paterno": "García", "apellido_materno": "Betancourt",
@@ -59,9 +59,8 @@ if __name__ == "__main__":
     try:
         # Iniciar BD
         conexion = Conexion()
-
         # Iniciar app
-        app = App()
+        initApp = AsistenciaWindow()
     except Exception as e:
         print("Error inesperado en main.py: ", e)
 

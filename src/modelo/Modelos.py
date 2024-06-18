@@ -1,13 +1,18 @@
 class Docente:
-    def __init__(self, DNI="", nombre="", apellidos="", username="", password=""):
+    def __init__(self, DNI="", nombre="", apellidoPaterno="",apellidoMaterno="" ,
+                 pais="" ,ciudad="",correo="", password="", fotoPerfil=""):
         self._DNI = DNI
         self._nombre = nombre
-        self._apellidos = apellidos
-        self._username = username
+        self._apellidoPaterno = apellidoPaterno
+        self._apellidoMaterno = apellidoMaterno
+        self._pais = pais
+        self._ciudad= ciudad
+        self._correo = correo 
         self._password = password
+        self._fotoPerfil = fotoPerfil
 
     def getUsername(self):
-        return self._username
+        return self._correo
 
     def getPassword(self):
         return self._password

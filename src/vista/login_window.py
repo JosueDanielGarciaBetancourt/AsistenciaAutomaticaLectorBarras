@@ -13,7 +13,8 @@ from PyQt6.QtWidgets import QApplication, QTableWidgetItem
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.Modelos import Docente, Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData
-from src.logica.IngresoGrupoWhatsApp import IngresoGrupoWhastApp
+import webbrowser
+
 
 
 
@@ -66,8 +67,8 @@ class LogInWindow(QtWidgets.QWidget):
         # Aplica el algoritmo de hash SHA-256
         hashed_password = hashlib.sha256(salted_password).hexdigest()
         return hashed_password, salt
-
-    def verificarLogeo(self):
+    
+    def verificarInput(self):
         try:
             username = (self.logInWindow.lineEditUserName.text()).lower()
             password = self.logInWindow.lineEditPassword.text()
@@ -105,11 +106,19 @@ class LogInWindow(QtWidgets.QWidget):
             print("Contraseña hasheada:", hashed_password)
             print("Salt:", salt)
             """
+        except Exception as ex:
+            print("Excepción durante la verificacion de login:", ex)
 
-            docente = Docente(username=username, password=password)
+    def verificarLogeo(self):
+        self.verificarInput()
+        try:
+            username = (self.logInWindow.lineEditUserName.text()).lower()
+            password = self.logInWindow.lineEditPassword.text()
+
+            docente = Docente(correo=username, password=password)
             docenteData = DocenteData()
-            docenteEncontrado = docenteData.login(docente)
-            if docenteEncontrado:  # Encontró el nombre de usuario del docente
+            docenteEncontrado = docenteData.getDocenteData(docente)
+            if docenteEncontrado:  
                 if docenteEncontrado.getPassword():
                     self.usernameLoged = username
                     self.passwordLoged = password
@@ -132,7 +141,10 @@ class LogInWindow(QtWidgets.QWidget):
 
     def whatsappEntry(self):
         print("Entrando a whatsapp")
-        IngresoGrupoWhastApp.ingresarGrupoWhatsApp()
+        try:
+            webbrowser.open("https://wa.me/933380704")
+        except Exception as ex:
+            print(ex)
 
     def mostrarContrasena(self, state):
         # Verifica si el estado del checkbox es Qt.Checked (2)

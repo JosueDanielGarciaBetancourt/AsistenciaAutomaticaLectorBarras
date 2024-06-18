@@ -5,7 +5,6 @@ from src.modelo.conexion import Conexion
 class DocenteData:
     def __init__(self):
         self.con = None
-        self.con = None
         self.cursor = None
 
     def iniciarConexion(self):
@@ -20,7 +19,7 @@ class DocenteData:
         self.cursor.close()
         self.con.close()
 
-    def login(self, docente: Docente):
+    def getDocenteData(self, docente: Docente):
         
         self.iniciarConexion()
 
@@ -34,13 +33,17 @@ class DocenteData:
                 "SELECT * FROM tblDocentes "
                 "WHERE docenteCorreo = '{}' AND docenteContraseña = '{}'".format(docente.getUsername(),
                                                                                  docente.getPassword()))
-            paswordRow = buscarDocentePassword.fetchone()
-            if paswordRow:  # Contraseña sí coincide
-                docente = Docente(paswordRow[0],
-                                  paswordRow[1],
-                                  paswordRow[2],
-                                  paswordRow[3],
-                                  paswordRow[4])
+            datosDocente = buscarDocentePassword.fetchone()
+            if datosDocente:  # si la consulta funciona significa que existe el usuario con su contraseña ingresada
+                docente = Docente(datosDocente[0],
+                                  datosDocente[1],
+                                  datosDocente[2],
+                                  datosDocente[3],
+                                  datosDocente[4],
+                                  datosDocente[5],
+                                  datosDocente[6],
+                                  datosDocente[7],
+                                  datosDocente[8])
                 self.cerrarConexion()
                 return docente  # Retornar objeto docente con los atributos correctos
             else:  # Contraseña no coincide con el usuario
