@@ -90,6 +90,23 @@ class SeccionData:
         else:  # No existe el NRC de la sección
             self.cerrarConexion()
             return None
+        
+    def searchNrcs_by_Docente(self, docente: Docente):
+        self.iniciarConexion()
+        
+        try:
+            self.cursor.execute(
+                "SELECT nrc FROM tblDetalle_Secciones_Docentes WHERE docenteDni = {}".format(docente._DNI))
+                
+            for row in self.cursor.fetchall():
+                Nrcs=[str(row[0])]
+
+            return Nrcs
+    
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener los NRCs: {e}")
+            self.cerrarConexion()
+            return None
 
     def searchEstudiantes_by_NRC(self, NRC):
         

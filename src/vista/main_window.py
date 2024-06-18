@@ -260,19 +260,24 @@ class MainWindow(QtWidgets.QMainWindow):
             print(mensaje)
             print(ex)
 
-    def getCurrentTextCmbBoxAsignatura(self, text):
-        # Dividir la cadena en partes usando el guion como delimitador
-        partes = text.split("-")
 
-        # Seleccionar la parte después del guion (el segundo elemento de la lista resultante)
-        nrc = partes[1]
+    def getCurrentTextCmbBoxAsignatura(self):
+        
+        busquedaNRCS = SeccionData()
+        nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
 
-        self.comboBoxAsignaturaCurrentNRC = nrc
+        self.mainWindow.cmbBoxAsignatura.clear()
+        for f_nrc in nrcs:
+            self.mainWindow.cmbBoxAsignatura.addItem(f_nrc)
+
+        
+        self.comboBoxAsignaturaCurrentNRC = self.mainWindow.cmbBoxAsignatura.currentText()
         self.configTablaTomaAsistencia()
 
     def initGUI(self):
+
         # Configurar tablaTomarAsistencia
-        self.getCurrentTextCmbBoxAsignatura(self.mainWindow.cmbBoxAsignatura.currentText())
+        self.getCurrentTextCmbBoxAsignatura()
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
