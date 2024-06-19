@@ -266,12 +266,16 @@ class MainWindow(QtWidgets.QMainWindow):
         busquedaNRCS = SeccionData()
         nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
 
+
         self.mainWindow.cmbBoxAsignatura.clear()
         for f_nrc in nrcs:
-            self.mainWindow.cmbBoxAsignatura.addItem(f_nrc)
+            curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
+            self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
 
-        
-        self.comboBoxAsignaturaCurrentNRC = self.mainWindow.cmbBoxAsignatura.currentText()
+        nrc_selected = self.mainWindow.cmbBoxAsignatura.currentText().split(" - ")[0]
+
+
+        self.comboBoxAsignaturaCurrentNRC = nrc_selected
         self.configTablaTomaAsistencia()
 
     def initGUI(self):

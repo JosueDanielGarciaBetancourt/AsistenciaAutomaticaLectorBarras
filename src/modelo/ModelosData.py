@@ -101,10 +101,28 @@ class SeccionData:
             for row in self.cursor.fetchall():
                 Nrcs=[str(row[0])]
 
+            self.cerrarConexion()
             return Nrcs
-    
+        
         except Exception as e:
             print(f"Error al ejecutar la consulta para obtener los NRCs: {e}")
+            self.cerrarConexion()
+            return None
+
+    def searchCurso_by_NRC(self, NRC):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                """SELECT tblCursos.cursoNombre
+                FROM tblCursos
+                INNER JOIN tblSecciones ON tblCursos.cursoId = tblSecciones.cursoId
+                WHERE tblSecciones.nrc = ?
+            """,(NRC,)
+            )
+            nombre_curso = self.cursor.fetchall()
+            return nombre_curso[0][0]
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Curso por NRC: {e}")
             self.cerrarConexion()
             return None
 
