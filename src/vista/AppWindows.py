@@ -410,6 +410,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.configTablaTomaAsistencia()
 
     def initGUI(self):
+        # Iniciar con el curso de Dirección de Proyects (index = 3)
+        self.mainWindow.cmbBoxAsignatura.setCurrentIndex(3)
+
         # Configurar tablaTomarAsistencia
         self.getCurrentTextCmbBoxAsignatura(self.mainWindow.cmbBoxAsignatura.currentText())
 
