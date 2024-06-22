@@ -4,16 +4,25 @@ from src.modelo.conexion import Conexion
 
 class DocenteData:
     def __init__(self):
+        self.con = None
         self.cursor = None
-        self.db = None
 
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+        
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
-    def login(self, docente: Docente):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+    def getDocenteData(self, docente: Docente):
+        
+        self.iniciarConexion()
+
         buscarDocenteUsername = self.cursor.execute(
             "SELECT * FROM tblDocentes "
             "WHERE docenteCorreo ='{}'".format(docente.getUsername()))
@@ -24,13 +33,17 @@ class DocenteData:
                 "SELECT * FROM tblDocentes "
                 "WHERE docenteCorreo = '{}' AND docenteContraseña = '{}'".format(docente.getUsername(),
                                                                                  docente.getPassword()))
-            paswordRow = buscarDocentePassword.fetchone()
-            if paswordRow:  # Contraseña sí coincide
-                docente = Docente(paswordRow[0],
-                                  paswordRow[1],
-                                  paswordRow[2],
-                                  paswordRow[3],
-                                  paswordRow[4])
+            datosDocente = buscarDocentePassword.fetchone()
+            if datosDocente:  # si la consulta funciona significa que existe el usuario con su contraseña ingresada
+                docente = Docente(datosDocente[0],
+                                  datosDocente[1],
+                                  datosDocente[2],
+                                  datosDocente[3],
+                                  datosDocente[4],
+                                  datosDocente[5],
+                                  datosDocente[6],
+                                  datosDocente[7],
+                                  datosDocente[8])
                 self.cerrarConexion()
                 return docente  # Retornar objeto docente con los atributos correctos
             else:  # Contraseña no coincide con el usuario
@@ -45,15 +58,24 @@ class DocenteData:
 class SeccionData:
     def __init__(self):
         self.cursor = None
-        self.db = None
+        self.con = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
 
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
     def searchSeccion(self, seccion: Seccion):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+        
+        self.iniciarConexion()
+
         buscarSeccionNRC = self.cursor.execute(
             "SELECT * FROM tblSecciones "
             "WHERE nrc ='{}'".format(seccion.getNRC()))
@@ -68,14 +90,45 @@ class SeccionData:
         else:  # No existe el NRC de la sección
             self.cerrarConexion()
             return None
+        
+    def searchNrcs_by_Docente(self, docente: Docente):
+        self.iniciarConexion()
+        
+        try:
+            self.cursor.execute(
+                "SELECT nrc FROM tblDetalle_Secciones_Docentes WHERE docenteDni = {}".format(docente._DNI))
+                
+            for row in self.cursor.fetchall():
+                Nrcs=[str(row[0])]
+
+            self.cerrarConexion()
+            return Nrcs
+        
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener los NRCs: {e}")
+            self.cerrarConexion()
+            return None
+
+    def searchCurso_by_NRC(self, NRC):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                """SELECT tblCursos.cursoNombre
+                FROM tblCursos
+                INNER JOIN tblSecciones ON tblCursos.cursoId = tblSecciones.cursoId
+                WHERE tblSecciones.nrc = ?
+            """,(NRC,)
+            )
+            nombre_curso = self.cursor.fetchall()
+            return nombre_curso[0][0]
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Curso por NRC: {e}")
+            self.cerrarConexion()
+            return None
 
     def searchEstudiantes_by_NRC(self, NRC):
-        try:
-            self.db = Conexion.conectar()
-            self.cursor = self.db.cursor()
-        except Exception as e:
-            print(f"Error al conectar a la base de datos: {e}")
-            return None
+        
+        self.iniciarConexion()
 
         try:
             # Obtener los DNIs de los estudiantes por NRC

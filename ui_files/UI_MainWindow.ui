@@ -154,7 +154,7 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignHCenter">
+       <item>
         <widget class="QWidget" name="leftMenuSubContainer" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
@@ -172,7 +172,7 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignHCenter">
+          <item>
            <widget class="QFrame" name="frame_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -205,7 +205,7 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item alignment="Qt::AlignTop">
+             <item>
               <widget class="QPushButton" name="pushButtonInicio">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -231,7 +231,7 @@
                </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignTop">
+             <item>
               <widget class="QPushButton" name="pushButtonAsistencia">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -254,7 +254,7 @@
                </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignTop">
+             <item>
               <widget class="QPushButton" name="pushButtonReporte">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -456,12 +456,9 @@
                <property name="text">
                 <string>Información</string>
                </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignRight">
+             <item>
               <widget class="QPushButton" name="btnCloseMoreMenu">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -617,7 +614,7 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <item>
            <widget class="QFrame" name="frame_5">
             <property name="maximumSize">
              <size>
@@ -768,7 +765,7 @@
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignHCenter">
+          <item>
            <widget class="QFrame" name="frame_6">
             <property name="maximumSize">
              <size>
@@ -868,7 +865,7 @@
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
+          <item>
            <widget class="QFrame" name="frame_7">
             <property name="minimumSize">
              <size>
@@ -1234,7 +1231,7 @@
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item alignment="Qt::AlignLeft|Qt::AlignTop">
+                       <item>
                         <widget class="QFrame" name="frame_16">
                          <property name="minimumSize">
                           <size>
@@ -1243,10 +1240,7 @@
                           </size>
                          </property>
                          <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
+                          <enum>QFrame::NoFrame</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_18">
                           <property name="spacing">
@@ -1277,9 +1271,6 @@
                             </property>
                             <property name="text">
                              <string>Asignatura: </string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignCenter</set>
                             </property>
                            </widget>
                           </item>
@@ -1328,7 +1319,7 @@
         }</string>
                             </property>
                             <property name="currentIndex">
-                             <number>3</number>
+                             <number>0</number>
                             </property>
                             <item>
                              <property name="text">
@@ -1352,7 +1343,7 @@
                             </item>
                             <item>
                              <property name="text">
-                              <string>QUÍMICA 1-16158</string>
+                              <string>INNOVACIÓN SOCIAL-30246</string>
                              </property>
                             </item>
                            </widget>
@@ -1362,9 +1353,6 @@
                        </item>
                        <item>
                         <spacer name="horizontalSpacer_2">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
                          <property name="sizeHint" stdset="0">
                           <size>
                            <width>150</width>
@@ -1373,7 +1361,7 @@
                          </property>
                         </spacer>
                        </item>
-                       <item alignment="Qt::AlignRight|Qt::AlignBottom">
+                       <item>
                         <widget class="QFrame" name="frame_14">
                          <property name="minimumSize">
                           <size>
@@ -1462,9 +1450,6 @@ background-color: white;</string>
                             <property name="cursorPosition">
                              <number>0</number>
                             </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
                             <property name="dragEnabled">
                              <bool>false</bool>
                             </property>
@@ -1475,7 +1460,7 @@ background-color: white;</string>
                              <string>12345678</string>
                             </property>
                             <property name="cursorMoveStyle">
-                             <enum>Qt::VisualMoveStyle</enum>
+                             <enum>Qt::LogicalMoveStyle</enum>
                             </property>
                             <property name="clearButtonEnabled">
                              <bool>true</bool>
@@ -1532,12 +1517,9 @@ background-color: white;</string>
                       <property name="text">
                        <string>DNI Registrado</string>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignLeft">
+                    <item>
                      <widget class="QFrame" name="frame_13">
                       <property name="minimumSize">
                        <size>
@@ -1570,7 +1552,7 @@ background-color: white;</string>
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item alignment="Qt::AlignLeft">
+                       <item>
                         <widget class="QLabel" name="label_16">
                          <property name="font">
                           <font>
@@ -1584,13 +1566,10 @@ background-color: white;</string>
                          <property name="text">
                           <string>Fecha:</string>
                          </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_5">
+                        <widget class="QLabel" name="labelDate">
                          <property name="maximumSize">
                           <size>
                            <width>70</width>
@@ -1599,9 +1578,6 @@ background-color: white;</string>
                          </property>
                          <property name="text">
                           <string>18/05/2024</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
                          </property>
                         </widget>
                        </item>
@@ -1670,9 +1646,6 @@ QTableWidget::indicator:checked {
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
                          </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
                          <property name="lineWidth">
                           <number>1</number>
                          </property>
@@ -1701,7 +1674,7 @@ QTableWidget::indicator:checked {
                           <enum>QAbstractItemView::ScrollPerItem</enum>
                          </property>
                          <property name="gridStyle">
-                          <enum>Qt::SolidLine</enum>
+                          <enum>Qt::NoPen</enum>
                          </property>
                          <property name="sortingEnabled">
                           <bool>false</bool>
@@ -1914,9 +1887,6 @@ QTableWidget::indicator:checked {
                    <property name="text">
                     <string>Reporte</string>
                    </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -1926,7 +1896,7 @@ QTableWidget::indicator:checked {
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
+          <item>
            <widget class="QWidget" name="rightMenuContainer" native="true">
             <property name="minimumSize">
              <size>
@@ -1950,7 +1920,7 @@ QTableWidget::indicator:checked {
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item alignment="Qt::AlignRight">
+             <item>
               <widget class="QWidget" name="rightMenuSubContainer" native="true">
                <property name="minimumSize">
                 <size>
@@ -1992,7 +1962,7 @@ QTableWidget::indicator:checked {
                    <enum>QFrame::NoFrame</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                   <item alignment="Qt::AlignLeft">
+                   <item>
                     <widget class="QLabel" name="label_7">
                      <property name="minimumSize">
                       <size>
@@ -2009,12 +1979,9 @@ QTableWidget::indicator:checked {
                      <property name="text">
                       <string>Perfil</string>
                      </property>
-                     <property name="alignment">
-                      <set>Qt::AlignCenter</set>
-                     </property>
                     </widget>
                    </item>
-                   <item alignment="Qt::AlignRight">
+                   <item>
                     <widget class="QPushButton" name="btnCloseProfile">
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
@@ -2089,9 +2056,6 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <spacer name="horizontalSpacer">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
                          <property name="sizeType">
                           <enum>QSizePolicy::Fixed</enum>
                          </property>

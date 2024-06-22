@@ -72,7 +72,7 @@ estudiantes_IS = [
     {'dni': '76304403', 'nombre': 'ABDEL HARUKO', 'apellido_paterno': 'NAKAMURA', 'apellido_materno': 'MOYA', 'correo': '76304403@continental.edu.pe'},
     {'dni': '70238629', 'nombre': 'ANDY JOHAN', 'apellido_paterno': 'RIVAS', 'apellido_materno': 'OSEJO', 'correo': '70238629@continental.edu.pe'},
     {'dni': '70865667', 'nombre': 'SHAYD ALBIERY', 'apellido_paterno': 'QUILCA', 'apellido_materno': 'OLIVERA', 'correo': '70865667@continental.edu.pe'},
-    {'dni': '71817092', 'nombre': 'Ronaldo Shande', 'apellido_paterno': 'Rivera', 'apellido_materno': 'Simeon', 'correo': '71817092@continental.edu.pe'},
+    {'dni': '71817092', 'nombre': 'RONALDO SHANDE', 'apellido_paterno': 'RIVERA', 'apellido_materno': 'SIMEON', 'correo': '71817092@continental.edu.pe'},
     {'dni': '75221146', 'nombre': 'MARCOS RENE', 'apellido_paterno': 'RODRIGUEZ', 'apellido_materno': 'PAUCAR', 'correo': '75221146@continental.edu.pe'},
     {'dni': '71277369', 'nombre': 'NAYLA', 'apellido_paterno': 'ROJAS', 'apellido_materno': 'GALLEGOS', 'correo': '71277369@continental.edu.pe'},
     {'dni': '72666523', 'nombre': 'ALEJANDRO FABRIZIO', 'apellido_paterno': 'SALGUERAN', 'apellido_materno': 'PORRAS', 'correo': '72666523@continental.edu.pe'},
@@ -82,17 +82,32 @@ estudiantes_IS = [
     {'dni': '72870880', 'nombre': 'JHORDAN KEITH', 'apellido_paterno': 'VELASQUEZ', 'apellido_materno': 'KNUTZEN', 'correo': '72870880@continental.edu.pe'},
     {'dni': '72851787', 'nombre': 'RENATO SEBASTIAN', 'apellido_paterno': 'VELIZ', 'apellido_materno': 'VELASQUEZ', 'correo': '72851787@continental.edu.pe'},
     {'dni': '75863060', 'nombre': 'MARYORIE GABRIELA', 'apellido_paterno': 'VERA', 'apellido_materno': 'MUÑOZ', 'correo': '75863060@continental.edu.pe'},
-    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'}
+    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'},
+    {'dni': '71853995', 'nombre': 'ESTEFANY MAYUMI', 'apellido_paterno': 'MUÑICO', 'apellido_materno': 'SOTO', 'correo': '71853995@continental.edu.pe'},
+    {'dni': '73975773', 'nombre': 'DANIEL EDGARDO', 'apellido_paterno': 'GIRALDEZ', 'apellido_materno': 'VIVAR', 'correo': '73975773@continental.edu.pe'},
+    {'dni': '76279987', 'nombre': 'JHANET MAYORY', 'apellido_paterno': 'HINOSTROZA', 'apellido_materno': 'MELENDEZ', 'correo': '76279987@continental.edu.pe'}
 ]
 
 
 # Verificar si una tabla está vacía antes de insertar datos
 def tabla_vacia(con, tabla):
-    cur = con.cursor()
-    cur.execute(f"SELECT COUNT(*) FROM {tabla}")
-    count = cur.fetchone()[0]
-    return count == 0
+    try:
+        cur = con.cursor()
+        cur.execute(f"SELECT COUNT(*) FROM {tabla}")
+        count = cur.fetchone()[0]
+        return count == 0
+    except Exception as e:
+        print(f"Error al verificar si la tabla {tabla} está vacía:", e)
+        return False
 
+def estudiante_existe(con, dni):
+    try:
+        cur = con.cursor()
+        cur.execute("SELECT 1 FROM tblEstudiantes WHERE estuDni = ?", (dni,))
+        return cur.fetchone() is not None
+    except Exception as e:
+        print(f"Error al verificar si el estudiante existe:", e)
+        return False
 
 def insertar_estudiantes(con):
     if tabla_vacia(con, 'tblEstudiantes'):
@@ -101,23 +116,15 @@ def insertar_estudiantes(con):
             sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
                             VALUES (?, ?, ?, ?, ?)"""
             
-            for estudiante in estudiantes_DP:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
-            
-            for estudiante in estudiantes_IS:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
+            for estudiante in estudiantes_DP + estudiantes_IS:
+                if not estudiante_existe(con, estudiante['dni']):
+                    cur.execute(sql_insert, (
+                        estudiante['dni'], 
+                        estudiante['nombre'], 
+                        estudiante['apellido_paterno'], 
+                        estudiante['apellido_materno'], 
+                        estudiante['correo']
+                    ))
             
             con.commit()
             print("Estudiantes insertados correctamente")
