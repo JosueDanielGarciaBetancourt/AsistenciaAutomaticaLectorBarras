@@ -1803,10 +1803,10 @@ QTableWidget::indicator:checked {
                          </item>
                         </widget>
                        </item>
-                       <item>
+                       <item alignment="Qt::AlignVCenter">
                         <widget class="QWidget" name="popupNotificationSubContainer" native="true">
                          <property name="enabled">
-                          <bool>false</bool>
+                          <bool>true</bool>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_18">
                           <item>
@@ -1898,7 +1898,7 @@ QTableWidget::indicator:checked {
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignRight">
            <widget class="QWidget" name="rightMenuContainer" native="true">
             <property name="minimumSize">
              <size>

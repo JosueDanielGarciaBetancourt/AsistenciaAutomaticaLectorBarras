@@ -5,7 +5,7 @@ import ui_files.resourcesFile
 class UI_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1141, 550)
+        MainWindow.resize(1293, 550)
         MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -635,7 +635,7 @@ class UI_MainWindow(object):
         self.labelDate.setMaximumSize(QtCore.QSize(70, 30))
         self.labelDate.setObjectName("labelDate")
         self.horizontalLayout_16.addWidget(self.labelDate)
-        self.verticalLayout_16.addWidget(self.frame_13)
+        self.verticalLayout_16.addWidget(self.frame_13, 0, QtCore.Qt.AlignmentFlag.AlignLeft)
         self.popupNotificationContainer = QtWidgets.QWidget(parent=self.widget_5)
         self.popupNotificationContainer.setObjectName("popupNotificationContainer")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.popupNotificationContainer)
@@ -669,15 +669,14 @@ class UI_MainWindow(object):
 "    margin-bottom: auto;\n"
 "}\n"
 "QTableWidget::indicator:unchecked {\n"
-"             background-color: red;\n"
-"            image: url(:/icons/icons/frown.svg);\n"
+"    background-color: red;\n"
+"    image: url(:/icons/icons/frown.svg);\n"
+"}\n"
 "\n"
-"                \n"
-"            }\n"
 "QTableWidget::indicator:checked {\n"
-"               background-color: green;\n"
-"                image: url(:/icons/icons/smile.svg);\n"
-"            }")
+"    background-color: green;\n"
+"    image: url(:/icons/icons/smile.svg);\n"
+"}")
         self.tablaTomarAsistencia.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.tablaTomarAsistencia.setLineWidth(1)
         self.tablaTomarAsistencia.setMidLineWidth(1)
@@ -738,7 +737,7 @@ class UI_MainWindow(object):
         self.tablaTomarAsistencia.verticalHeader().setSortIndicatorShown(False)
         self.verticalLayout_17.addWidget(self.tablaTomarAsistencia)
         self.popupNotificationSubContainer = QtWidgets.QWidget(parent=self.popupNotificationContainer)
-        self.popupNotificationSubContainer.setEnabled(False)
+        self.popupNotificationSubContainer.setEnabled(True)
         self.popupNotificationSubContainer.setObjectName("popupNotificationSubContainer")
         self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.popupNotificationSubContainer)
         self.verticalLayout_18.setObjectName("verticalLayout_18")
@@ -769,7 +768,7 @@ class UI_MainWindow(object):
         self.btnCloseNotification.setObjectName("btnCloseNotification")
         self.horizontalLayout_11.addWidget(self.btnCloseNotification)
         self.verticalLayout_18.addWidget(self.frame_9)
-        self.verticalLayout_17.addWidget(self.popupNotificationSubContainer)
+        self.verticalLayout_17.addWidget(self.popupNotificationSubContainer, 0, QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.verticalLayout_16.addWidget(self.popupNotificationContainer)
         self.verticalLayout_19.addWidget(self.widget_5)
         self.mainStackedWidget.addWidget(self.page_7)
@@ -818,7 +817,7 @@ class UI_MainWindow(object):
         self.btnCloseProfile.setIcon(icon7)
         self.btnCloseProfile.setIconSize(QtCore.QSize(24, 24))
         self.btnCloseProfile.setObjectName("btnCloseProfile")
-        self.horizontalLayout_9.addWidget(self.btnCloseProfile)
+        self.horizontalLayout_9.addWidget(self.btnCloseProfile, 0, QtCore.Qt.AlignmentFlag.AlignRight)
         self.verticalLayout_12.addWidget(self.frame_8)
         self.stackedWidget_2 = QtWidgets.QStackedWidget(parent=self.rightMenuSubContainer)
         self.stackedWidget_2.setObjectName("stackedWidget_2")
@@ -836,7 +835,7 @@ class UI_MainWindow(object):
         self.profeFoto = QtWidgets.QLabel(parent=self.widget_3)
         self.profeFoto.setMaximumSize(QtCore.QSize(40, 40))
         self.profeFoto.setText("")
-        self.profeFoto.setPixmap(QtGui.QPixmap(":/images/fotoIngMelitonRounded.png"))
+        self.profeFoto.setPixmap(QtGui.QPixmap(":/images/fotoIngJudithRounded.png"))
         self.profeFoto.setScaledContents(True)
         self.profeFoto.setObjectName("profeFoto")
         self.horizontalLayout_10.addWidget(self.profeFoto)
@@ -852,32 +851,41 @@ class UI_MainWindow(object):
         self.widget_2 = QtWidgets.QWidget(parent=self.page_4)
         self.widget_2.setObjectName("widget_2")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.widget_2)
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_15.setSpacing(0)
         self.verticalLayout_15.setObjectName("verticalLayout_15")
         self.label_19 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_19.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
         font.setBold(True)
         self.label_19.setFont(font)
+        self.label_19.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label_19.setObjectName("label_19")
         self.verticalLayout_15.addWidget(self.label_19)
         self.label_21 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_21.setMaximumSize(QtCore.QSize(16777215, 20))
         self.label_21.setObjectName("label_21")
         self.verticalLayout_15.addWidget(self.label_21)
         self.label_20 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_20.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
         font.setBold(True)
         self.label_20.setFont(font)
         self.label_20.setObjectName("label_20")
         self.verticalLayout_15.addWidget(self.label_20)
         self.label_22 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_22.setMaximumSize(QtCore.QSize(16777215, 20))
         self.label_22.setObjectName("label_22")
         self.verticalLayout_15.addWidget(self.label_22)
         self.label_23 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_23.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
         font.setBold(True)
         self.label_23.setFont(font)
         self.label_23.setObjectName("label_23")
         self.verticalLayout_15.addWidget(self.label_23)
         self.label_24 = QtWidgets.QLabel(parent=self.widget_2)
+        self.label_24.setMaximumSize(QtCore.QSize(16777215, 20))
         self.label_24.setObjectName("label_24")
         self.verticalLayout_15.addWidget(self.label_24)
         self.verticalLayout_21.addWidget(self.widget_2)
@@ -895,7 +903,7 @@ class UI_MainWindow(object):
         self.stackedWidget_2.addWidget(self.page_5)
         self.verticalLayout_12.addWidget(self.stackedWidget_2)
         self.verticalLayout_11.addWidget(self.rightMenuSubContainer)
-        self.horizontalLayout_8.addWidget(self.rightMenuContainer)
+        self.horizontalLayout_8.addWidget(self.rightMenuContainer, 0, QtCore.Qt.AlignmentFlag.AlignRight)
         self.verticalLayout_10.addWidget(self.mainBodyContent)
         self.footerContainer = QtWidgets.QWidget(parent=self.mainBodyContainer)
         self.footerContainer.setObjectName("footerContainer")
@@ -923,6 +931,9 @@ class UI_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionSalir = QtGui.QAction(parent=MainWindow)
         self.actionSalir.setObjectName("actionSalir")
+
+        self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,
+                                                                         color=QtGui.QColor(234, 221, 186, 100)))
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
@@ -960,11 +971,11 @@ class UI_MainWindow(object):
         self.label_10.setText(_translate("MainWindow", "Curso 1"))
         self.label_17.setText(_translate("MainWindow", "Curso 2"))
         self.label_11.setText(_translate("MainWindow", "Asignatura: "))
-        self.cmbBoxAsignatura.setItemText(0, _translate("MainWindow", "INNOVACIÓN SOCIAL-30246"))
-        self.cmbBoxAsignatura.setItemText(1, _translate("MainWindow", "DIRECCIÓN DE PROYECTOS-22888"))
+        self.cmbBoxAsignatura.setItemText(0, _translate("MainWindow", "QUÍMICA 1-31979"))
+        self.cmbBoxAsignatura.setItemText(1, _translate("MainWindow", "QUÍMICA-31962"))
         self.cmbBoxAsignatura.setItemText(2, _translate("MainWindow", "DIRECCIÓN DE PROYECTOS-22892"))
-        self.cmbBoxAsignatura.setItemText(3, _translate("MainWindow", "QUÍMICA-31962"))
-        self.cmbBoxAsignatura.setItemText(4, _translate("MainWindow", "QUÍMICA 1-31979"))
+        self.cmbBoxAsignatura.setItemText(3, _translate("MainWindow", "DIRECCIÓN DE PROYECTOS-22888"))
+        self.cmbBoxAsignatura.setItemText(4, _translate("MainWindow", "INNOVACIÓN SOCIAL-30246"))
         self.lineEditDNI.setToolTip(_translate("MainWindow", "Enter para registrar asistencia"))
         self.lineEditDNI.setPlaceholderText(_translate("MainWindow", "12345678"))
         self.labelAsistioDNI.setText(_translate("MainWindow", "Asistencia por DNI:"))
@@ -993,10 +1004,10 @@ class UI_MainWindow(object):
         self.label_12.setText(_translate("MainWindow", "Reporte"))
         self.label_7.setText(_translate("MainWindow", "Perfil"))
         self.btnCloseProfile.setToolTip(_translate("MainWindow", "Cerrar Menu"))
-        self.label_8.setText(_translate("MainWindow", "Meliton Julio Rosales Pecho"))
+        self.label_8.setText(_translate("MainWindow", "Judith Camarena Flores"))
         self.label_19.setText(_translate("MainWindow", "Dirección de correo\n"
 ""))
-        self.label_21.setText(_translate("MainWindow", "mrosales@continental.edu.pe"))
+        self.label_21.setText(_translate("MainWindow", "jcamarenaf@continental.edu.pe"))
         self.label_20.setText(_translate("MainWindow", "País"))
         self.label_22.setText(_translate("MainWindow", "Perú"))
         self.label_23.setText(_translate("MainWindow", "Ciudad"))
