@@ -16,9 +16,6 @@ from src.modelo.ModelosData import DocenteData, SeccionData
 import webbrowser
 
 
-
-
-
 class LogInWindow(QtWidgets.QWidget):
     login_successful = pyqtSignal(Docente)  # Señal para indicar login exitoso
 
@@ -50,7 +47,7 @@ class LogInWindow(QtWidgets.QWidget):
         self.logInWindow.lineEditUserName.setText("")
         self.logInWindow.lineEditPassword.setText("")
         self.logInWindow.lineEditUserName.setPlaceholderText("Nombre de Usuario/Correo Institucional")
-        self.logInWindow.lineEditPassword.setPlaceholderText("Password")
+        self.logInWindow.lineEditPassword.setPlaceholderText("Contraseña")
 
     def validar_username(self, username):
         # Pasar a minúsculas para poder validar si se ingresa username con MAYÚSCULAS

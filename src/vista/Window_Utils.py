@@ -89,7 +89,8 @@ class MensajesWindow:
     def mostrarMensajeErrorInesperado(mensaje):
         MensajesWindow.mostrarMensaje("Error inesperado", mensaje, QMessageBox.Icon.Critical)
 
-# Ejemplo de cómo usar la clase con estilos aplicados
+
+# Ejemplo de ventanas con los estilos aplicados en la clase MensajesWindow
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 

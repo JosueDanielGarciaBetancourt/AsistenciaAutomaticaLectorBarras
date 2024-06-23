@@ -135,6 +135,7 @@ def insertar_estudiantes(con):
     else:
         print("La tabla tblEstudiantes ya tiene datos")
 
+
 def insertar_docentes(con):
     if tabla_vacia(con, 'tblDocentes'):
         try:
@@ -159,6 +160,7 @@ def insertar_docentes(con):
     else:
         print("La tabla tblDocentes ya tiene datos")
 
+
 def insertar_aulas(con):
     if tabla_vacia(con, 'tblAulas'):
         try:
@@ -180,6 +182,7 @@ def insertar_aulas(con):
             print("Error al insertar aulas:", ex)
     else:
         print("La tabla tblAulas ya tiene datos")
+
 
 def insertar_cursos(con):
     if tabla_vacia(con, 'tblCursos'):
@@ -288,6 +291,7 @@ def insertar_detalles_secciones_aulas(con):
             print("Error al insertar detalles de secciones en aulas:", ex)
     else:
         print("La tabla tblDetalle_Secciones_Aulas ya tiene datos")
+
 
 def insertar_detalles_secciones_docentes(con):
     if tabla_vacia(con, 'tblDetalle_Secciones_Docentes'):

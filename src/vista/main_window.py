@@ -72,6 +72,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.rightMenuContainer.hide()
 
     def showNotification(self):
+        print("abriendo notificacion")
         if self.mainWindow.popupNotificationSubContainer.isHidden():
             self.mainWindow.popupNotificationSubContainer.show()
         else:
@@ -189,7 +190,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Esto servirá para poder mover la ventana a la posición del cursor
         # self.clickPosition = event.globalPos()
-        pass
+       # pass
 
     def mouseMoveEvent(self, event):
         pass
@@ -260,12 +261,9 @@ class MainWindow(QtWidgets.QMainWindow):
             print(mensaje)
             print(ex)
 
-
     def getCurrentTextCmbBoxAsignatura(self):
-        
         busquedaNRCS = SeccionData()
         nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
-
 
         self.mainWindow.cmbBoxAsignatura.clear()
         for f_nrc in nrcs:
@@ -273,7 +271,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
 
         nrc_selected = self.mainWindow.cmbBoxAsignatura.currentText().split(" - ")[0]
-
 
         self.comboBoxAsignaturaCurrentNRC = nrc_selected
         self.configTablaTomaAsistencia()

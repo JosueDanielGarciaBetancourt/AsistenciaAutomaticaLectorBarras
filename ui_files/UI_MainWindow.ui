@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1141</width>
+    <width>1293</width>
     <height>550</height>
    </rect>
   </property>
@@ -1353,6 +1353,9 @@
                        </item>
                        <item>
                         <spacer name="horizontalSpacer_2">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
                          <property name="sizeHint" stdset="0">
                           <size>
                            <width>150</width>
@@ -1519,7 +1522,7 @@ background-color: white;</string>
                       </property>
                      </widget>
                     </item>
-                    <item>
+                    <item alignment="Qt::AlignLeft">
                      <widget class="QFrame" name="frame_13">
                       <property name="minimumSize">
                        <size>
@@ -1633,15 +1636,14 @@ QTableWidget::indicator {
     margin-bottom: auto;
 }
 QTableWidget::indicator:unchecked {
-             background-color: red;
-			image: url(:/icons/icons/frown.svg);
+	background-color: red;
+	image: url(:/icons/icons/frown.svg);
+}
 
-				
-            }
 QTableWidget::indicator:checked {
-               background-color: green;
-                image: url(:/icons/icons/smile.svg);
-            }</string>
+	background-color: green;
+	image: url(:/icons/icons/smile.svg);
+}</string>
                          </property>
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
@@ -1981,7 +1983,7 @@ QTableWidget::indicator:checked {
                      </property>
                     </widget>
                    </item>
-                   <item>
+                   <item alignment="Qt::AlignRight">
                     <widget class="QPushButton" name="btnCloseProfile">
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
@@ -2056,6 +2058,9 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <spacer name="horizontalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
                          <property name="sizeType">
                           <enum>QSizePolicy::Fixed</enum>
                          </property>
@@ -2085,8 +2090,29 @@ QTableWidget::indicator:checked {
                     <item>
                      <widget class="QWidget" name="widget_2" native="true">
                       <layout class="QVBoxLayout" name="verticalLayout_15">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
                         <widget class="QLabel" name="label_19">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>30</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2096,10 +2122,19 @@ QTableWidget::indicator:checked {
                           <string>Dirección de correo
 </string>
                          </property>
+                         <property name="alignment">
+                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_21">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>jcamarenaf@continental.edu.pe</string>
                          </property>
@@ -2107,6 +2142,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_20">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2119,6 +2160,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_22">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>Perú</string>
                          </property>
@@ -2126,6 +2173,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_23">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2138,6 +2191,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_24">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>Huancayo</string>
                          </property>
