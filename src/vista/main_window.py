@@ -282,7 +282,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
-        self.mainWindow.popupNotificationSubContainer.hide()
+        # self.mainWindow.popupNotificationSubContainer.show()
         self.mainWindow.labelRegistrado.hide()
 
         # Obtener el NRC actual del combo box
