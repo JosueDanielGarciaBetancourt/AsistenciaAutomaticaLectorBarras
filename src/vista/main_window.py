@@ -290,6 +290,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.profeFoto.setPixmap(pixmap)
 
     def initGUI(self):
+        #configuracion de FotoPerfilDocente
+        self.configFotoPerfilDocente()
+
+        #Configurar ComboBox
         self.mainWindow.cmbBoxAsignatura.clear()
 
         # Mostrar página correcta de stackedWidgetCursos

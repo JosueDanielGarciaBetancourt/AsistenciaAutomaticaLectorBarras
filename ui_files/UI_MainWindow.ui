@@ -1155,7 +1155,7 @@
                           </size>
                          </property>
                          <property name="currentIndex">
-                          <number>0</number>
+                          <number>1</number>
                          </property>
                          <widget class="QWidget" name="page_9">
                           <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -1201,7 +1201,40 @@
                            </item>
                           </layout>
                          </widget>
-                         <widget class="QWidget" name="page_10"/>
+                         <widget class="QWidget" name="page_10">
+                          <layout class="QVBoxLayout" name="verticalLayout_23">
+                           <item>
+                            <widget class="QLabel" name="label_14">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>22888 - INNOVACIÓN SOCIAL</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_18">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 85, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>12344 - ASIGNATURA 4 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_25">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 170, 127);</string>
+                             </property>
+                             <property name="text">
+                              <string>12345 - ASIGNATURA 5 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
                         </widget>
                        </item>
                       </layout>
