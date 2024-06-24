@@ -88,6 +88,28 @@ estudiantes_IS = [
     {'dni': '76279987', 'nombre': 'JHANET MAYORY', 'apellido_paterno': 'HINOSTROZA', 'apellido_materno': 'MELENDEZ', 'correo': '76279987@continental.edu.pe'}
 ]
 
+estudiantes_TEST = [
+    {'dni': '12345601', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345602', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345603', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345604', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345605', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345606', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345607', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345608', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345609', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345610', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345611', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345612', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345613', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345614', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345615', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345616', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345617', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345618', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345619', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+]
+
 
 # Verificar si una tabla está vacía antes de insertar datos
 def tabla_vacia(con, tabla):
@@ -116,7 +138,7 @@ def insertar_estudiantes(con):
             sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
                             VALUES (?, ?, ?, ?, ?)"""
             
-            for estudiante in estudiantes_DP + estudiantes_IS:
+            for estudiante in estudiantes_DP + estudiantes_IS + estudiantes_TEST:
                 if not estudiante_existe(con, estudiante['dni']):
                     cur.execute(sql_insert, (
                         estudiante['dni'], 
@@ -192,7 +214,10 @@ def insertar_cursos(con):
             
             cursos = [
                 ('ASUC01365', 'INNOVACIÓN SOCIAL', 2),
-                ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4)
+                ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4),
+                ('ASUC01231', 'ASIGNATURA 1 / TEST ', 5),
+                ('ASUC01232', 'ASIGNATURA 2 / TEST ', 5),
+                ('ASUC01233', 'ASIGNATURA 3 / TEST ', 5)
             ]
             
             cur.executemany(sql_insert, cursos)
@@ -214,7 +239,10 @@ def insertar_secciones(con):
             
             secciones = [
                 ('30246', '202410', 'ASUC01365'),
-                ('22888', '202410', 'ASUC01235')
+                ('22888', '202410', 'ASUC01235'),
+                ('12341', '202410', 'ASUC01231'),
+                ('12342', '202410', 'ASUC01232'),
+                ('12343', '202410', 'ASUC01233')
             ]
             
             cur.executemany(sql_insert, secciones)
@@ -251,6 +279,31 @@ def insertar_detalles_estudiantes_secciones(con):
                 detalles_estudiantes.append((
                     estudiante['dni'],
                     '30246',  # NRC de INNOVACIÓN SOCIAL
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+            for estudiante in estudiantes_TEST:
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12341',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12342',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12343',  # NRC 
                     0,  # estadoAsistencia sin registrar
                     '2000-01-01',  # Fecha genérica
                     '00:00:00'  # Hora genérica
@@ -302,7 +355,10 @@ def insertar_detalles_secciones_docentes(con):
                             VALUES (?, ?)"""
             
             detalles_docentes = [
-                ('22888', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
+                ('22888', '41280062'),
+                ('12341', '41280062'),
+                ('12342', '41280062'),
+                ('12343', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
                 ('30246', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
             ]
             

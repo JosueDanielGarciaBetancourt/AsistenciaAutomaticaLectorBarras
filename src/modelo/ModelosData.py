@@ -97,12 +97,14 @@ class SeccionData:
         try:
             self.cursor.execute(
                 "SELECT nrc FROM tblDetalle_Secciones_Docentes WHERE docenteDni = {}".format(docente._DNI))
+            
+            nrcs = []
                 
             for row in self.cursor.fetchall():
-                Nrcs=[str(row[0])]
+                nrcs.append(str(row[0]))
 
             self.cerrarConexion()
-            return Nrcs
+            return nrcs
         
         except Exception as e:
             print(f"Error al ejecutar la consulta para obtener los NRCs: {e}")
