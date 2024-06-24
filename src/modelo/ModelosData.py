@@ -69,7 +69,6 @@ class DocenteData:
             return None
 
 
-
 class SeccionData:
     def __init__(self):
         self.cursor = None

@@ -1130,7 +1130,7 @@
                        <string notr="true">background-color: black;</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout">
-                       <item row="1" column="0">
+                       <item row="1" column="0" alignment="Qt::AlignHCenter">
                         <widget class="QLabel" name="lblSaludoInicio">
                          <property name="font">
                           <font>
@@ -1142,7 +1142,7 @@
                           <string notr="true"/>
                          </property>
                          <property name="text">
-                          <string>Saludar</string>
+                          <string>Hola Judith</string>
                          </property>
                         </widget>
                        </item>
@@ -1159,6 +1159,9 @@
                            <width>400</width>
                            <height>16777215</height>
                           </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
                          </property>
                          <property name="currentIndex">
                           <number>0</number>
@@ -1177,8 +1180,32 @@
                            </size>
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_22">
+                           <property name="spacing">
+                            <number>6</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>9</number>
+                           </property>
                            <item>
-                            <widget class="QLabel" name="label_10">
+                            <widget class="QPushButton" name="btnCurso22888">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(85, 170, 0);</string>
                              </property>
@@ -1188,7 +1215,16 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_17">
+                            <widget class="QPushButton" name="btnCurso12341">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(170, 85, 0);</string>
                              </property>
@@ -1198,7 +1234,16 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_5">
+                            <widget class="QPushButton" name="btnCurso12342">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(170, 170, 127);</string>
                              </property>
@@ -1208,7 +1253,16 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_13">
+                            <widget class="QPushButton" name="btnCurso12343">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(85, 170, 255);</string>
                              </property>
@@ -1234,17 +1288,35 @@
                           </property>
                           <layout class="QVBoxLayout" name="verticalLayout_23">
                            <item>
-                            <widget class="QLabel" name="label_14">
+                            <widget class="QPushButton" name="btnCurso30246">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(85, 170, 0);</string>
                              </property>
                              <property name="text">
-                              <string>22888 - INNOVACIÓN SOCIAL</string>
+                              <string>30246 - INNOVACIÓN SOCIAL</string>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_18">
+                            <widget class="QPushButton" name="btnCurso12344">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(170, 85, 0);</string>
                              </property>
@@ -1254,7 +1326,16 @@
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_25">
+                            <widget class="QPushButton" name="btnCurso12345">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">background-color: rgb(170, 170, 127);</string>
                              </property>
@@ -2225,7 +2306,7 @@ QTableWidget::indicator:checked {
                         </spacer>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_8">
+                        <widget class="QLabel" name="lblNombreDocente">
                          <property name="font">
                           <font>
                            <pointsize>10</pointsize>
@@ -2292,7 +2373,7 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_21">
+                        <widget class="QLabel" name="lblCorreoDocente">
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
@@ -2323,7 +2404,7 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_22">
+                        <widget class="QLabel" name="lblPaisDocente">
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
@@ -2354,7 +2435,7 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_24">
+                        <widget class="QLabel" name="lblCiudadDocente">
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>

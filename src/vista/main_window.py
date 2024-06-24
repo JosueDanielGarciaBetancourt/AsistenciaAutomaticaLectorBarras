@@ -15,7 +15,7 @@ from src.modelo.Modelos import Docente, Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import QThread, pyqtSignal
-from pyzbar import pyzbar
+#from pyzbar import pyzbar
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -192,14 +192,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Esto servirá para poder mover la ventana a la posición del cursor
         # self.clickPosition = event.globalPos()
-       # pass
-
-    def mouseMoveEvent(self, event):
-        pass
-        """if self.windowRestored and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
-            self.move(self.pos() + event.globalPos() - self.clickPosition)
-            self.clickPosition = event.globalPos()
-            event.accept()"""
 
     def crear_item_no_editable(self, texto):
         item = QTableWidgetItem(texto)
@@ -264,12 +256,10 @@ class MainWindow(QtWidgets.QMainWindow):
             print(ex)
 
     def getCurrentTextCmbBoxAsignatura(self):
-        
         nrc_selected = self.mainWindow.cmbBoxAsignatura.currentText().split(" - ")[0]
 
         self.comboBoxAsignaturaCurrentNRC = nrc_selected
         self.configTablaTomaAsistencia()
-
 
     def configTextCmbBoxAsignatura(self):
         busquedaNRCS = SeccionData()
@@ -279,32 +269,58 @@ class MainWindow(QtWidgets.QMainWindow):
             curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
             self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
 
-    def configFotoPerfilDocente(self):
-        busquedaRutaFoto = DocenteData()
-        ruta_foto = busquedaRutaFoto.getDocenteFotoPerfil(self.docente)
+    def seleccionarCursoRapidamente(self, nrc):
+        try:
+            # Obtener el número de ítems en el ComboBox
+            num_items = self.mainWindow.cmbBoxAsignatura.count()
 
-        # Verificar si la ruta de la foto es válida
-        if not os.path.isfile(ruta_foto):
-            raise FileNotFoundError(f"Archivo de foto no encontrado: {ruta_foto}")
+            # Iterar sobre los ítems del ComboBox
+            for i in range(num_items):
+                # Obtener el texto del ítem actual
+                item_text = self.mainWindow.cmbBoxAsignatura.itemText(i)
 
-        # Cargar la imagen en un QPixmap
-        pixmap = QPixmap(ruta_foto)
-        self.mainWindow.profeFoto.setPixmap(pixmap)
+                # Verificar si el texto del ítem comienza con el valor de nrc
+                if item_text.startswith(nrc):
+                    # Establecer el índice del ComboBox al ítem que coincide
+                    self.mainWindow.cmbBoxAsignatura.setCurrentIndex(i)
+                    break
+            else:
+                # Si no se encontró ningún ítem que comience con nrc
+                print(f"No se encontró ningún elemento que comience con '{nrc}' en el ComboBox")
 
-    def configCursosDocente(self):
-        username = self.docente.getUsername()
-        print(username)
-        if username == "jcamarenaf@continental.edu.pe":
-            self.mainWindow.stackedWidgetCursos.setCurrentIndex(0)
-        elif username == "mrosales@continental.edu.pe":
-            self.mainWindow.stackedWidgetCursos.setCurrentIndex(1)
+            self.irAsistencia()
+        except Exception as ex:
+            print("Excepción en seleccionarCursoRapidamente en main_window.py:", ex)
+
+    def configDatosUsuario(self):
+        try:
+            # Configurar datos de perfil de docente
+            self.mainWindow.lblCorreoDocente.setText(self.docente.getUsername())
+            self.mainWindow.lblNombreDocente.setText(self.docente.getName())
+            self.mainWindow.lblPaisDocente.setText(self.docente.getPais())
+            self.mainWindow.lblCiudadDocente.setText(self.docente.getCiudad())
+
+            # Configurar cursos correctos en el stackedWidgetCursos
+            if self.docente.getUsername() == "jcamarenaf@continental.edu.pe":
+                self.mainWindow.stackedWidgetCursos.setCurrentIndex(0)
+            elif self.docente.getUsername() == "mrosales@continental.edu.pe":
+                self.mainWindow.stackedWidgetCursos.setCurrentIndex(1)
+
+            # Configurar FotoPerfil docente
+            busquedaRutaFoto = DocenteData()
+            ruta_foto = busquedaRutaFoto.getDocenteFotoPerfil(self.docente)
+            # Verificar si la ruta de la foto es válida
+            if not os.path.isfile(ruta_foto):
+                raise FileNotFoundError(f"Archivo de foto no encontrado: {ruta_foto}")
+            # Cargar la imagen en un QPixmap
+            pixmap = QPixmap(ruta_foto)
+            self.mainWindow.profeFoto.setPixmap(pixmap)
+        except Exception as ex:
+            print("Excepción en configDatosUsuario en main_window.py", ex)
 
     def initGUI(self):
-        # Configuracion de FotoPerfilDocente
-        self.configFotoPerfilDocente()
-
-        # Mostrar cursos correctos según usuario
-        self.configCursosDocente()
+        # Configuración de datos según username
+        self.configDatosUsuario()
 
         # Configurar ComboBox
         self.mainWindow.cmbBoxAsignatura.clear()
@@ -335,3 +351,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
         self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
 
+        # Selección rápida de cursos mrosales@continental.edu.pe
+        self.mainWindow.btnCurso30246.clicked.connect(lambda: self.seleccionarCursoRapidamente("30246"))
+        self.mainWindow.btnCurso12344.clicked.connect(lambda: self.seleccionarCursoRapidamente("12344"))
+        self.mainWindow.btnCurso12345.clicked.connect(lambda: self.seleccionarCursoRapidamente("12345"))
+
+        # Selección rápida de cursos jcamarenaf@continental.edu.pe
+        self.mainWindow.btnCurso22888.clicked.connect(lambda: self.seleccionarCursoRapidamente("22888"))
+        self.mainWindow.btnCurso12341.clicked.connect(lambda: self.seleccionarCursoRapidamente("12341"))
+        self.mainWindow.btnCurso12342.clicked.connect(lambda: self.seleccionarCursoRapidamente("12342"))
+        self.mainWindow.btnCurso12343.clicked.connect(lambda: self.seleccionarCursoRapidamente("12343"))

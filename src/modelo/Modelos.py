@@ -6,7 +6,7 @@ class Docente:
         self._apellidoPaterno = apellidoPaterno
         self._apellidoMaterno = apellidoMaterno
         self._pais = pais
-        self._ciudad= ciudad
+        self._ciudad = ciudad
         self._correo = correo 
         self._password = password
         self._fotoPerfil = fotoPerfil
@@ -20,6 +20,11 @@ class Docente:
     def getName(self):
         return self._nombre
 
+    def getPais(self):
+        return self._pais
+
+    def getCiudad(self):
+        return self._ciudad
 
 class Seccion:
     def __init__(self, NRC="", periodo="", IDCurso=""):
