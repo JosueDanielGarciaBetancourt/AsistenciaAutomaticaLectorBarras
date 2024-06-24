@@ -2,16 +2,16 @@ TODOS
 import ui_files.resourcesFile
 
 LOGIN
+→ usar esta clase: class UI_LogIn 
 Form.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
 Form.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
 
-→ usar esta clase: class UI_LogIn 
+MAIN WINDOW
 → usar esta clase: class UI_MainWindow
-MAIN WINDOW (después de resize)
+(después de resize)
 MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
 
-
-MAIN WINDOW (antes de self.retranslateUi(MainWindow))
+(antes de self.retranslateUi(MainWindow))
 self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,color=QtGui.QColor(234, 221, 186, 100)))
 
 
