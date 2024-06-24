@@ -269,17 +269,18 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def configTextCmbBoxAsignatura(self):
-
         busquedaNRCS = SeccionData()
         nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
 
-        
         for f_nrc in nrcs:
             curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
             self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
 
     def initGUI(self):
         self.mainWindow.cmbBoxAsignatura.clear()
+        # Mostrar página correcta de stackedWidgetCursos
+        self.mainWindow.stackedWidgetCursos.setCurrentIndex(0)
+
         # Configurar tablaTomarAsistencia
         self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
