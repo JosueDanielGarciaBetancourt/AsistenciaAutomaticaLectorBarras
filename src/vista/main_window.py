@@ -295,7 +295,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def initGUI(self):
+        #configuracion de FotoPerfilDocente
+        self.configFotoPerfilDocente()
 
+        #Configurar ComboBox
         self.mainWindow.cmbBoxAsignatura.clear()
         self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
