@@ -164,12 +164,12 @@ def insertar_docentes(con):
             cur = con.cursor()
             sql_insert = """INSERT INTO tblDocentes 
                             (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, 
-                            docentePais, docenteCiudad, docenteCorreo, docenteContraseña) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
+                            docentePais, docenteCiudad, docenteCorreo, docenteContraseña, docenteFotoPerfil) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             
             docentes = [
-                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123'),
-                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123')
+                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123', './ui_files/fotoIngJudithRounded.png'),
+                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123','./ui_files/fotoIngMelitonRounded.png')
             ]
             
             cur.executemany(sql_insert, docentes)

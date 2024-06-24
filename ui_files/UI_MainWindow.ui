@@ -1146,8 +1146,14 @@
                          </property>
                         </widget>
                        </item>
-                       <item row="2" column="0">
+                       <item row="2" column="0" alignment="Qt::AlignLeft">
                         <widget class="QStackedWidget" name="stackedWidgetCursos">
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="currentIndex">
                           <number>0</number>
                          </property>
