@@ -1,18 +1,13 @@
-from datetime import datetime
 import hashlib
 import secrets  # Para generar un salt aleatorio
-import binascii
 import re
-import os
-import sys
-from PyQt6 import QtWidgets, QtCore
-from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6 import QtWidgets
+from PyQt6.QtCore import pyqtSignal
 from ui_files.UI_LogIn import UI_LogIn
-from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication
 from src.vista.Window_Utils import MensajesWindow
-from src.modelo.Modelos import Docente, Seccion
-from src.modelo.ModelosData import DocenteData, SeccionData
+from src.modelo.Modelos import Docente
+from src.modelo.ModelosData import DocenteData
 import webbrowser
 
 
@@ -164,4 +159,4 @@ class LogInWindow(QtWidgets.QWidget):
             self.logInWindow.pushButtonMinimizeLogIn.clicked.connect(self.minimizar)
             self.logInWindow.checkBoxShowPassword.stateChanged.connect(self.mostrarContrasena)
         except Exception as e:
-            print(e)
+            print("Excepcion en initGUI de login_window.py: ", e)

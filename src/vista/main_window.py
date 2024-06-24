@@ -72,7 +72,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.rightMenuContainer.hide()
 
     def showNotification(self):
-        print("abriendo notificacion")
         if self.mainWindow.popupNotificationSubContainer.isHidden():
             self.mainWindow.popupNotificationSubContainer.show()
         else:
@@ -282,7 +281,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
-        # self.mainWindow.popupNotificationSubContainer.show()
+        self.mainWindow.popupNotificationSubContainer.hide()
         self.mainWindow.labelRegistrado.hide()
 
         # Obtener el NRC actual del combo box
