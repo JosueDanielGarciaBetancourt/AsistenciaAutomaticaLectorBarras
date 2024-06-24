@@ -1148,16 +1148,34 @@
                        </item>
                        <item row="2" column="0" alignment="Qt::AlignLeft">
                         <widget class="QStackedWidget" name="stackedWidgetCursos">
+                         <property name="minimumSize">
+                          <size>
+                           <width>300</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="maximumSize">
                           <size>
-                           <width>500</width>
+                           <width>400</width>
                            <height>16777215</height>
                           </size>
                          </property>
                          <property name="currentIndex">
-                          <number>1</number>
+                          <number>0</number>
                          </property>
                          <widget class="QWidget" name="page_9">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>400</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <layout class="QVBoxLayout" name="verticalLayout_22">
                            <item>
                             <widget class="QLabel" name="label_10">
@@ -1202,6 +1220,18 @@
                           </layout>
                          </widget>
                          <widget class="QWidget" name="page_10">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>400</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <layout class="QVBoxLayout" name="verticalLayout_23">
                            <item>
                             <widget class="QLabel" name="label_14">

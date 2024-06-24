@@ -289,15 +289,23 @@ class MainWindow(QtWidgets.QMainWindow):
         pixmap = QPixmap(ruta_foto)
         self.mainWindow.profeFoto.setPixmap(pixmap)
 
+    def configCursosDocente(self):
+        username = self.docente.getUsername()
+        print(username)
+        if username == "jcamarenaf@continental.edu.pe":
+            self.mainWindow.stackedWidgetCursos.setCurrentIndex(0)
+        elif username == "mrosales@continental.edu.pe":
+            self.mainWindow.stackedWidgetCursos.setCurrentIndex(1)
+
     def initGUI(self):
-        #configuracion de FotoPerfilDocente
+        # Configuracion de FotoPerfilDocente
         self.configFotoPerfilDocente()
 
-        #Configurar ComboBox
-        self.mainWindow.cmbBoxAsignatura.clear()
+        # Mostrar cursos correctos según usuario
+        self.configCursosDocente()
 
-        # Mostrar página correcta de stackedWidgetCursos
-        self.mainWindow.stackedWidgetCursos.setCurrentIndex(0)
+        # Configurar ComboBox
+        self.mainWindow.cmbBoxAsignatura.clear()
 
         # Configurar tablaTomarAsistencia
         self.configTextCmbBoxAsignatura()
