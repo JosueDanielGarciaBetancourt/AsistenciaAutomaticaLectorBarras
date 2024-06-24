@@ -318,6 +318,19 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as ex:
             print("Excepción en configDatosUsuario en main_window.py", ex)
 
+    def checkboxClickedChangeState(self, item):
+        try:
+            if item.column() == 2:
+                fila = item.row()
+                item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 2)
+                item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
+                hora_actual = "-"
+                if item_checkbox.checkState() == Qt.CheckState.Checked:
+                    hora_actual = datetime.now().strftime("%H:%M:%S")
+                item_hour.setText(hora_actual)
+        except Exception as ex:
+            print("Excepción en checkboxClickedChangeState en main_window.py:", ex)
+
     def initGUI(self):
         # Configuración de datos según username
         self.configDatosUsuario()
@@ -328,6 +341,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Configurar tablaTomarAsistencia
         self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
+        self.mainWindow.tablaTomarAsistencia.itemClicked.connect(self.checkboxClickedChangeState)
 
         # Ocultar algunos elementos
         self.mainWindow.centerMenuSubContainer.hide()
