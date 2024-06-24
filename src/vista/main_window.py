@@ -122,13 +122,13 @@ class MainWindow(QtWidgets.QMainWindow):
             if item and item.text() == texto_busqueda:
                 DNI_Encontrado = True
 
-                # Se encontró el texto en la columna 0, ahora se cambia el estado de la columna 3
-                item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
+                # Se encontró el texto en la columna 0, ahora se cambia el estado de la columna 2
+                item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 2)
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
 
                 # Marcar la hora actual en la fila
-                item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 4)
+                item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
                 hora_actual = datetime.now().strftime("%H:%M:%S")
                 item_hour.setText(hora_actual)
 
@@ -245,10 +245,10 @@ class MainWindow(QtWidgets.QMainWindow):
                     item = QTableWidgetItem()
                     item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
                     item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, item)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item)
                     self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
-                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(3, 100)
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 4, self.crear_item_no_editable("-"))
+                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 100)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
 
                     # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
 
@@ -296,11 +296,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def initGUI(self):
 
-        #Configurar FotoPerfilDocente
-        self.configFotoPerfilDocente()
-
-
-        # Configurar tablaTomarAsistencia
         self.mainWindow.cmbBoxAsignatura.clear()
         self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
