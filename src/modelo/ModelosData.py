@@ -53,6 +53,21 @@ class DocenteData:
         else:  # No existe el nombre de usuario del docente
             self.cerrarConexion()
             return None
+        
+    def getDocenteFotoPerfil(self, docente: Docente):
+        self.iniciarConexion()
+        
+        try:
+            self.cursor.execute("SELECT docenteFotoPerfil FROM tblDocentes WHERE docenteDni = '{}'".format(docente._DNI))
+
+            docenteFotoPerfil = self.cursor.fetchall()
+
+            self.cerrarConexion()
+            return docenteFotoPerfil[0][0]
+        except Exception as e:
+            print(f"Error al Obtener Foto de Perfil: {e}")
+            return None
+
 
 
 class SeccionData:

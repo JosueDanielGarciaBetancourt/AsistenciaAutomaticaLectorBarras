@@ -9,10 +9,11 @@ from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QTableWidgetItem, QLabel
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.Modelos import Docente, Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData
+from PyQt6.QtGui import QPixmap
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -278,11 +279,29 @@ class MainWindow(QtWidgets.QMainWindow):
             curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
             self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
 
+    def configFotoPerfilDocente(self):
+        busquedaRutaFoto = DocenteData()
+        ruta_foto = busquedaRutaFoto.getDocenteFotoPerfil(self.docente)
+
+        # Verificar si la ruta de la foto es válida
+        if not os.path.isfile(ruta_foto):
+            raise FileNotFoundError(f"Archivo de foto no encontrado: {ruta_foto}")
+
+        # Cargar la imagen en un QPixmap
+        pixmap = QPixmap(ruta_foto)
+        self.mainWindow.profeFoto.setPixmap(pixmap)
+
+
+
 
     def initGUI(self):
 
-        self.mainWindow.cmbBoxAsignatura.clear()
+        #Configurar FotoPerfilDocente
+        self.configFotoPerfilDocente()
+
+
         # Configurar tablaTomarAsistencia
+        self.mainWindow.cmbBoxAsignatura.clear()
         self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
 
