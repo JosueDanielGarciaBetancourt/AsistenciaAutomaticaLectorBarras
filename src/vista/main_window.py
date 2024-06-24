@@ -261,21 +261,27 @@ class MainWindow(QtWidgets.QMainWindow):
             print(ex)
 
     def getCurrentTextCmbBoxAsignatura(self):
-        busquedaNRCS = SeccionData()
-        nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
-
-        self.mainWindow.cmbBoxAsignatura.clear()
-        for f_nrc in nrcs:
-            curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
-            self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
-
+        
         nrc_selected = self.mainWindow.cmbBoxAsignatura.currentText().split(" - ")[0]
 
         self.comboBoxAsignaturaCurrentNRC = nrc_selected
         self.configTablaTomaAsistencia()
 
+
+    def configTextCmbBoxAsignatura(self):
+
+        busquedaNRCS = SeccionData()
+        nrcs = busquedaNRCS.searchNrcs_by_Docente(self.docente)
+
+        
+        for f_nrc in nrcs:
+            curso = busquedaNRCS.searchCurso_by_NRC(f_nrc)
+            self.mainWindow.cmbBoxAsignatura.addItem(f_nrc + " - " + curso)
+
     def initGUI(self):
+        self.mainWindow.cmbBoxAsignatura.clear()
         # Configurar tablaTomarAsistencia
+        self.configTextCmbBoxAsignatura()
         self.getCurrentTextCmbBoxAsignatura()
 
         # Ocultar algunos elementos
