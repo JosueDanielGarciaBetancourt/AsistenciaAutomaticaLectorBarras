@@ -217,7 +217,9 @@ def insertar_cursos(con):
                 ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4),
                 ('ASUC01231', 'ASIGNATURA 1 / TEST ', 5),
                 ('ASUC01232', 'ASIGNATURA 2 / TEST ', 5),
-                ('ASUC01233', 'ASIGNATURA 3 / TEST ', 5)
+                ('ASUC01233', 'ASIGNATURA 3 / TEST ', 5),
+                ('ASUC01234', 'ASIGNATURA 4 / TEST ', 5),
+                ('ASUC01236', 'ASIGNATURA 5 / TEST ', 5)
             ]
             
             cur.executemany(sql_insert, cursos)
@@ -242,7 +244,9 @@ def insertar_secciones(con):
                 ('22888', '202410', 'ASUC01235'),
                 ('12341', '202410', 'ASUC01231'),
                 ('12342', '202410', 'ASUC01232'),
-                ('12343', '202410', 'ASUC01233')
+                ('12343', '202410', 'ASUC01233'),
+                ('12344', '202410', 'ASUC01234'),
+                ('12345', '202410', 'ASUC01236')
             ]
             
             cur.executemany(sql_insert, secciones)
@@ -308,6 +312,22 @@ def insertar_detalles_estudiantes_secciones(con):
                     '2000-01-01',  # Fecha genérica
                     '00:00:00'  # Hora genérica
                 ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12344',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12345',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
             
             cur.executemany(sql_insert, detalles_estudiantes)
             con.commit()
@@ -359,7 +379,9 @@ def insertar_detalles_secciones_docentes(con):
                 ('12341', '41280062'),
                 ('12342', '41280062'),
                 ('12343', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
-                ('30246', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
+                ('30246', '19821000'),
+                ('12344', '19821000'),
+                ('12345', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
             ]
             
             cur.executemany(sql_insert, detalles_docentes)
