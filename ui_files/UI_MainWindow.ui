@@ -1060,7 +1060,7 @@
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="page_6">
                 <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1146,18 +1146,95 @@
                          </property>
                         </widget>
                        </item>
-                       <item row="2" column="0">
-                        <widget class="QLabel" name="label_10">
-                         <property name="text">
-                          <string>Curso 1</string>
+                       <item row="2" column="0" alignment="Qt::AlignLeft">
+                        <widget class="QStackedWidget" name="stackedWidgetCursos">
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
                          </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="1">
-                        <widget class="QLabel" name="label_17">
-                         <property name="text">
-                          <string>Curso 2</string>
+                         <property name="currentIndex">
+                          <number>1</number>
                          </property>
+                         <widget class="QWidget" name="page_9">
+                          <layout class="QVBoxLayout" name="verticalLayout_22">
+                           <item>
+                            <widget class="QLabel" name="label_10">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>22888 - DIRECCIÓN DE PROYECTOS</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_17">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 85, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>12341 - ASIGNATURA 1 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_5">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 170, 127);</string>
+                             </property>
+                             <property name="text">
+                              <string>12342 - ASIGNATURA 2 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_13">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>12343 - ASIGNATURA 3 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                         <widget class="QWidget" name="page_10">
+                          <layout class="QVBoxLayout" name="verticalLayout_23">
+                           <item>
+                            <widget class="QLabel" name="label_14">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>22888 - INNOVACIÓN SOCIAL</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_18">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 85, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>12344 - ASIGNATURA 4 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_25">
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 170, 127);</string>
+                             </property>
+                             <property name="text">
+                              <string>12345 - ASIGNATURA 5 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
                         </widget>
                        </item>
                       </layout>
