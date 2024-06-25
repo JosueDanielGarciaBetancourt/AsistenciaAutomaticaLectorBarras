@@ -1,20 +1,17 @@
+import time
 from datetime import datetime
-import hashlib
-import secrets  # Para generar un salt aleatorio
-import binascii
-import re
 import os
-import sys
-from PyQt6 import QtWidgets, QtCore, uic, QtGui
+from PyQt6 import QtWidgets, QtCore, QtGui
 from PyQt6.QtCore import Qt
-from ui_files.UI_LogIn import UI_LogIn
+
+from src.logica.clasePDF import GeneradorReporteAsistencia
 from ui_files.UI_MainWindow import UI_MainWindow
-from PyQt6.QtWidgets import QApplication, QTableWidgetItem, QLabel
+from PyQt6.QtWidgets import QTableWidgetItem
 from src.vista.Window_Utils import MensajesWindow
-from src.modelo.Modelos import Docente, Seccion
+from src.modelo.Modelos import Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData, LogicaTabla
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import QThread, pyqtSignal
+
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -437,7 +434,9 @@ class MainWindow(QtWidgets.QMainWindow):
             print(mensaje)
             print(ex)
 
-
+    def generarReporteAsistencia(self):
+        reporteGenerado = GeneradorReporteAsistencia(self.mainWindow)
+        reporteGenerado.abrir_reporte()
 
     def initGUI(self):
         # Configuración de datos según username
@@ -475,6 +474,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnAsistio.clicked.connect(lambda: self.filtroVerSoloAsistio(1))
         self.mainWindow.btnNoAsistio.clicked.connect(lambda: self.filtroVerSoloAsistio(0))
         self.mainWindow.btnTodo.clicked.connect(self.filtroVerTodo)
+        self.mainWindow.btnGeneraReporte.clicked.connect(self.generarReporteAsistencia)
 
         # Selección rápida de cursos mrosales@continental.edu.pe
         self.mainWindow.btnCurso30246.clicked.connect(lambda: self.seleccionarCursoRapidamente("30246"))
