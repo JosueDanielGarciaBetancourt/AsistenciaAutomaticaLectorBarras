@@ -6,6 +6,7 @@ class UI_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1300, 551)
+        MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1160,7 +1161,8 @@ class UI_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionSalir = QtGui.QAction(parent=MainWindow)
         self.actionSalir.setObjectName("actionSalir")
-
+        self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,
+                                                                         color=QtGui.QColor(234, 221, 186, 100)))
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         self.mainStackedWidget.setCurrentIndex(2)

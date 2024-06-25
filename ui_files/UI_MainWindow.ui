@@ -1067,7 +1067,7 @@
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="page_6">
                 <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1904,8 +1904,7 @@ background-color: white;</string>
                              <cursorShape>PointingHandCursor</cursorShape>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true">
-</string>
+                             <string notr="true"/>
                             </property>
                             <property name="text">
                              <string>Todo</string>
@@ -2328,8 +2327,8 @@ Implementación: David Contreras Cerrón</string>
                        </size>
                       </property>
                       <property name="text">
-                       <string>Gestor de Sueldos V1 permite al usuario realizar los cálculos 
-mensuales de sueldos de los trabajadores registrados.</string>
+                       <string>Es una herramienta rápidao de control de asistencia evitando que se usted
+se gaste la voz al intentar llamara cada estudiante,</string>
                       </property>
                      </widget>
                     </item>
@@ -2341,7 +2340,7 @@ mensuales de sueldos de los trabajadores registrados.</string>
                        </font>
                       </property>
                       <property name="text">
-                       <string>Fecha de despliegue: 25/06/2023 
+                       <string>Fecha de despliegue: 25/06/2024 
  Copyright © UC Company</string>
                       </property>
                      </widget>
