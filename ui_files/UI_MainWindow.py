@@ -6,7 +6,6 @@ class UI_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1300, 551)
-        MainWindow.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -81,23 +80,70 @@ class UI_MainWindow(object):
 "    border-radius: 10px; \n"
 "}\n"
 "\n"
-"#pushButtonInicio, #pushButtonAsistencia, #pushButtonReporte {\n"
+"#pushButtonInicio, #pushButtonAsistencia {\n"
 "    border-radius: 10px; \n"
 "}\n"
 "\n"
-"#pushButtonInicio:hover, #pushButtonAsistencia:hover,  #pushButtonReporte:hover {\n"
+"#pushButtonInicio:hover, #pushButtonAsistencia:hover {\n"
 "    background-color: gray;\n"
 "    border-radius: 10px; \n"
 "}\n"
 "\n"
-"#pushButtonConfiguracion, #pushButtonAcercaDe, #pushButtonAyuda {\n"
+"#pushButtonConfiguracion, #pushButtonAcercaDe, #btnCerrarSesion {\n"
 "    border-radius: 10px; \n"
 "}\n"
 "\n"
-"#pushButtonConfiguracion:hover, #pushButtonAcercaDe:hover,  #pushButtonAyuda:hover {\n"
+"#pushButtonConfiguracion:hover, #pushButtonAcercaDe:hover,  #btnCerrarSesion:hover {\n"
 "    background-color: gray;\n"
 "    border-radius: 10px; \n"
 "}\n"
+"\n"
+"#pushButtonInicio:pressed, #pushButtonAsistencia:pressed,\n"
+"#pushButtonConfiguracion:pressed, #pushButtonAcercaDe:pressed, #btnCerrarSesion:pressed {\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"#btnCloseMoreMenu:hover {\n"
+"   background-color: gray;\n"
+"   border-radius: 12px;\n"
+"}\n"
+"\n"
+"#btnCloseProfile:hover {\n"
+"   background-color: gray;\n"
+"   border-radius: 11px;\n"
+"}\n"
+"\n"
+"#btnCloseNotification:hover {\n"
+"   background-color: gray;\n"
+"   border-radius: 12px;\n"
+"}\n"
+"\n"
+"#btnTodo, #btnAsistio, #btnNoAsistio {\n"
+"    background-color: rgb(170, 170, 127);\n"
+"}\n"
+"\n"
+"#btnTodo:hover, #btnAsistio:hover, #btnNoAsistio:hover {\n"
+"   background-color: rgb(200, 170, 127);\n"
+"}\n"
+"\n"
+"#btnTodo:pressed, #btnAsistio:pressed, #btnNoAsistio:pressed {\n"
+"   background-color: rgb(200, 180, 150);\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"#btnGeneraReporte {\n"
+"    background-color: rgb(116, 10, 10);\n"
+"}\n"
+"\n"
+"#btnGeneraReporte:hover {\n"
+"   background-color: rgb(172, 88, 88);\n"
+"}\n"
+"\n"
+"#btnGeneraReporte:pressed {\n"
+"   background-color: rgb(230, 177, 177);\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
 "")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -147,48 +193,33 @@ class UI_MainWindow(object):
         self.pushButtonAsistencia.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonAsistencia.setObjectName("pushButtonAsistencia")
         self.verticalLayout_4.addWidget(self.pushButtonAsistencia)
-        self.pushButtonReporte = QtWidgets.QPushButton(parent=self.frame_2)
-        self.pushButtonReporte.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/printer.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonReporte.setIcon(icon3)
-        self.pushButtonReporte.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonReporte.setObjectName("pushButtonReporte")
-        self.verticalLayout_4.addWidget(self.pushButtonReporte)
-        self.verticalLayout_2.addWidget(self.frame_2)
+        self.verticalLayout_2.addWidget(self.frame_2, 0, QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.frame_3 = QtWidgets.QFrame(parent=self.leftMenuSubContainer)
         self.frame_3.setMaximumSize(QtCore.QSize(16777215, 100))
         self.frame_3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_3.setObjectName("frame_3")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frame_3)
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 20)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.pushButtonConfiguracion = QtWidgets.QPushButton(parent=self.frame_3)
-        self.pushButtonConfiguracion.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/icons/settings.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonConfiguracion.setIcon(icon4)
-        self.pushButtonConfiguracion.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonConfiguracion.setObjectName("pushButtonConfiguracion")
-        self.verticalLayout_5.addWidget(self.pushButtonConfiguracion)
         self.pushButtonAcercaDe = QtWidgets.QPushButton(parent=self.frame_3)
         self.pushButtonAcercaDe.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/icons/info.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonAcercaDe.setIcon(icon5)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/info.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonAcercaDe.setIcon(icon3)
         self.pushButtonAcercaDe.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonAcercaDe.setObjectName("pushButtonAcercaDe")
         self.verticalLayout_5.addWidget(self.pushButtonAcercaDe)
-        self.pushButtonAyuda = QtWidgets.QPushButton(parent=self.frame_3)
-        self.pushButtonAyuda.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/icons/help-circle.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonAyuda.setIcon(icon6)
-        self.pushButtonAyuda.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonAyuda.setObjectName("pushButtonAyuda")
-        self.verticalLayout_5.addWidget(self.pushButtonAyuda)
-        self.verticalLayout_2.addWidget(self.frame_3)
+        self.verticalLayout_2.addWidget(self.frame_3, 0, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.btnCerrarSesion = QtWidgets.QPushButton(parent=self.leftMenuSubContainer)
+        self.btnCerrarSesion.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.btnCerrarSesion.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/icons/log-out.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnCerrarSesion.setIcon(icon4)
+        self.btnCerrarSesion.setIconSize(QtCore.QSize(24, 24))
+        self.btnCerrarSesion.setObjectName("btnCerrarSesion")
+        self.verticalLayout_2.addWidget(self.btnCerrarSesion)
         self.verticalLayout.addWidget(self.leftMenuSubContainer)
         self.horizontalLayout.addWidget(self.leftMenuContainer)
         self.centerMenuContainer = QtWidgets.QWidget(parent=self.centralwidget)
@@ -222,9 +253,9 @@ class UI_MainWindow(object):
         self.btnCloseMoreMenu = QtWidgets.QPushButton(parent=self.frame_4)
         self.btnCloseMoreMenu.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnCloseMoreMenu.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/icons/x-circle.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnCloseMoreMenu.setIcon(icon7)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/icons/icons/x-circle.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnCloseMoreMenu.setIcon(icon5)
         self.btnCloseMoreMenu.setIconSize(QtCore.QSize(24, 24))
         self.btnCloseMoreMenu.setObjectName("btnCloseMoreMenu")
         self.horizontalLayout_3.addWidget(self.btnCloseMoreMenu, 0, QtCore.Qt.AlignmentFlag.AlignRight)
@@ -310,9 +341,9 @@ class UI_MainWindow(object):
         self.btnShowMoreMenu.setMinimumSize(QtCore.QSize(30, 35))
         self.btnShowMoreMenu.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnShowMoreMenu.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/icons/arrow-right.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnShowMoreMenu.setIcon(icon8)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/icons/icons/arrow-right.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnShowMoreMenu.setIcon(icon6)
         self.btnShowMoreMenu.setIconSize(QtCore.QSize(24, 24))
         self.btnShowMoreMenu.setObjectName("btnShowMoreMenu")
         self.verticalLayout_14.addWidget(self.btnShowMoreMenu)
@@ -350,9 +381,9 @@ class UI_MainWindow(object):
         self.btnNotification.setMaximumSize(QtCore.QSize(30, 16777215))
         self.btnNotification.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnNotification.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/icons/icons/bell.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnNotification.setIcon(icon9)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/icons/icons/bell.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnNotification.setIcon(icon7)
         self.btnNotification.setIconSize(QtCore.QSize(18, 18))
         self.btnNotification.setObjectName("btnNotification")
         self.horizontalLayout_7.addWidget(self.btnNotification)
@@ -361,9 +392,9 @@ class UI_MainWindow(object):
         self.btnProfile.setMaximumSize(QtCore.QSize(30, 16777215))
         self.btnProfile.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnProfile.setText("")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/icons/icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnProfile.setIcon(icon10)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/icons/icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnProfile.setIcon(icon8)
         self.btnProfile.setIconSize(QtCore.QSize(20, 20))
         self.btnProfile.setObjectName("btnProfile")
         self.horizontalLayout_7.addWidget(self.btnProfile)
@@ -382,9 +413,9 @@ class UI_MainWindow(object):
         self.minimizeBtn.setMinimumSize(QtCore.QSize(40, 30))
         self.minimizeBtn.setMaximumSize(QtCore.QSize(40, 30))
         self.minimizeBtn.setText("")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/icons/icons/minus.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.minimizeBtn.setIcon(icon11)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/icons/icons/minus.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.minimizeBtn.setIcon(icon9)
         self.minimizeBtn.setIconSize(QtCore.QSize(17, 17))
         self.minimizeBtn.setObjectName("minimizeBtn")
         self.horizontalLayout_4.addWidget(self.minimizeBtn)
@@ -392,9 +423,9 @@ class UI_MainWindow(object):
         self.restoreBtn.setMinimumSize(QtCore.QSize(40, 40))
         self.restoreBtn.setMaximumSize(QtCore.QSize(40, 40))
         self.restoreBtn.setText("")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(":/icons/icons/square.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.restoreBtn.setIcon(icon12)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/icons/icons/square.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.restoreBtn.setIcon(icon10)
         self.restoreBtn.setIconSize(QtCore.QSize(13, 13))
         self.restoreBtn.setObjectName("restoreBtn")
         self.horizontalLayout_4.addWidget(self.restoreBtn)
@@ -402,9 +433,9 @@ class UI_MainWindow(object):
         self.closeBtn.setMinimumSize(QtCore.QSize(40, 40))
         self.closeBtn.setMaximumSize(QtCore.QSize(40, 40))
         self.closeBtn.setText("")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap(":/icons/icons/x.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.closeBtn.setIcon(icon13)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/icons/icons/x.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.closeBtn.setIcon(icon11)
         self.closeBtn.setIconSize(QtCore.QSize(17, 17))
         self.closeBtn.setObjectName("closeBtn")
         self.horizontalLayout_4.addWidget(self.closeBtn)
@@ -591,6 +622,7 @@ class UI_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(8)
         self.cmbBoxAsignatura.setFont(font)
+        self.cmbBoxAsignatura.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.cmbBoxAsignatura.setStyleSheet("        QComboBox {\n"
 "            border: 1px solid #444;\n"
 "            border-radius: 5px;\n"
@@ -619,7 +651,13 @@ class UI_MainWindow(object):
 "            background-color: #333;\n"
 "            selection-background-color: #555;\n"
 "            selection-color: #FFF;\n"
-"        }")
+"        }\n"
+"\n"
+"\n"
+"#cmbBoxAsignatura:hover {\n"
+"   background-color: rgb(118, 114, 114);\n"
+"}\n"
+"")
         self.cmbBoxAsignatura.setObjectName("cmbBoxAsignatura")
         self.cmbBoxAsignatura.addItem("")
         self.cmbBoxAsignatura.addItem("")
@@ -684,36 +722,91 @@ class UI_MainWindow(object):
         self.labelRegistrado.setObjectName("labelRegistrado")
         self.verticalLayout_16.addWidget(self.labelRegistrado)
         self.frame_13 = QtWidgets.QFrame(parent=self.widget_5)
-        self.frame_13.setMinimumSize(QtCore.QSize(0, 40))
-        self.frame_13.setMaximumSize(QtCore.QSize(9999, 40))
+        self.frame_13.setMinimumSize(QtCore.QSize(700, 60))
+        self.frame_13.setMaximumSize(QtCore.QSize(9999, 60))
+        self.frame_13.setStyleSheet("")
         self.frame_13.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frame_13.setObjectName("frame_13")
         self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.frame_13)
-        self.horizontalLayout_16.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_16.setSpacing(4)
+        self.horizontalLayout_16.setContentsMargins(0, 0, 10, 0)
+        self.horizontalLayout_16.setSpacing(0)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        self.label_16 = QtWidgets.QLabel(parent=self.frame_13)
+        self.widget_6 = QtWidgets.QWidget(parent=self.frame_13)
+        self.widget_6.setObjectName("widget_6")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.widget_6)
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.label_16 = QtWidgets.QLabel(parent=self.widget_6)
+        self.label_16.setMinimumSize(QtCore.QSize(50, 0))
+        self.label_16.setMaximumSize(QtCore.QSize(50, 50))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
         self.label_16.setFont(font)
         self.label_16.setStyleSheet("color: rgb(104, 199, 107)")
         self.label_16.setObjectName("label_16")
-        self.horizontalLayout_16.addWidget(self.label_16)
-        self.labelDate = QtWidgets.QLabel(parent=self.frame_13)
+        self.horizontalLayout_19.addWidget(self.label_16)
+        self.labelDate = QtWidgets.QLabel(parent=self.widget_6)
         self.labelDate.setMaximumSize(QtCore.QSize(70, 30))
         self.labelDate.setObjectName("labelDate")
-        self.horizontalLayout_16.addWidget(self.labelDate)
+        self.horizontalLayout_19.addWidget(self.labelDate)
+        self.horizontalLayout_16.addWidget(self.widget_6, 0, QtCore.Qt.AlignmentFlag.AlignLeft)
+        self.widget_4 = QtWidgets.QWidget(parent=self.frame_13)
+        self.widget_4.setMinimumSize(QtCore.QSize(120, 0))
+        self.widget_4.setMaximumSize(QtCore.QSize(220, 16777215))
+        self.widget_4.setStyleSheet("")
+        self.widget_4.setObjectName("widget_4")
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.widget_4)
+        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_14.setSpacing(0)
+        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
+        self.btnTodo = QtWidgets.QPushButton(parent=self.widget_4)
+        self.btnTodo.setMinimumSize(QtCore.QSize(70, 30))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.btnTodo.setFont(font)
+        self.btnTodo.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnTodo.setStyleSheet("\n"
+"")
+        self.btnTodo.setObjectName("btnTodo")
+        self.horizontalLayout_14.addWidget(self.btnTodo)
+        self.btnAsistio = QtWidgets.QPushButton(parent=self.widget_4)
+        self.btnAsistio.setMinimumSize(QtCore.QSize(70, 30))
+        self.btnAsistio.setMaximumSize(QtCore.QSize(50, 16777215))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.btnAsistio.setFont(font)
+        self.btnAsistio.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnAsistio.setStyleSheet("")
+        self.btnAsistio.setObjectName("btnAsistio")
+        self.horizontalLayout_14.addWidget(self.btnAsistio)
+        self.btnNoAsistio = QtWidgets.QPushButton(parent=self.widget_4)
+        self.btnNoAsistio.setMinimumSize(QtCore.QSize(70, 30))
+        self.btnNoAsistio.setMaximumSize(QtCore.QSize(50, 16777215))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.btnNoAsistio.setFont(font)
+        self.btnNoAsistio.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnNoAsistio.setStyleSheet("")
+        self.btnNoAsistio.setObjectName("btnNoAsistio")
+        self.horizontalLayout_14.addWidget(self.btnNoAsistio)
+        self.horizontalLayout_16.addWidget(self.widget_4)
         self.verticalLayout_16.addWidget(self.frame_13, 0, QtCore.Qt.AlignmentFlag.AlignLeft)
-        self.tablaTomarAsistencia = QtWidgets.QTableWidget(parent=self.widget_5)
+        self.widget_7 = QtWidgets.QWidget(parent=self.widget_5)
+        self.widget_7.setMinimumSize(QtCore.QSize(0, 100))
+        self.widget_7.setObjectName("widget_7")
+        self.horizontalLayout_20 = QtWidgets.QHBoxLayout(self.widget_7)
+        self.horizontalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_20.setSpacing(0)
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.tablaTomarAsistencia = QtWidgets.QTableWidget(parent=self.widget_7)
         self.tablaTomarAsistencia.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tablaTomarAsistencia.sizePolicy().hasHeightForWidth())
         self.tablaTomarAsistencia.setSizePolicy(sizePolicy)
-        self.tablaTomarAsistencia.setMinimumSize(QtCore.QSize(500, 300))
-        self.tablaTomarAsistencia.setMaximumSize(QtCore.QSize(9999, 600))
+        self.tablaTomarAsistencia.setMinimumSize(QtCore.QSize(600, 300))
+        self.tablaTomarAsistencia.setMaximumSize(QtCore.QSize(600, 600))
         self.tablaTomarAsistencia.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.tablaTomarAsistencia.setStyleSheet("QHeaderView::section {\n"
 "   background-color: rgb(43, 69, 34);\n"
@@ -795,23 +888,85 @@ class UI_MainWindow(object):
         self.tablaTomarAsistencia.verticalHeader().setCascadingSectionResizes(False)
         self.tablaTomarAsistencia.verticalHeader().setHighlightSections(False)
         self.tablaTomarAsistencia.verticalHeader().setSortIndicatorShown(False)
-        self.verticalLayout_16.addWidget(self.tablaTomarAsistencia)
-        self.tablaTomarAsistencia.raise_()
-        self.frame_12.raise_()
-        self.labelRegistrado.raise_()
-        self.frame_13.raise_()
+        self.horizontalLayout_20.addWidget(self.tablaTomarAsistencia, 0, QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
+        self.btnGeneraReporte = QtWidgets.QPushButton(parent=self.widget_7)
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.btnGeneraReporte.setFont(font)
+        self.btnGeneraReporte.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnGeneraReporte.setStyleSheet("border-radius: 12px;")
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(":/icons/icons/file-text.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnGeneraReporte.setIcon(icon12)
+        self.btnGeneraReporte.setObjectName("btnGeneraReporte")
+        self.horizontalLayout_20.addWidget(self.btnGeneraReporte)
+        self.verticalLayout_16.addWidget(self.widget_7)
         self.verticalLayout_19.addWidget(self.widget_5)
         self.mainStackedWidget.addWidget(self.page_7)
         self.page_8 = QtWidgets.QWidget()
         self.page_8.setObjectName("page_8")
-        self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.page_8)
-        self.horizontalLayout_17.setObjectName("horizontalLayout_17")
-        self.label_12 = QtWidgets.QLabel(parent=self.page_8)
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.page_8)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.widget_8 = QtWidgets.QWidget(parent=self.page_8)
+        self.widget_8.setObjectName("widget_8")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.widget_8)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.widget_10 = QtWidgets.QWidget(parent=self.widget_8)
+        self.widget_10.setObjectName("widget_10")
+        self.verticalLayout_25 = QtWidgets.QVBoxLayout(self.widget_10)
+        self.verticalLayout_25.setObjectName("verticalLayout_25")
+        self.label_5 = QtWidgets.QLabel(parent=self.widget_10)
         font = QtGui.QFont()
-        font.setPointSize(13)
-        self.label_12.setFont(font)
-        self.label_12.setObjectName("label_12")
-        self.horizontalLayout_17.addWidget(self.label_12)
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.verticalLayout_25.addWidget(self.label_5)
+        self.label_8 = QtWidgets.QLabel(parent=self.widget_10)
+        self.label_8.setMinimumSize(QtCore.QSize(300, 0))
+        self.label_8.setMaximumSize(QtCore.QSize(500, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+        self.verticalLayout_25.addWidget(self.label_8)
+        self.gridLayout_4.addWidget(self.widget_10, 0, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.gridLayout_3.addWidget(self.widget_8, 0, 0, 1, 1)
+        self.widget_9 = QtWidgets.QWidget(parent=self.page_8)
+        self.widget_9.setObjectName("widget_9")
+        self.verticalLayout_24 = QtWidgets.QVBoxLayout(self.widget_9)
+        self.verticalLayout_24.setObjectName("verticalLayout_24")
+        self.label_18 = QtWidgets.QLabel(parent=self.widget_9)
+        self.label_18.setMaximumSize(QtCore.QSize(300, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label_18.setFont(font)
+        self.label_18.setObjectName("label_18")
+        self.verticalLayout_24.addWidget(self.label_18)
+        self.label_21 = QtWidgets.QLabel(parent=self.widget_9)
+        self.label_21.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.label_21.setObjectName("label_21")
+        self.verticalLayout_24.addWidget(self.label_21)
+        self.label_17 = QtWidgets.QLabel(parent=self.widget_9)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_17.setFont(font)
+        self.label_17.setObjectName("label_17")
+        self.verticalLayout_24.addWidget(self.label_17)
+        self.gridLayout_3.addWidget(self.widget_9, 0, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.label_10 = QtWidgets.QLabel(parent=self.page_8)
+        self.label_10.setMaximumSize(QtCore.QSize(200, 200))
+        self.label_10.setText("")
+        self.label_10.setPixmap(QtGui.QPixmap(":/images/universidad-continental LOGO blanco.png"))
+        self.label_10.setScaledContents(True)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout_3.addWidget(self.label_10, 2, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.gifProgramador = QtWidgets.QLabel(parent=self.page_8)
+        self.gifProgramador.setText("")
+        self.gifProgramador.setPixmap(QtGui.QPixmap(":/images/programador.gif"))
+        self.gifProgramador.setObjectName("gifProgramador")
+        self.gridLayout_3.addWidget(self.gifProgramador, 2, 0, 1, 1)
         self.mainStackedWidget.addWidget(self.page_8)
         self.verticalLayout_20.addWidget(self.mainStackedWidget)
         self.popupNotificationContainer = QtWidgets.QWidget(parent=self.mainContentsContainer)
@@ -845,7 +1000,7 @@ class UI_MainWindow(object):
         self.btnCloseNotification = QtWidgets.QPushButton(parent=self.frame_9)
         self.btnCloseNotification.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnCloseNotification.setText("")
-        self.btnCloseNotification.setIcon(icon7)
+        self.btnCloseNotification.setIcon(icon5)
         self.btnCloseNotification.setIconSize(QtCore.QSize(24, 24))
         self.btnCloseNotification.setObjectName("btnCloseNotification")
         self.gridLayout_2.addWidget(self.btnCloseNotification, 0, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTop)
@@ -883,7 +1038,7 @@ class UI_MainWindow(object):
         self.btnCloseProfile = QtWidgets.QPushButton(parent=self.frame_8)
         self.btnCloseProfile.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnCloseProfile.setText("")
-        self.btnCloseProfile.setIcon(icon7)
+        self.btnCloseProfile.setIcon(icon5)
         self.btnCloseProfile.setIconSize(QtCore.QSize(24, 24))
         self.btnCloseProfile.setObjectName("btnCloseProfile")
         self.horizontalLayout_9.addWidget(self.btnCloseProfile, 0, QtCore.Qt.AlignmentFlag.AlignRight)
@@ -1005,11 +1160,10 @@ class UI_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionSalir = QtGui.QAction(parent=MainWindow)
         self.actionSalir.setObjectName("actionSalir")
-        self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0,
-                                                                         color=QtGui.QColor(234, 221, 186, 100)))
+
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
-        self.mainStackedWidget.setCurrentIndex(0)
+        self.mainStackedWidget.setCurrentIndex(2)
         self.stackedWidgetCursos.setCurrentIndex(0)
         self.cmbBoxAsignatura.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -1021,14 +1175,10 @@ class UI_MainWindow(object):
         self.pushButtonInicio.setText(_translate("MainWindow", "Inicio"))
         self.pushButtonAsistencia.setToolTip(_translate("MainWindow", "Tomar la asistencia"))
         self.pushButtonAsistencia.setText(_translate("MainWindow", "Asistencia"))
-        self.pushButtonReporte.setToolTip(_translate("MainWindow", "Ver reporte de asistencia"))
-        self.pushButtonReporte.setText(_translate("MainWindow", "Reporte"))
-        self.pushButtonConfiguracion.setToolTip(_translate("MainWindow", "Ir a configuración"))
-        self.pushButtonConfiguracion.setText(_translate("MainWindow", "Configuración"))
         self.pushButtonAcercaDe.setToolTip(_translate("MainWindow", "Ver información"))
         self.pushButtonAcercaDe.setText(_translate("MainWindow", "Acerca de"))
-        self.pushButtonAyuda.setToolTip(_translate("MainWindow", "Ver la ayuda"))
-        self.pushButtonAyuda.setText(_translate("MainWindow", "Ayuda"))
+        self.btnCerrarSesion.setToolTip(_translate("MainWindow", "Ver la ayuda"))
+        self.btnCerrarSesion.setText(_translate("MainWindow", "Cerrar Sesión"))
         self.label.setText(_translate("MainWindow", "Información"))
         self.btnCloseMoreMenu.setToolTip(_translate("MainWindow", "Cerrar Menú"))
         self.label_2.setText(_translate("MainWindow", "Settings"))
@@ -1060,6 +1210,9 @@ class UI_MainWindow(object):
         self.labelRegistrado.setText(_translate("MainWindow", "DNI Registrado"))
         self.label_16.setText(_translate("MainWindow", "Fecha:"))
         self.labelDate.setText(_translate("MainWindow", "18/05/2024"))
+        self.btnTodo.setText(_translate("MainWindow", "Todo"))
+        self.btnAsistio.setText(_translate("MainWindow", "Asistió"))
+        self.btnNoAsistio.setText(_translate("MainWindow", "No asistió"))
         self.tablaTomarAsistencia.setSortingEnabled(False)
         item = self.tablaTomarAsistencia.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "DNI"))
@@ -1074,7 +1227,19 @@ class UI_MainWindow(object):
         item = self.tablaTomarAsistencia.item(0, 0)
         item.setText(_translate("MainWindow", "wdwdwdw"))
         self.tablaTomarAsistencia.setSortingEnabled(__sortingEnabled)
-        self.label_12.setText(_translate("MainWindow", "Reporte"))
+        self.btnGeneraReporte.setText(_translate("MainWindow", "Generar \n"
+"reporte"))
+        self.label_5.setText(_translate("MainWindow", "Equipo de desarrollo"))
+        self.label_8.setText(_translate("MainWindow", "Jefe de proyecto: George Calderon Lopez\n"
+"Diseñador: Yoni Gonzales Orihuela\n"
+"Programador: García Betancourt Josué\n"
+"Pruebas: Raúl Torre Medina\n"
+"Implementación: David Contreras Cerrón"))
+        self.label_18.setText(_translate("MainWindow", "Sobre TRICAPP"))
+        self.label_21.setText(_translate("MainWindow", "Gestor de Sueldos V1 permite al usuario realizar los cálculos \n"
+"mensuales de sueldos de los trabajadores registrados."))
+        self.label_17.setText(_translate("MainWindow", "Fecha de despliegue: 25/06/2023 \n"
+" Copyright © UC Company"))
         self.labelMsgNotification.setText(_translate("MainWindow", "Aún no tienes notificaciones pendientes, vuelve pronto. "))
         self.labelTitleNotification.setText(_translate("MainWindow", "Notificación"))
         self.btnCloseNotification.setToolTip(_translate("MainWindow", "Cerrar notificación"))
@@ -1089,5 +1254,5 @@ class UI_MainWindow(object):
         self.label_23.setText(_translate("MainWindow", "Ciudad"))
         self.lblCiudadDocente.setText(_translate("MainWindow", "Huancayo"))
         self.label_9.setText(_translate("MainWindow", "More..."))
-        self.label_15.setText(_translate("MainWindow", "Universidad Continental"))
+        self.label_15.setText(_translate("MainWindow", "Universidad Continental | Huancayo - Perú"))
         self.actionSalir.setText(_translate("MainWindow", "Salir"))

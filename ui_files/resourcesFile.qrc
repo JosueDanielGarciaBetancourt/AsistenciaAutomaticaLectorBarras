@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>programador.gif</file>
+    <file>universidad-continental LOGO blanco.png</file>
     <file>fotoIngJudithRounded.png</file>
     <file>fotoIngMelitonRounded.png</file>
     <file>darkWolfCutted.png</file>

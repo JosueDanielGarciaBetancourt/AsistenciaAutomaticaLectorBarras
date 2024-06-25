@@ -50,7 +50,7 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as ex:
             print(ex)
 
-    def irReporte(self):
+    def irAcercaDe(self):
         try:
             self.mainWindow.mainStackedWidget.setCurrentIndex(2)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
             self.paginaActual = 2
@@ -359,7 +359,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnShowMoreMenu.clicked.connect(self.showMoreMenu)
         self.mainWindow.pushButtonInicio.clicked.connect(self.irInicio)
         self.mainWindow.pushButtonAsistencia.clicked.connect(self.irAsistencia)
-        self.mainWindow.pushButtonReporte.clicked.connect(self.irReporte)
+        self.mainWindow.pushButtonAcercaDe.clicked.connect(self.irAcercaDe)
         self.mainWindow.btnProfile.clicked.connect(self.showProfile)
         self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
