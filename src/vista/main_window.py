@@ -12,7 +12,7 @@ from ui_files.UI_MainWindow import UI_MainWindow
 from PyQt6.QtWidgets import QApplication, QTableWidgetItem, QLabel
 from src.vista.Window_Utils import MensajesWindow
 from src.modelo.Modelos import Docente, Seccion
-from src.modelo.ModelosData import DocenteData, SeccionData
+from src.modelo.ModelosData import DocenteData, SeccionData, LogicaTabla
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import QThread, pyqtSignal
 
@@ -27,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.paginaActual = 0
         self.docente = docenteEncontrado
         self.comboBoxAsignaturaCurrentNRC = ""
+        self.logica_tabla = LogicaTabla()
         self.initGUI()
         self.mostrar()
 
@@ -129,10 +130,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
 
+
                 # Marcar la hora actual en la fila
                 item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
                 hora_actual = datetime.now().strftime("%H:%M:%S")
+                fecha_actual = datetime.now().date()
                 item_hour.setText(hora_actual)
+
+                #Actualizar el estado en la DB
+                self.logica_tabla.updateEstadoEstudiante(self.seccion,texto_busqueda,hora_actual,fecha_actual,1)
 
                 # Desplazar y enfocar en la fila encontrada
                 self.mainWindow.tablaTomarAsistencia.scrollToItem(item, QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
@@ -201,9 +207,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def configTablaTomaAsistencia(self):
         try:
             # Consultar NRC en la base de datos
-            seccion = Seccion(NRC=self.comboBoxAsignaturaCurrentNRC)
-            seccionData = SeccionData()
-            seccionEncontrada = seccionData.searchSeccion(seccion)
+            self.seccion = Seccion(NRC=self.comboBoxAsignaturaCurrentNRC)
+            self.seccionData = SeccionData()
+            seccionEncontrada = self.seccionData.searchSeccion(self.seccion)
 
             self.mainWindow.tablaTomarAsistencia.clearContents()
             self.mainWindow.tablaTomarAsistencia.setRowCount(0)
@@ -212,7 +218,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 NRC = seccionEncontrada.getNRC()
                 # Consultar estudiantes con NRC encontrado
                 try:
-                    listaObjetosEstudiantes = seccionData.searchEstudiantes_by_NRC(NRC)
+                    listaObjetosEstudiantes = self.seccionData.searchEstudiantes_by_NRC(NRC)
                     if listaObjetosEstudiantes is None:
                         raise ValueError("No se encontraron estudiantes para el NRC proporcionado.")
                 except Exception as e:
@@ -224,7 +230,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 for estudiante in listaObjetosEstudiantes:
                     fila = self.mainWindow.tablaTomarAsistencia.rowCount()
                     self.mainWindow.tablaTomarAsistencia.insertRow(fila)
-
+                    horaRegistrado = None
                     # Datos del estudiante
                     dni, nombre, ap_paterno, ap_materno, correo = estudiante.getEstudianteAttributes()
 
@@ -238,11 +244,24 @@ class MainWindow(QtWidgets.QMainWindow):
                     # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
                     item = QTableWidgetItem()
                     item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
-                    item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+
+                    #Agarrar Estado del estudiante de la DB
+                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion,dni)
+                    if estado_estudiante == 1:
+                        item.setCheckState(Qt.CheckState.Checked)
+                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion,dni))
+                    else:
+                        item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+
+
                     self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item)
                     self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
                     self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 100)
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
+                    
+                    if horaRegistrado:
+                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable(horaRegistrado))
+                    else:
+                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
 
                     # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
 
@@ -322,11 +341,20 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             if item.column() == 2:
                 fila = item.row()
+                dniSeleccionado = self.mainWindow.tablaTomarAsistencia.item(fila, 0).text()
                 item_checkbox = self.mainWindow.tablaTomarAsistencia.item(fila, 2)
                 item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
-                hora_actual = "-"
+                hora_actual = None
                 if item_checkbox.checkState() == Qt.CheckState.Checked:
                     hora_actual = datetime.now().strftime("%H:%M:%S")
+                    fecha_actual = datetime.now().date()
+                    #Actualizar el estado en la DB
+                    self.logica_tabla.updateEstadoEstudiante(self.seccion,dniSeleccionado,hora_actual,fecha_actual,1)
+                else:
+                    hora_actual = '00:00:00'
+                    fecha_actual = '2000-01-01'
+                    self.logica_tabla.updateEstadoEstudiante(self.seccion,dniSeleccionado,hora_actual,fecha_actual,0)
+                    hora_actual = "-"
                 item_hour.setText(hora_actual)
         except Exception as ex:
             print("Excepción en checkboxClickedChangeState en main_window.py:", ex)
@@ -335,6 +363,80 @@ class MainWindow(QtWidgets.QMainWindow):
         movie = QtGui.QMovie("./ui_files/programador.gif")
         self.mainWindow.gifProgramador.setMovie(movie)
         movie.start()
+
+    def filtroVerTodo(self):
+        self.configTablaTomaAsistencia() # :V
+
+    def filtroVerSoloAsistio(self,estado :int):
+        try:
+            # Consultar NRC en la base de datos
+            self.seccion = Seccion(NRC=self.comboBoxAsignaturaCurrentNRC)
+            self.seccionData = SeccionData()
+            seccionEncontrada = self.seccionData.searchSeccion(self.seccion)
+
+            self.mainWindow.tablaTomarAsistencia.clearContents()
+            self.mainWindow.tablaTomarAsistencia.setRowCount(0)
+
+            if seccionEncontrada:  # Encontró el NRC de la sección
+                NRC = seccionEncontrada.getNRC()
+                # Consultar estudiantes con NRC encontrado
+                try:
+                    listaObjetosEstudiantes = self.logica_tabla.getEstudientes_by_Filter_Asistio(NRC,estado)
+                    if listaObjetosEstudiantes is None:
+                        raise ValueError("No se encontraron estudiantes para el NRC proporcionado.")
+                except Exception as e:
+                    print("Error al ejecutar searchEstudiantes_by_NRC:", e)
+                    mensaje = "Error al buscar estudiantes por NRC"
+                    MensajesWindow.mostrarMensajeRegistroError(mensaje)
+                    return
+
+                for estudiante in listaObjetosEstudiantes:
+                    fila = self.mainWindow.tablaTomarAsistencia.rowCount()
+                    self.mainWindow.tablaTomarAsistencia.insertRow(fila)
+                    horaRegistrado = None
+                    # Datos del estudiante
+                    dni, nombre, ap_paterno, ap_materno, correo = estudiante.getEstudianteAttributes()
+
+                    # Establecer los datos en las celdas de la fila
+                    # Hacer no editable las columnas DNI(0), Estudiante(1), Asistencia(2) y Hora(4)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, self.crear_item_no_editable(dni))
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, self.crear_item_no_editable(
+                        f"{nombre} {ap_paterno} {ap_materno}"))
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, self.crear_item_no_editable("0%"))
+
+                    # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
+                    item = QTableWidgetItem()
+                    item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+
+                    #Agarrar Estado del estudiante de la DB
+                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion,dni)
+                    if estado_estudiante == 1:
+                        item.setCheckState(Qt.CheckState.Checked)
+                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion,dni))
+                    else:
+                        item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+
+
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item)
+                    self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
+                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 100)
+                    
+                    if horaRegistrado:
+                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable(horaRegistrado))
+                    else:
+                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
+
+                    # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
+
+            else:
+                mensaje = "Aún no existe sección con el NRC solicitado en la base de datos"
+                MensajesWindow.mostrarMensajeRegistroError(mensaje)
+                print(mensaje)
+        except Exception as ex:
+            mensaje = "Ocurrió un error inesperado al intentar configurar la tablaTomarAsistencia"
+            print(mensaje)
+            print(ex)
+
 
 
     def initGUI(self):
@@ -370,6 +472,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mainWindow.btnCloseProfile.clicked.connect(self.closeProfile)
         self.mainWindow.btnNotification.clicked.connect(self.showNotification)
         self.mainWindow.btnCloseNotification.clicked.connect(self.closeNotification)
+        self.mainWindow.btnAsistio.clicked.connect(lambda: self.filtroVerSoloAsistio(1))
+        self.mainWindow.btnNoAsistio.clicked.connect(lambda: self.filtroVerSoloAsistio(0))
+        self.mainWindow.btnTodo.clicked.connect(self.filtroVerTodo)
 
         # Selección rápida de cursos mrosales@continental.edu.pe
         self.mainWindow.btnCurso30246.clicked.connect(lambda: self.seleccionarCursoRapidamente("30246"))

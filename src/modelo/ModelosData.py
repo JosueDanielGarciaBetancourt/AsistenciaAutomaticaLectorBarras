@@ -193,6 +193,139 @@ class SeccionData:
         return listaObjetosEstudiante
 
 
+class LogicaTabla:
+    def __init__(self):
+        self.cursor = None
+        self.con = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+
+    def cerrarConexion(self):
+        self.cursor.close()
+        self.con.close()
+
+    def getEstadoEstudiante_by_NRC(self, seccion: Seccion, dniEstudiante):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "SELECT det_estu_seccion_estadoAsistencia FROM tblDetalle_Estudiantes_secciones "
+                "WHERE estuDni = '{}' AND nrc = '{}'".format(dniEstudiante,seccion._NRC))
+            
+            estado_estudiante = self.cursor.fetchall()
+            self.cerrarConexion()
+            return estado_estudiante[0][0]
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+        
+
+    def updateEstadoEstudiante(self,seccion: Seccion, dniEstudiante, horaActual, fechaActual, estado):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "UPDATE tblDetalle_Estudiantes_secciones "
+                "SET det_estu_seccion_estadoAsistencia = ?, det_estu_seccion_horaAsistencia = ?, det_estu_seccion_fechaAsistencia = ? "
+                "WHERE estuDni = ? AND nrc = ?",
+                (estado, horaActual, fechaActual, dniEstudiante, seccion._NRC)
+            )
+            self.con.commit()
+            self.cerrarConexion()
+            
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para Actualizar el estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+        
+    def getDatosHoraRegistro(self, seccion: Seccion, dniEstudiante):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "SELECT det_estu_seccion_horaAsistencia FROM tblDetalle_Estudiantes_secciones "
+                "WHERE estuDni = '{}' AND nrc = '{}'".format(dniEstudiante,seccion._NRC))
+            
+            datos_estudiante = self.cursor.fetchall()
+            self.cerrarConexion()
+            return datos_estudiante[0][0]
+            
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+    
+    def getEstudientes_by_Filter_Asistio(self, NRC, estado :int):
+        
+        self.iniciarConexion()
+
+        try:
+            # Obtener los DNIs de los estudiantes por NRC
+            self.cursor.execute(
+                "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones WHERE nrc = ?",
+                (NRC,)
+            )
+            DNIs = self.cursor.fetchall()
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener DNIs: {e}")
+            self.cerrarConexion()
+            return None
+
+        if not DNIs:  # No existen estudiantes con el NRC solicitado
+            print(f"No existen estudiantes con el NRC solicitado: {NRC}")
+            self.cerrarConexion()
+            return None
+
+        listaObjetosEstudiante = []
+        for dni in DNIs:
+            try:
+                valor_dni = dni[0]
+                if estado == 1:
+                    self.cursor.execute(
+                        "SELECT * FROM tblEstudiantes INNER JOIN tblDetalle_Estudiantes_Secciones ON tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni WHERE tblEstudiantes.estuDni = ? AND det_estu_seccion_estadoAsistencia = 1 ",
+                        (valor_dni,)
+                    )
+                if estado == 0:
+                    self.cursor.execute(
+                        "SELECT * FROM tblEstudiantes INNER JOIN tblDetalle_Estudiantes_Secciones ON tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni WHERE tblEstudiantes.estuDni = ? AND det_estu_seccion_estadoAsistencia = 0 ",
+                        (valor_dni,)
+                    )
+
+                estudianteEncontrado = self.cursor.fetchone()
+
+
+                if estudianteEncontrado:
+                    estudiante = Estudiante(
+                        estudianteEncontrado[0], estudianteEncontrado[1],
+                        estudianteEncontrado[2], estudianteEncontrado[3],
+                        estudianteEncontrado[4]
+                    )
+                    listaObjetosEstudiante.append(estudiante)
+            except Exception as e:
+                print(f"Error al obtener o procesar los datos del estudiante con DNI {valor_dni}: {e}")
+
+        try:
+            self.cerrarConexion()
+        except Exception as e:
+            print(f"Error al cerrar la conexión a la base de datos: {e}")
+
+        return listaObjetosEstudiante
+
+
+
+
+
+
+
+
+
+
+        
+
   # Retornar lista de objetos estudiante con los atributos correctos
 
     #def insertEstudiantes_by_NRC(self, NRC):
