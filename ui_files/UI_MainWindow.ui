@@ -518,7 +518,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Settings</string>
+                 <string>Hola :v</string>
                 </property>
                </widget>
               </item>
@@ -2328,7 +2328,7 @@ Implementación: David Contreras Cerrón</string>
                       </property>
                       <property name="text">
                        <string>Es una herramienta rápidao de control de asistencia evitando que se usted
-se gaste la voz al intentar llamara cada estudiante,</string>
+se gaste la voz al intentar llamara cada estudiante,</string>
                       </property>
                      </widget>
                     </item>
@@ -2367,7 +2367,7 @@ se gaste la voz al intentar llamara cada estudiante,</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="0">
+                 <item row="2" column="0" alignment="Qt::AlignVCenter">
                   <widget class="QLabel" name="gifProgramador">
                    <property name="text">
                     <string/>

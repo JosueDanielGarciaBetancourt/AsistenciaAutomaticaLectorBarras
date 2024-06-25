@@ -15,7 +15,6 @@ from src.modelo.Modelos import Docente, Seccion
 from src.modelo.ModelosData import DocenteData, SeccionData
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import QThread, pyqtSignal
-#from pyzbar import pyzbar
 
 
 class MainWindow(QtWidgets.QMainWindow):

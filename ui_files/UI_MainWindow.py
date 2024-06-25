@@ -766,8 +766,7 @@ class UI_MainWindow(object):
         font.setBold(True)
         self.btnTodo.setFont(font)
         self.btnTodo.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btnTodo.setStyleSheet("\n"
-"")
+        self.btnTodo.setStyleSheet("")
         self.btnTodo.setObjectName("btnTodo")
         self.horizontalLayout_14.addWidget(self.btnTodo)
         self.btnAsistio = QtWidgets.QPushButton(parent=self.widget_4)
@@ -891,6 +890,7 @@ class UI_MainWindow(object):
         self.tablaTomarAsistencia.verticalHeader().setSortIndicatorShown(False)
         self.horizontalLayout_20.addWidget(self.tablaTomarAsistencia, 0, QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
         self.btnGeneraReporte = QtWidgets.QPushButton(parent=self.widget_7)
+        self.btnGeneraReporte.setMaximumSize(QtCore.QSize(100, 16777215))
         font = QtGui.QFont()
         font.setBold(True)
         self.btnGeneraReporte.setFont(font)
@@ -967,7 +967,7 @@ class UI_MainWindow(object):
         self.gifProgramador.setText("")
         self.gifProgramador.setPixmap(QtGui.QPixmap(":/images/programador.gif"))
         self.gifProgramador.setObjectName("gifProgramador")
-        self.gridLayout_3.addWidget(self.gifProgramador, 2, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.gifProgramador, 2, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.mainStackedWidget.addWidget(self.page_8)
         self.verticalLayout_20.addWidget(self.mainStackedWidget)
         self.popupNotificationContainer = QtWidgets.QWidget(parent=self.mainContentsContainer)
@@ -1183,7 +1183,7 @@ class UI_MainWindow(object):
         self.btnCerrarSesion.setText(_translate("MainWindow", "Cerrar Sesión"))
         self.label.setText(_translate("MainWindow", "Información"))
         self.btnCloseMoreMenu.setToolTip(_translate("MainWindow", "Cerrar Menú"))
-        self.label_2.setText(_translate("MainWindow", "Settings"))
+        self.label_2.setText(_translate("MainWindow", "Hola :v"))
         self.label_3.setText(_translate("MainWindow", "Help"))
         self.label_4.setText(_translate("MainWindow", "Information"))
         self.label_6.setText(_translate("MainWindow", "TRICAPP"))
@@ -1238,9 +1238,9 @@ class UI_MainWindow(object):
 "Pruebas: Raúl Torre Medina\n"
 "Implementación: David Contreras Cerrón"))
         self.label_18.setText(_translate("MainWindow", "Sobre TRICAPP"))
-        self.label_21.setText(_translate("MainWindow", "Gestor de Sueldos V1 permite al usuario realizar los cálculos \n"
-"mensuales de sueldos de los trabajadores registrados."))
-        self.label_17.setText(_translate("MainWindow", "Fecha de despliegue: 25/06/2023 \n"
+        self.label_21.setText(_translate("MainWindow", "Es una herramienta rápidao de control de asistencia evitando que se usted\n"
+"se gaste la voz al intentar llamara cada estudiante,"))
+        self.label_17.setText(_translate("MainWindow", "Fecha de despliegue: 25/06/2024 \n"
 " Copyright © UC Company"))
         self.labelMsgNotification.setText(_translate("MainWindow", "Aún no tienes notificaciones pendientes, vuelve pronto. "))
         self.labelTitleNotification.setText(_translate("MainWindow", "Notificación"))
