@@ -5,7 +5,7 @@ import binascii
 import re
 import os
 import sys
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore, uic, QtGui
 from PyQt6.QtCore import Qt
 from ui_files.UI_LogIn import UI_LogIn
 from ui_files.UI_MainWindow import UI_MainWindow
@@ -52,6 +52,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def irAcercaDe(self):
         try:
+            self.loadGif()
             self.mainWindow.mainStackedWidget.setCurrentIndex(2)  # 0 - Inicio | 1 - Asistencia | 2 - Reporte
             self.paginaActual = 2
         except Exception as ex:
@@ -330,6 +331,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 item_hour.setText(hora_actual)
         except Exception as ex:
             print("Excepción en checkboxClickedChangeState en main_window.py:", ex)
+
+    def loadGif(self):
+        movie = QtGui.QMovie("./ui_files/programador.gif")
+        self.mainWindow.gifProgramador.setMovie(movie)
+        movie.start()
+
 
     def initGUI(self):
         # Configuración de datos según username
