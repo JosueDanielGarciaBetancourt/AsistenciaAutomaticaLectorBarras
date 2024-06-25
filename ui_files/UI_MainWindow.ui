@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1141</width>
-    <height>550</height>
+    <width>1300</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
   <property name="maximumSize">
    <size>
     <width>1300</width>
-    <height>660</height>
+    <height>551</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -100,23 +100,70 @@
     border-radius: 10px; 
 }
 
-#pushButtonInicio, #pushButtonAsistencia, #pushButtonReporte {
+#pushButtonInicio, #pushButtonAsistencia {
     border-radius: 10px; 
 }
 
-#pushButtonInicio:hover, #pushButtonAsistencia:hover,  #pushButtonReporte:hover {
+#pushButtonInicio:hover, #pushButtonAsistencia:hover {
     background-color: gray;
     border-radius: 10px; 
 }
 
-#pushButtonConfiguracion, #pushButtonAcercaDe, #pushButtonAyuda {
+#pushButtonConfiguracion, #pushButtonAcercaDe, #btnCerrarSesion {
     border-radius: 10px; 
 }
 
-#pushButtonConfiguracion:hover, #pushButtonAcercaDe:hover,  #pushButtonAyuda:hover {
+#pushButtonConfiguracion:hover, #pushButtonAcercaDe:hover,  #btnCerrarSesion:hover {
     background-color: gray;
     border-radius: 10px; 
 }
+
+#pushButtonInicio:pressed, #pushButtonAsistencia:pressed,
+#pushButtonConfiguracion:pressed, #pushButtonAcercaDe:pressed, #btnCerrarSesion:pressed {
+	padding-left: 4px;
+}
+
+#btnCloseMoreMenu:hover {
+   background-color: gray;
+   border-radius: 12px;
+}
+
+#btnCloseProfile:hover {
+   background-color: gray;
+   border-radius: 11px;
+}
+
+#btnCloseNotification:hover {
+   background-color: gray;
+   border-radius: 12px;
+}
+
+#btnTodo, #btnAsistio, #btnNoAsistio {
+	background-color: rgb(170, 170, 127);
+}
+
+#btnTodo:hover, #btnAsistio:hover, #btnNoAsistio:hover {
+   background-color: rgb(200, 170, 127);
+}
+
+#btnTodo:pressed, #btnAsistio:pressed, #btnNoAsistio:pressed {
+   background-color: rgb(200, 180, 150);
+	padding-left: 4px;
+}
+
+#btnGeneraReporte {
+	background-color: rgb(116, 10, 10);
+}
+
+#btnGeneraReporte:hover {
+   background-color: rgb(172, 88, 88);
+}
+
+#btnGeneraReporte:pressed {
+   background-color: rgb(230, 177, 177);
+	padding-left: 4px;
+}
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -154,7 +201,7 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignHCenter">
+       <item>
         <widget class="QWidget" name="leftMenuSubContainer" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
@@ -172,7 +219,7 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignHCenter">
+          <item alignment="Qt::AlignVCenter">
            <widget class="QFrame" name="frame_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -205,7 +252,7 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item alignment="Qt::AlignTop">
+             <item>
               <widget class="QPushButton" name="pushButtonInicio">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -231,7 +278,7 @@
                </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignTop">
+             <item>
               <widget class="QPushButton" name="pushButtonAsistencia">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
@@ -254,33 +301,10 @@
                </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignTop">
-              <widget class="QPushButton" name="pushButtonReporte">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="toolTip">
-                <string>Ver reporte de asistencia</string>
-               </property>
-               <property name="text">
-                <string>Reporte</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resourcesFile.qrc">
-                 <normaloff>:/icons/icons/printer.svg</normaloff>:/icons/icons/printer.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignTop">
            <widget class="QFrame" name="frame_3">
             <property name="maximumSize">
              <size>
@@ -305,31 +329,8 @@
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>0</number>
+              <number>20</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButtonConfiguracion">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="toolTip">
-                <string>Ir a configuración</string>
-               </property>
-               <property name="text">
-                <string>Configuración</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resourcesFile.qrc">
-                 <normaloff>:/icons/icons/settings.svg</normaloff>:/icons/icons/settings.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QPushButton" name="pushButtonAcercaDe">
                <property name="cursor">
@@ -353,30 +354,36 @@
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonAyuda">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="toolTip">
-                <string>Ver la ayuda</string>
-               </property>
-               <property name="text">
-                <string>Ayuda</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resourcesFile.qrc">
-                 <normaloff>:/icons/icons/help-circle.svg</normaloff>:/icons/icons/help-circle.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
             </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCerrarSesion">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Ver la ayuda</string>
+            </property>
+            <property name="text">
+             <string>Cerrar Sesión</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resourcesFile.qrc">
+              <normaloff>:/icons/icons/log-out.svg</normaloff>:/icons/icons/log-out.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
            </widget>
           </item>
          </layout>
@@ -456,9 +463,6 @@
                <property name="text">
                 <string>Información</string>
                </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
               </widget>
              </item>
              <item alignment="Qt::AlignRight">
@@ -514,7 +518,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Settings</string>
+                 <string>Hola :v</string>
                 </property>
                </widget>
               </item>
@@ -617,7 +621,7 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <item>
            <widget class="QFrame" name="frame_5">
             <property name="maximumSize">
              <size>
@@ -644,7 +648,7 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item>
+             <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
               <widget class="QFrame" name="frame_11">
                <property name="minimumSize">
                 <size>
@@ -768,7 +772,7 @@
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignHCenter">
+          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
            <widget class="QFrame" name="frame_6">
             <property name="maximumSize">
              <size>
@@ -868,7 +872,7 @@
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
+          <item alignment="Qt::AlignRight|Qt::AlignVCenter">
            <widget class="QFrame" name="frame_7">
             <property name="minimumSize">
              <size>
@@ -1053,14 +1057,20 @@
                  <height>0</height>
                 </size>
                </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="page_6">
-                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                <layout class="QVBoxLayout" name="verticalLayout_30">
                  <property name="spacing">
                   <number>0</number>
                  </property>
@@ -1077,76 +1087,306 @@
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QWidget" name="widget" native="true">
+                  <widget class="QWidget" name="widgetCursosWolf" native="true">
                    <property name="minimumSize">
                     <size>
-                     <width>200</width>
-                     <height>100</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: black;</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="lblSaludoInicio">
-                      <property name="font">
-                       <font>
-                        <pointsize>20</pointsize>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Saludar</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_10">
-                      <property name="text">
-                       <string>Curso 1</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLabel" name="label_17">
-                      <property name="text">
-                       <string>Curso 2</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="imgWolf">
-                   <property name="minimumSize">
-                    <size>
-                     <width>200</width>
-                     <height>100</height>
+                     <width>0</width>
+                     <height>0</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>300</width>
-                     <height>1080</height>
+                     <width>16777215</width>
+                     <height>16777215</height>
                     </size>
                    </property>
-                   <property name="text">
-                    <string/>
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(0, 0, 0);</string>
                    </property>
-                   <property name="pixmap">
-                    <pixmap resource="resourcesFile.qrc">:/images/darkWolfCutted.png</pixmap>
-                   </property>
-                   <property name="scaledContents">
-                    <bool>true</bool>
-                   </property>
-                   <property name="wordWrap">
-                    <bool>false</bool>
-                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QWidget" name="widget" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: black;</string>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout">
+                       <item row="1" column="0" alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="lblSaludoInicio">
+                         <property name="font">
+                          <font>
+                           <pointsize>20</pointsize>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>Hola Judith</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0" alignment="Qt::AlignLeft">
+                        <widget class="QStackedWidget" name="stackedWidgetCursos">
+                         <property name="minimumSize">
+                          <size>
+                           <width>300</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>400</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="currentIndex">
+                          <number>0</number>
+                         </property>
+                         <widget class="QWidget" name="page_9">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>400</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_22">
+                           <property name="spacing">
+                            <number>6</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>9</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>9</number>
+                           </property>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso22888">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>22888 - DIRECCIÓN DE PROYECTOS</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso12341">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 85, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>12341 - ASIGNATURA 1 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso12342">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 170, 127);</string>
+                             </property>
+                             <property name="text">
+                              <string>12342 - ASIGNATURA 2 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso12343">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 255);</string>
+                             </property>
+                             <property name="text">
+                              <string>12343 - ASIGNATURA 3 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                         <widget class="QWidget" name="page_10">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>400</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_23">
+                           <item>
+                            <widget class="QPushButton" name="btnCurso30246">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(85, 170, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>30246 - INNOVACIÓN SOCIAL</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso12344">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 85, 0);</string>
+                             </property>
+                             <property name="text">
+                              <string>12344 - ASIGNATURA 4 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btnCurso12345">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(170, 170, 127);</string>
+                             </property>
+                             <property name="text">
+                              <string>12345 - ASIGNATURA 5 / TEST</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignRight|Qt::AlignBottom">
+                     <widget class="QLabel" name="imgWolf">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>300</width>
+                        <height>450</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="resourcesFile.qrc">:/images/darkWolfCutted.png</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                 </layout>
@@ -1234,7 +1474,7 @@
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item alignment="Qt::AlignLeft|Qt::AlignTop">
+                       <item>
                         <widget class="QFrame" name="frame_16">
                          <property name="minimumSize">
                           <size>
@@ -1243,10 +1483,7 @@
                           </size>
                          </property>
                          <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
+                          <enum>QFrame::NoFrame</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_18">
                           <property name="spacing">
@@ -1278,9 +1515,6 @@
                             <property name="text">
                              <string>Asignatura: </string>
                             </property>
-                            <property name="alignment">
-                             <set>Qt::AlignCenter</set>
-                            </property>
                            </widget>
                           </item>
                           <item>
@@ -1295,6 +1529,9 @@
                              <font>
                               <pointsize>8</pointsize>
                              </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
                             </property>
                             <property name="styleSheet">
                              <string notr="true">        QComboBox {
@@ -1325,10 +1562,16 @@
             background-color: #333;
             selection-background-color: #555;
             selection-color: #FFF;
-        }</string>
+        }
+
+
+#cmbBoxAsignatura:hover {
+   background-color: rgb(118, 114, 114);
+}
+</string>
                             </property>
                             <property name="currentIndex">
-                             <number>3</number>
+                             <number>0</number>
                             </property>
                             <item>
                              <property name="text">
@@ -1352,7 +1595,7 @@
                             </item>
                             <item>
                              <property name="text">
-                              <string>QUÍMICA 1-16158</string>
+                              <string>INNOVACIÓN SOCIAL-30246</string>
                              </property>
                             </item>
                            </widget>
@@ -1367,13 +1610,13 @@
                          </property>
                          <property name="sizeHint" stdset="0">
                           <size>
-                           <width>150</width>
+                           <width>100</width>
                            <height>20</height>
                           </size>
                          </property>
                         </spacer>
                        </item>
-                       <item alignment="Qt::AlignRight|Qt::AlignBottom">
+                       <item alignment="Qt::AlignLeft">
                         <widget class="QFrame" name="frame_14">
                          <property name="minimumSize">
                           <size>
@@ -1390,7 +1633,7 @@
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
                          </property>
-                         <layout class="QGridLayout" name="gridLayout_3">
+                         <layout class="QHBoxLayout" name="horizontalLayout_2">
                           <property name="leftMargin">
                            <number>0</number>
                           </property>
@@ -1403,14 +1646,36 @@
                           <property name="bottomMargin">
                            <number>0</number>
                           </property>
-                          <property name="horizontalSpacing">
-                           <number>15</number>
-                          </property>
-                          <item row="0" column="1">
+                          <item>
+                           <widget class="QLabel" name="labelAsistioDNI">
+                            <property name="minimumSize">
+                             <size>
+                              <width>130</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(104, 199, 107)</string>
+                            </property>
+                            <property name="text">
+                             <string>Asistencia por DNI:</string>
+                            </property>
+                            <property name="margin">
+                             <number>0</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
                            <widget class="QLineEdit" name="lineEditDNI">
                             <property name="minimumSize">
                              <size>
-                              <width>150</width>
+                              <width>90</width>
                               <height>0</height>
                              </size>
                             </property>
@@ -1462,9 +1727,6 @@ background-color: white;</string>
                             <property name="cursorPosition">
                              <number>0</number>
                             </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
                             <property name="dragEnabled">
                              <bool>false</bool>
                             </property>
@@ -1475,35 +1737,10 @@ background-color: white;</string>
                              <string>12345678</string>
                             </property>
                             <property name="cursorMoveStyle">
-                             <enum>Qt::VisualMoveStyle</enum>
+                             <enum>Qt::LogicalMoveStyle</enum>
                             </property>
                             <property name="clearButtonEnabled">
                              <bool>true</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="0">
-                           <widget class="QLabel" name="labelAsistioDNI">
-                            <property name="minimumSize">
-                             <size>
-                              <width>130</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>10</pointsize>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">color: rgb(104, 199, 107)</string>
-                            </property>
-                            <property name="text">
-                             <string>Asistencia por DNI:</string>
-                            </property>
-                            <property name="margin">
-                             <number>0</number>
                             </property>
                            </widget>
                           </item>
@@ -1532,31 +1769,225 @@ background-color: white;</string>
                       <property name="text">
                        <string>DNI Registrado</string>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
                      </widget>
                     </item>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QFrame" name="frame_13">
                       <property name="minimumSize">
                        <size>
-                        <width>0</width>
-                        <height>40</height>
+                        <width>700</width>
+                        <height>60</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
                         <width>9999</width>
-                        <height>40</height>
+                        <height>60</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::NoFrame</enum>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_16">
                        <property name="spacing">
-                        <number>4</number>
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>10</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item alignment="Qt::AlignLeft">
+                        <widget class="QWidget" name="widget_6" native="true">
+                         <layout class="QHBoxLayout" name="horizontalLayout_19">
+                          <item>
+                           <widget class="QLabel" name="label_16">
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>50</width>
+                              <height>50</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>11</pointsize>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(104, 199, 107)</string>
+                            </property>
+                            <property name="text">
+                             <string>Fecha:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="labelDate">
+                            <property name="maximumSize">
+                             <size>
+                              <width>70</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>18/05/2024</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="widget_4" native="true">
+                         <property name="minimumSize">
+                          <size>
+                           <width>120</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>220</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QPushButton" name="btnTodo">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <property name="text">
+                             <string>Todo</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btnAsistio">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>50</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <property name="text">
+                             <string>Asistió</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btnNoAsistio">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>50</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <property name="text">
+                             <string>No asistió</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_7" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_20">
+                       <property name="spacing">
+                        <number>0</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -1570,48 +2001,7 @@ background-color: white;</string>
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item alignment="Qt::AlignLeft">
-                        <widget class="QLabel" name="label_16">
-                         <property name="font">
-                          <font>
-                           <pointsize>11</pointsize>
-                           <bold>true</bold>
-                          </font>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(104, 199, 107)</string>
-                         </property>
-                         <property name="text">
-                          <string>Fecha:</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_5">
-                         <property name="maximumSize">
-                          <size>
-                           <width>70</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>18/05/2024</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="popupNotificationContainer" native="true">
-                      <layout class="QVBoxLayout" name="verticalLayout_17">
-                       <item>
+                       <item alignment="Qt::AlignLeft|Qt::AlignTop">
                         <widget class="QTableWidget" name="tablaTomarAsistencia">
                          <property name="enabled">
                           <bool>true</bool>
@@ -1624,13 +2014,13 @@ background-color: white;</string>
                          </property>
                          <property name="minimumSize">
                           <size>
-                           <width>500</width>
+                           <width>600</width>
                            <height>300</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>9999</width>
+                           <width>600</width>
                            <height>600</height>
                           </size>
                          </property>
@@ -1657,21 +2047,17 @@ QTableWidget::indicator {
     margin-bottom: auto;
 }
 QTableWidget::indicator:unchecked {
-             background-color: red;
-			image: url(:/icons/icons/frown.svg);
+	background-color: red;
+	image: url(:/icons/icons/frown.svg);
+}
 
-				
-            }
 QTableWidget::indicator:checked {
-               background-color: green;
-                image: url(:/icons/icons/smile.svg);
-            }</string>
+	background-color: green;
+	image: url(:/icons/icons/smile.svg);
+}</string>
                          </property>
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
                          </property>
                          <property name="lineWidth">
                           <number>1</number>
@@ -1701,7 +2087,7 @@ QTableWidget::indicator:checked {
                           <enum>QAbstractItemView::ScrollPerItem</enum>
                          </property>
                          <property name="gridStyle">
-                          <enum>Qt::SolidLine</enum>
+                          <enum>Qt::NoPen</enum>
                          </property>
                          <property name="sortingEnabled">
                           <bool>false</bool>
@@ -1771,7 +2157,7 @@ QTableWidget::indicator:checked {
                          </column>
                          <column>
                           <property name="text">
-                           <string>Asistencia</string>
+                           <string>Estado de asistencia</string>
                           </property>
                           <property name="font">
                            <font>
@@ -1781,17 +2167,7 @@ QTableWidget::indicator:checked {
                          </column>
                          <column>
                           <property name="text">
-                           <string>Estado</string>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Hora</string>
+                           <string>Hora de registro</string>
                           </property>
                           <property name="font">
                            <font>
@@ -1804,7 +2180,7 @@ QTableWidget::indicator:checked {
                            <string>wdwdwdw</string>
                           </property>
                          </item>
-                         <item row="0" column="3">
+                         <item row="0" column="2">
                           <property name="text">
                            <string/>
                           </property>
@@ -1818,7 +2194,7 @@ QTableWidget::indicator:checked {
                            <set>ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
                           </property>
                          </item>
-                         <item row="1" column="3">
+                         <item row="1" column="2">
                           <property name="text">
                            <string/>
                           </property>
@@ -1829,69 +2205,32 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QWidget" name="popupNotificationSubContainer" native="true">
-                         <property name="enabled">
-                          <bool>false</bool>
+                        <widget class="QPushButton" name="btnGeneraReporte">
+                         <property name="maximumSize">
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_18">
-                          <item>
-                           <widget class="QLabel" name="label_14">
-                            <property name="font">
-                             <font>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="text">
-                             <string>Notificación</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QFrame" name="frame_9">
-                            <property name="frameShape">
-                             <enum>QFrame::NoFrame</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_11">
-                             <item>
-                              <widget class="QLabel" name="label_13">
-                               <property name="sizePolicy">
-                                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                                 <horstretch>0</horstretch>
-                                 <verstretch>0</verstretch>
-                                </sizepolicy>
-                               </property>
-                               <property name="text">
-                                <string>Mensaje</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="btnCloseNotification">
-                               <property name="cursor">
-                                <cursorShape>PointingHandCursor</cursorShape>
-                               </property>
-                               <property name="toolTip">
-                                <string>Cerrar notificación</string>
-                               </property>
-                               <property name="text">
-                                <string/>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="resourcesFile.qrc">
-                                 <normaloff>:/icons/icons/x-circle.svg</normaloff>:/icons/icons/x-circle.svg</iconset>
-                               </property>
-                               <property name="iconSize">
-                                <size>
-                                 <width>24</width>
-                                 <height>24</height>
-                                </size>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                         </layout>
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">border-radius: 12px;</string>
+                         </property>
+                         <property name="text">
+                          <string>Generar 
+reporte</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="resourcesFile.qrc">
+                           <normaloff>:/icons/icons/file-text.svg</normaloff>:/icons/icons/file-text.svg</iconset>
+                         </property>
                         </widget>
                        </item>
                       </layout>
@@ -1903,19 +2242,138 @@ QTableWidget::indicator:checked {
                 </layout>
                </widget>
                <widget class="QWidget" name="page_8">
-                <layout class="QHBoxLayout" name="horizontalLayout_17">
-                 <item>
-                  <widget class="QLabel" name="label_12">
-                   <property name="font">
-                    <font>
-                     <pointsize>13</pointsize>
-                    </font>
+                <layout class="QGridLayout" name="gridLayout_3">
+                 <item row="0" column="0">
+                  <widget class="QWidget" name="widget_8" native="true">
+                   <layout class="QGridLayout" name="gridLayout_4">
+                    <item row="0" column="0" alignment="Qt::AlignTop">
+                     <widget class="QWidget" name="widget_10" native="true">
+                      <layout class="QVBoxLayout" name="verticalLayout_25">
+                       <item>
+                        <widget class="QLabel" name="label_5">
+                         <property name="font">
+                          <font>
+                           <pointsize>12</pointsize>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Equipo de desarrollo</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_8">
+                         <property name="minimumSize">
+                          <size>
+                           <width>300</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Jefe de proyecto: George Calderon Lopez
+Diseñador: Yoni Gonzales Orihuela
+Programador: García Betancourt Josué
+Pruebas: Raúl Torre Medina
+Implementación: David Contreras Cerrón</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="1" alignment="Qt::AlignTop">
+                  <widget class="QWidget" name="widget_9" native="true">
+                   <layout class="QVBoxLayout" name="verticalLayout_24">
+                    <item>
+                     <widget class="QLabel" name="label_18">
+                      <property name="maximumSize">
+                       <size>
+                        <width>300</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>12</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Sobre TRICAPP</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_21">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Es una herramienta rápidao de control de asistencia evitando que se usted
+se gaste la voz al intentar llamara cada estudiante,</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_17">
+                      <property name="font">
+                       <font>
+                        <pointsize>10</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Fecha de despliegue: 25/06/2024 
+ Copyright © UC Company</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QLabel" name="label_10">
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>200</height>
+                    </size>
                    </property>
                    <property name="text">
-                    <string>Reporte</string>
+                    <string/>
                    </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
+                   <property name="pixmap">
+                    <pixmap resource="resourcesFile.qrc">:/images/universidad-continental LOGO blanco.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0" alignment="Qt::AlignVCenter">
+                  <widget class="QLabel" name="gifProgramador">
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="resourcesFile.qrc">:/images/programador.gif</pixmap>
                    </property>
                   </widget>
                  </item>
@@ -1923,10 +2381,82 @@ QTableWidget::indicator:checked {
                </widget>
               </widget>
              </item>
+             <item>
+              <widget class="QWidget" name="popupNotificationContainer" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <item>
+                 <widget class="QWidget" name="popupNotificationSubContainer" native="true">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_18">
+                   <item>
+                    <widget class="QFrame" name="frame_9">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_2">
+                      <item row="1" column="0" alignment="Qt::AlignBottom">
+                       <widget class="QLabel" name="labelMsgNotification">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="text">
+                         <string>Aún no tienes notificaciones pendientes, vuelve pronto. </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0" alignment="Qt::AlignTop">
+                       <widget class="QLabel" name="labelTitleNotification">
+                        <property name="font">
+                         <font>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Notificación</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1" alignment="Qt::AlignRight|Qt::AlignTop">
+                       <widget class="QPushButton" name="btnCloseNotification">
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="toolTip">
+                         <string>Cerrar notificación</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="resourcesFile.qrc">
+                          <normaloff>:/icons/icons/x-circle.svg</normaloff>:/icons/icons/x-circle.svg</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>24</width>
+                          <height>24</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
+          <item>
            <widget class="QWidget" name="rightMenuContainer" native="true">
             <property name="minimumSize">
              <size>
@@ -1954,7 +2484,7 @@ QTableWidget::indicator:checked {
               <widget class="QWidget" name="rightMenuSubContainer" native="true">
                <property name="minimumSize">
                 <size>
-                 <width>260</width>
+                 <width>250</width>
                  <height>0</height>
                 </size>
                </property>
@@ -1982,17 +2512,23 @@ QTableWidget::indicator:checked {
                 </property>
                 <item>
                  <widget class="QFrame" name="frame_8">
+                  <property name="minimumSize">
+                   <size>
+                    <width>180</width>
+                    <height>40</height>
+                   </size>
+                  </property>
                   <property name="maximumSize">
                    <size>
-                    <width>185</width>
-                    <height>16777215</height>
+                    <width>300</width>
+                    <height>40</height>
                    </size>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::NoFrame</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                   <item alignment="Qt::AlignLeft">
+                   <item>
                     <widget class="QLabel" name="label_7">
                      <property name="minimumSize">
                       <size>
@@ -2008,9 +2544,6 @@ QTableWidget::indicator:checked {
                      </property>
                      <property name="text">
                       <string>Perfil</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -2040,7 +2573,7 @@ QTableWidget::indicator:checked {
                   </layout>
                  </widget>
                 </item>
-                <item>
+                <item alignment="Qt::AlignTop">
                  <widget class="QStackedWidget" name="stackedWidget_2">
                   <widget class="QWidget" name="page_4">
                    <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -2104,7 +2637,7 @@ QTableWidget::indicator:checked {
                         </spacer>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_8">
+                        <widget class="QLabel" name="lblNombreDocente">
                          <property name="font">
                           <font>
                            <pointsize>10</pointsize>
@@ -2118,11 +2651,44 @@ QTableWidget::indicator:checked {
                       </layout>
                      </widget>
                     </item>
-                    <item>
+                    <item alignment="Qt::AlignLeft|Qt::AlignTop">
                      <widget class="QWidget" name="widget_2" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>200</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>220</height>
+                       </size>
+                      </property>
                       <layout class="QVBoxLayout" name="verticalLayout_15">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
                         <widget class="QLabel" name="label_19">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>15</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2132,10 +2698,19 @@ QTableWidget::indicator:checked {
                           <string>Dirección de correo
 </string>
                          </property>
+                         <property name="alignment">
+                          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_21">
+                        <widget class="QLabel" name="lblCorreoDocente">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>jcamarenaf@continental.edu.pe</string>
                          </property>
@@ -2143,6 +2718,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_20">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2154,7 +2735,13 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_22">
+                        <widget class="QLabel" name="lblPaisDocente">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>Perú</string>
                          </property>
@@ -2162,6 +2749,12 @@ QTableWidget::indicator:checked {
                        </item>
                        <item>
                         <widget class="QLabel" name="label_23">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <bold>true</bold>
@@ -2173,7 +2766,13 @@ QTableWidget::indicator:checked {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_24">
+                        <widget class="QLabel" name="lblCiudadDocente">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string>Huancayo</string>
                          </property>
@@ -2237,8 +2836,13 @@ QTableWidget::indicator:checked {
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
               <widget class="QLabel" name="label_15">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Universidad Continental</string>
+                <string>Universidad Continental | Huancayo - Perú</string>
                </property>
               </widget>
              </item>

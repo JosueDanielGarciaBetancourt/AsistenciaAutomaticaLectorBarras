@@ -72,7 +72,7 @@ estudiantes_IS = [
     {'dni': '76304403', 'nombre': 'ABDEL HARUKO', 'apellido_paterno': 'NAKAMURA', 'apellido_materno': 'MOYA', 'correo': '76304403@continental.edu.pe'},
     {'dni': '70238629', 'nombre': 'ANDY JOHAN', 'apellido_paterno': 'RIVAS', 'apellido_materno': 'OSEJO', 'correo': '70238629@continental.edu.pe'},
     {'dni': '70865667', 'nombre': 'SHAYD ALBIERY', 'apellido_paterno': 'QUILCA', 'apellido_materno': 'OLIVERA', 'correo': '70865667@continental.edu.pe'},
-    {'dni': '71817092', 'nombre': 'Ronaldo Shande', 'apellido_paterno': 'Rivera', 'apellido_materno': 'Simeon', 'correo': '71817092@continental.edu.pe'},
+    {'dni': '71817092', 'nombre': 'RONALDO SHANDE', 'apellido_paterno': 'RIVERA', 'apellido_materno': 'SIMEON', 'correo': '71817092@continental.edu.pe'},
     {'dni': '75221146', 'nombre': 'MARCOS RENE', 'apellido_paterno': 'RODRIGUEZ', 'apellido_materno': 'PAUCAR', 'correo': '75221146@continental.edu.pe'},
     {'dni': '71277369', 'nombre': 'NAYLA', 'apellido_paterno': 'ROJAS', 'apellido_materno': 'GALLEGOS', 'correo': '71277369@continental.edu.pe'},
     {'dni': '72666523', 'nombre': 'ALEJANDRO FABRIZIO', 'apellido_paterno': 'SALGUERAN', 'apellido_materno': 'PORRAS', 'correo': '72666523@continental.edu.pe'},
@@ -82,17 +82,54 @@ estudiantes_IS = [
     {'dni': '72870880', 'nombre': 'JHORDAN KEITH', 'apellido_paterno': 'VELASQUEZ', 'apellido_materno': 'KNUTZEN', 'correo': '72870880@continental.edu.pe'},
     {'dni': '72851787', 'nombre': 'RENATO SEBASTIAN', 'apellido_paterno': 'VELIZ', 'apellido_materno': 'VELASQUEZ', 'correo': '72851787@continental.edu.pe'},
     {'dni': '75863060', 'nombre': 'MARYORIE GABRIELA', 'apellido_paterno': 'VERA', 'apellido_materno': 'MUÑOZ', 'correo': '75863060@continental.edu.pe'},
-    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'}
+    {'dni': '72763584', 'nombre': 'JAIRO RONALD', 'apellido_paterno': 'YARASCA', 'apellido_materno': 'BATALLA', 'correo': '72763584@continental.edu.pe'},
+    {'dni': '71853995', 'nombre': 'ESTEFANY MAYUMI', 'apellido_paterno': 'MUÑICO', 'apellido_materno': 'SOTO', 'correo': '71853995@continental.edu.pe'},
+    {'dni': '73975773', 'nombre': 'DANIEL EDGARDO', 'apellido_paterno': 'GIRALDEZ', 'apellido_materno': 'VIVAR', 'correo': '73975773@continental.edu.pe'},
+    {'dni': '76279987', 'nombre': 'JHANET MAYORY', 'apellido_paterno': 'HINOSTROZA', 'apellido_materno': 'MELENDEZ', 'correo': '76279987@continental.edu.pe'}
+]
+
+estudiantes_TEST = [
+    {'dni': '12345601', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345602', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345603', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345604', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345605', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345606', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345607', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345608', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345609', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345610', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345611', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345612', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345613', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345614', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345615', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345616', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345617', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345618', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
+    {'dni': '12345619', 'nombre': 'NOMBRE', 'apellido_paterno': 'APELLIDOP', 'apellido_materno': 'APELLIDOM', 'correo': '12345678@continental.edu.pe'},
 ]
 
 
 # Verificar si una tabla está vacía antes de insertar datos
 def tabla_vacia(con, tabla):
-    cur = con.cursor()
-    cur.execute(f"SELECT COUNT(*) FROM {tabla}")
-    count = cur.fetchone()[0]
-    return count == 0
+    try:
+        cur = con.cursor()
+        cur.execute(f"SELECT COUNT(*) FROM {tabla}")
+        count = cur.fetchone()[0]
+        return count == 0
+    except Exception as e:
+        print(f"Error al verificar si la tabla {tabla} está vacía:", e)
+        return False
 
+def estudiante_existe(con, dni):
+    try:
+        cur = con.cursor()
+        cur.execute("SELECT 1 FROM tblEstudiantes WHERE estuDni = ?", (dni,))
+        return cur.fetchone() is not None
+    except Exception as e:
+        print(f"Error al verificar si el estudiante existe:", e)
+        return False
 
 def insertar_estudiantes(con):
     if tabla_vacia(con, 'tblEstudiantes'):
@@ -101,23 +138,15 @@ def insertar_estudiantes(con):
             sql_insert = """INSERT INTO tblEstudiantes (estuDni, estuNombre, estuApellidoPaterno, estuApellidoMaterno, estuCorreo) 
                             VALUES (?, ?, ?, ?, ?)"""
             
-            for estudiante in estudiantes_DP:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
-            
-            for estudiante in estudiantes_IS:
-                cur.execute(sql_insert, (
-                    estudiante['dni'], 
-                    estudiante['nombre'], 
-                    estudiante['apellido_paterno'], 
-                    estudiante['apellido_materno'], 
-                    estudiante['correo']
-                ))
+            for estudiante in estudiantes_DP + estudiantes_IS + estudiantes_TEST:
+                if not estudiante_existe(con, estudiante['dni']):
+                    cur.execute(sql_insert, (
+                        estudiante['dni'], 
+                        estudiante['nombre'], 
+                        estudiante['apellido_paterno'], 
+                        estudiante['apellido_materno'], 
+                        estudiante['correo']
+                    ))
             
             con.commit()
             print("Estudiantes insertados correctamente")
@@ -128,18 +157,19 @@ def insertar_estudiantes(con):
     else:
         print("La tabla tblEstudiantes ya tiene datos")
 
+
 def insertar_docentes(con):
     if tabla_vacia(con, 'tblDocentes'):
         try:
             cur = con.cursor()
             sql_insert = """INSERT INTO tblDocentes 
                             (docenteDni, docenteNombre, docenteApellidoPaterno, docenteApellidoMaterno, 
-                            docentePais, docenteCiudad, docenteCorreo, docenteContraseña) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
+                            docentePais, docenteCiudad, docenteCorreo, docenteContraseña, docenteFotoPerfil) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             
             docentes = [
-                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123'),
-                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123')
+                ('41280062', 'Judith', 'Camarena', 'Flores', 'Perú', 'Huancayo', 'jcamarenaf@continental.edu.pe', '123', './ui_files/fotoIngJudithRounded.png'),
+                ('19821000', 'Meliton Julio', 'Rosales', 'Pecho', 'Perú', 'Huancayo', 'mrosales@continental.edu.pe', '123','./ui_files/fotoIngMelitonRounded.png')
             ]
             
             cur.executemany(sql_insert, docentes)
@@ -151,6 +181,7 @@ def insertar_docentes(con):
             print("Error al insertar docente:", ex)
     else:
         print("La tabla tblDocentes ya tiene datos")
+
 
 def insertar_aulas(con):
     if tabla_vacia(con, 'tblAulas'):
@@ -174,6 +205,7 @@ def insertar_aulas(con):
     else:
         print("La tabla tblAulas ya tiene datos")
 
+
 def insertar_cursos(con):
     if tabla_vacia(con, 'tblCursos'):
         try:
@@ -182,7 +214,12 @@ def insertar_cursos(con):
             
             cursos = [
                 ('ASUC01365', 'INNOVACIÓN SOCIAL', 2),
-                ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4)
+                ('ASUC01235', 'DIRECCIÓN DE PROYECTOS', 4),
+                ('ASUC01231', 'ASIGNATURA 1 / TEST ', 5),
+                ('ASUC01232', 'ASIGNATURA 2 / TEST ', 5),
+                ('ASUC01233', 'ASIGNATURA 3 / TEST ', 5),
+                ('ASUC01234', 'ASIGNATURA 4 / TEST ', 5),
+                ('ASUC01236', 'ASIGNATURA 5 / TEST ', 5)
             ]
             
             cur.executemany(sql_insert, cursos)
@@ -204,7 +241,12 @@ def insertar_secciones(con):
             
             secciones = [
                 ('30246', '202410', 'ASUC01365'),
-                ('22888', '202410', 'ASUC01235')
+                ('22888', '202410', 'ASUC01235'),
+                ('12341', '202410', 'ASUC01231'),
+                ('12342', '202410', 'ASUC01232'),
+                ('12343', '202410', 'ASUC01233'),
+                ('12344', '202410', 'ASUC01234'),
+                ('12345', '202410', 'ASUC01236')
             ]
             
             cur.executemany(sql_insert, secciones)
@@ -241,6 +283,47 @@ def insertar_detalles_estudiantes_secciones(con):
                 detalles_estudiantes.append((
                     estudiante['dni'],
                     '30246',  # NRC de INNOVACIÓN SOCIAL
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+            for estudiante in estudiantes_TEST:
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12341',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12342',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12343',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12344',  # NRC 
+                    0,  # estadoAsistencia sin registrar
+                    '2000-01-01',  # Fecha genérica
+                    '00:00:00'  # Hora genérica
+                ))
+
+                detalles_estudiantes.append((
+                    estudiante['dni'],
+                    '12345',  # NRC 
                     0,  # estadoAsistencia sin registrar
                     '2000-01-01',  # Fecha genérica
                     '00:00:00'  # Hora genérica
@@ -282,6 +365,7 @@ def insertar_detalles_secciones_aulas(con):
     else:
         print("La tabla tblDetalle_Secciones_Aulas ya tiene datos")
 
+
 def insertar_detalles_secciones_docentes(con):
     if tabla_vacia(con, 'tblDetalle_Secciones_Docentes'):
         try:
@@ -291,8 +375,13 @@ def insertar_detalles_secciones_docentes(con):
                             VALUES (?, ?)"""
             
             detalles_docentes = [
-                ('22888', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
-                ('30246', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
+                ('22888', '41280062'),
+                ('12341', '41280062'),
+                ('12342', '41280062'),
+                ('12343', '41280062'),  # DIRECCIÓN DE PROYECTOS con Judith Camarena Flores
+                ('30246', '19821000'),
+                ('12344', '19821000'),
+                ('12345', '19821000')  # INNOVACIÓN SOCIAL con Meliton Julio Rosales Pecho
             ]
             
             cur.executemany(sql_insert, detalles_docentes)

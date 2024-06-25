@@ -4,16 +4,25 @@ from src.modelo.conexion import Conexion
 
 class DocenteData:
     def __init__(self):
+        self.con = None
         self.cursor = None
-        self.db = None
 
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+        
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
-    def login(self, docente: Docente):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+    def getDocenteData(self, docente: Docente):
+        
+        self.iniciarConexion()
+
         buscarDocenteUsername = self.cursor.execute(
             "SELECT * FROM tblDocentes "
             "WHERE docenteCorreo ='{}'".format(docente.getUsername()))
@@ -24,13 +33,17 @@ class DocenteData:
                 "SELECT * FROM tblDocentes "
                 "WHERE docenteCorreo = '{}' AND docenteContraseña = '{}'".format(docente.getUsername(),
                                                                                  docente.getPassword()))
-            paswordRow = buscarDocentePassword.fetchone()
-            if paswordRow:  # Contraseña sí coincide
-                docente = Docente(paswordRow[0],
-                                  paswordRow[1],
-                                  paswordRow[2],
-                                  paswordRow[3],
-                                  paswordRow[4])
+            datosDocente = buscarDocentePassword.fetchone()
+            if datosDocente:  # si la consulta funciona significa que existe el usuario con su contraseña ingresada
+                docente = Docente(datosDocente[0],
+                                  datosDocente[1],
+                                  datosDocente[2],
+                                  datosDocente[3],
+                                  datosDocente[4],
+                                  datosDocente[5],
+                                  datosDocente[6],
+                                  datosDocente[7],
+                                  datosDocente[8])
                 self.cerrarConexion()
                 return docente  # Retornar objeto docente con los atributos correctos
             else:  # Contraseña no coincide con el usuario
@@ -40,20 +53,43 @@ class DocenteData:
         else:  # No existe el nombre de usuario del docente
             self.cerrarConexion()
             return None
+        
+    def getDocenteFotoPerfil(self, docente: Docente):
+        self.iniciarConexion()
+        
+        try:
+            self.cursor.execute("SELECT docenteFotoPerfil FROM tblDocentes WHERE docenteDni = '{}'".format(docente._DNI))
+
+            docenteFotoPerfil = self.cursor.fetchall()
+
+            self.cerrarConexion()
+            return docenteFotoPerfil[0][0]
+        except Exception as e:
+            print(f"Error al Obtener Foto de Perfil: {e}")
+            return None
 
 
 class SeccionData:
     def __init__(self):
         self.cursor = None
-        self.db = None
+        self.con = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
 
     def cerrarConexion(self):
         self.cursor.close()
-        self.db.close()
+        self.con.close()
 
     def searchSeccion(self, seccion: Seccion):
-        self.db = Conexion.conectar()
-        self.cursor = self.db.cursor()
+        
+        self.iniciarConexion()
+
         buscarSeccionNRC = self.cursor.execute(
             "SELECT * FROM tblSecciones "
             "WHERE nrc ='{}'".format(seccion.getNRC()))
@@ -68,14 +104,47 @@ class SeccionData:
         else:  # No existe el NRC de la sección
             self.cerrarConexion()
             return None
+        
+    def searchNrcs_by_Docente(self, docente: Docente):
+        self.iniciarConexion()
+        
+        try:
+            self.cursor.execute(
+                "SELECT nrc FROM tblDetalle_Secciones_Docentes WHERE docenteDni = {}".format(docente._DNI))
+            
+            nrcs = []
+                
+            for row in self.cursor.fetchall():
+                nrcs.append(str(row[0]))
+
+            self.cerrarConexion()
+            return nrcs
+        
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener los NRCs: {e}")
+            self.cerrarConexion()
+            return None
+
+    def searchCurso_by_NRC(self, NRC):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                """SELECT tblCursos.cursoNombre
+                FROM tblCursos
+                INNER JOIN tblSecciones ON tblCursos.cursoId = tblSecciones.cursoId
+                WHERE tblSecciones.nrc = ?
+            """,(NRC,)
+            )
+            nombre_curso = self.cursor.fetchall()
+            return nombre_curso[0][0]
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Curso por NRC: {e}")
+            self.cerrarConexion()
+            return None
 
     def searchEstudiantes_by_NRC(self, NRC):
-        try:
-            self.db = Conexion.conectar()
-            self.cursor = self.db.cursor()
-        except Exception as e:
-            print(f"Error al conectar a la base de datos: {e}")
-            return None
+        
+        self.iniciarConexion()
 
         try:
             # Obtener los DNIs de los estudiantes por NRC
@@ -123,6 +192,154 @@ class SeccionData:
 
         return listaObjetosEstudiante
 
+
+class LogicaTabla:
+    def __init__(self):
+        self.cursor = None
+        self.con = None
+
+    def iniciarConexion(self):
+        try:
+            self.con = Conexion.conectar()
+            self.cursor = self.con.cursor()
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
+
+    def cerrarConexion(self):
+        self.cursor.close()
+        self.con.close()
+
+    def getEstadoEstudiante_by_NRC(self, seccion: Seccion, dniEstudiante):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "SELECT det_estu_seccion_estadoAsistencia FROM tblDetalle_Estudiantes_secciones "
+                "WHERE estuDni = '{}' AND nrc = '{}'".format(dniEstudiante,seccion._NRC))
+            
+            estado_estudiante = self.cursor.fetchall()
+            self.cerrarConexion()
+            return estado_estudiante[0][0]
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+        
+    def updateEstadoEstudiante(self,seccion: Seccion, dniEstudiante, horaActual, fechaActual, estado):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "UPDATE tblDetalle_Estudiantes_secciones "
+                "SET det_estu_seccion_estadoAsistencia = ?, det_estu_seccion_horaAsistencia = ?, det_estu_seccion_fechaAsistencia = ? "
+                "WHERE estuDni = ? AND nrc = ?",
+                (estado, horaActual, fechaActual, dniEstudiante, seccion._NRC)
+            )
+            self.con.commit()
+            self.cerrarConexion()
+            
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para Actualizar el estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+
+    def updateEstadoEstudiante_Unchecked(self):
+        self.iniciarConexion()
+        try:
+            sql = (
+                "UPDATE tblDetalle_Estudiantes_secciones "
+                "SET det_estu_seccion_estadoAsistencia = 0, "
+                "det_estu_seccion_horaAsistencia = 0, "
+                "det_estu_seccion_fechaAsistencia = 0"
+            )
+            self.cursor.execute(sql)
+            self.con.commit()
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para actualizar el estado del estudiante: {e}")
+        finally:
+            self.cerrarConexion()
+
+    def getDatosHoraRegistro(self, seccion: Seccion, dniEstudiante):
+        self.iniciarConexion()
+        try:
+            self.cursor.execute(
+                "SELECT det_estu_seccion_horaAsistencia FROM tblDetalle_Estudiantes_secciones "
+                "WHERE estuDni = '{}' AND nrc = '{}'".format(dniEstudiante,seccion._NRC))
+            
+            datos_estudiante = self.cursor.fetchall()
+            self.cerrarConexion()
+            return datos_estudiante[0][0]
+            
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener Estado del Estudiante: {e}")
+            self.cerrarConexion()
+            return None
+    
+    def getEstudientes_by_Filter_Asistio(self, NRC, estado :int):
+        
+        self.iniciarConexion()
+
+        try:
+            # Obtener los DNIs de los estudiantes por NRC
+            self.cursor.execute(
+                "SELECT estuDni FROM tblDetalle_Estudiantes_Secciones WHERE nrc = ?",
+                (NRC,)
+            )
+            DNIs = self.cursor.fetchall()
+        except Exception as e:
+            print(f"Error al ejecutar la consulta para obtener DNIs: {e}")
+            self.cerrarConexion()
+            return None
+
+        if not DNIs:  # No existen estudiantes con el NRC solicitado
+            print(f"No existen estudiantes con el NRC solicitado: {NRC}")
+            self.cerrarConexion()
+            return None
+
+        listaObjetosEstudiante = []
+        for dni in DNIs:
+            try:
+                valor_dni = dni[0]
+                if estado == 1:
+                    self.cursor.execute(
+                        "SELECT * FROM tblEstudiantes INNER JOIN tblDetalle_Estudiantes_Secciones ON tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni WHERE tblEstudiantes.estuDni = ? AND det_estu_seccion_estadoAsistencia = 1 ",
+                        (valor_dni,)
+                    )
+                if estado == 0:
+                    self.cursor.execute(
+                        "SELECT * FROM tblEstudiantes INNER JOIN tblDetalle_Estudiantes_Secciones ON tblEstudiantes.estuDni = tblDetalle_Estudiantes_Secciones.estuDni WHERE tblEstudiantes.estuDni = ? AND det_estu_seccion_estadoAsistencia = 0 ",
+                        (valor_dni,)
+                    )
+
+                estudianteEncontrado = self.cursor.fetchone()
+
+
+                if estudianteEncontrado:
+                    estudiante = Estudiante(
+                        estudianteEncontrado[0], estudianteEncontrado[1],
+                        estudianteEncontrado[2], estudianteEncontrado[3],
+                        estudianteEncontrado[4]
+                    )
+                    listaObjetosEstudiante.append(estudiante)
+            except Exception as e:
+                print(f"Error al obtener o procesar los datos del estudiante con DNI {valor_dni}: {e}")
+
+        try:
+            self.cerrarConexion()
+        except Exception as e:
+            print(f"Error al cerrar la conexión a la base de datos: {e}")
+
+        return listaObjetosEstudiante
+
+
+
+
+
+
+
+
+
+
+        
 
   # Retornar lista de objetos estudiante con los atributos correctos
 

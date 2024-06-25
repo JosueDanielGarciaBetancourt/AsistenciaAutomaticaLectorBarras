@@ -1,3 +1,7 @@
 # Ignorar archivos compilados de Python
 *.pyc
+<<<<<<< HEAD
 __pycache__/
+=======
+__pycache__/
+>>>>>>> a460db66ae9bd6dcf7da622124d1db5a2cbd406e
