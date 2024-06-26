@@ -13,7 +13,6 @@ from src.modelo.ModelosData import DocenteData, SeccionData, LogicaTabla
 from PyQt6.QtGui import QPixmap
 
 
-
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, docenteEncontrado):
         super().__init__()
@@ -127,18 +126,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 if item_checkbox:
                     item_checkbox.setCheckState(Qt.CheckState.Checked)
 
-
                 # Marcar la hora actual en la fila
                 item_hour = self.mainWindow.tablaTomarAsistencia.item(fila, 3)
                 hora_actual = datetime.now().strftime("%H:%M:%S")
                 fecha_actual = datetime.now().date()
                 item_hour.setText(hora_actual)
 
-                #Actualizar el estado en la DB
-                self.logica_tabla.updateEstadoEstudiante(self.seccion,texto_busqueda,hora_actual,fecha_actual,1)
+                # Actualizar el estado en la DB
+                self.logica_tabla.updateEstadoEstudiante(self.seccion, texto_busqueda, hora_actual, fecha_actual, 1)
 
                 # Desplazar y enfocar en la fila encontrada
-                self.mainWindow.tablaTomarAsistencia.scrollToItem(item, QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
+                self.mainWindow.tablaTomarAsistencia.scrollToItem(item,
+                                                                  QtWidgets.QAbstractItemView.ScrollHint.PositionAtCenter)
                 self.mainWindow.tablaTomarAsistencia.setCurrentCell(fila, 0)
                 break  # Terminar el bucle después de encontrar el primer DNI
 
@@ -233,35 +232,41 @@ class MainWindow(QtWidgets.QMainWindow):
 
                     # Establecer los datos en las celdas de la fila
                     # Hacer no editable las columnas DNI(0), Estudiante(1), Asistencia(2) y Hora(4)
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, self.crear_item_no_editable(dni))
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, self.crear_item_no_editable(
-                        f"{nombre} {ap_paterno} {ap_materno}"))
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, self.crear_item_no_editable("0%"))
+                    item_dni = self.crear_item_no_editable(dni)
+                    item_nombre = self.crear_item_no_editable(f"{nombre} {ap_paterno} {ap_materno}")
+                    item_asistencia = self.crear_item_no_editable("0%")
+
+                    # Centrar el texto de las columnas DNI(0), %Asistencia(2) y Hora(4)
+                    item_dni.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    item_asistencia.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, item_dni)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, item_nombre)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item_asistencia)
 
                     # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
-                    item = QTableWidgetItem()
-                    item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+                    item_checkbox = QTableWidgetItem()
+                    item_checkbox.setFlags(item_checkbox.flags() | Qt.ItemFlag.ItemIsUserCheckable)
 
-                    #Agarrar Estado del estudiante de la DB
-                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion,dni)
+                    # Agarrar Estado del estudiante de la DB
+                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion, dni)
                     if estado_estudiante == 1:
-                        item.setCheckState(Qt.CheckState.Checked)
-                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion,dni))
+                        item_checkbox.setCheckState(Qt.CheckState.Checked)
+                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion, dni))
                     else:
-                        item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+                        item_checkbox.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
 
-
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item_checkbox)
                     self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
-                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 100)
-                    
+                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 120)
+
                     if horaRegistrado:
-                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable(horaRegistrado))
+                        item_hora = self.crear_item_no_editable(horaRegistrado)
                     else:
-                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
+                        item_hora = self.crear_item_no_editable("-")
 
-                    # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
-
+                    item_hora.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, item_hora)
             else:
                 mensaje = "Aún no existe sección con el NRC solicitado en la base de datos"
                 MensajesWindow.mostrarMensajeRegistroError(mensaje)
@@ -345,12 +350,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 if item_checkbox.checkState() == Qt.CheckState.Checked:
                     hora_actual = datetime.now().strftime("%H:%M:%S")
                     fecha_actual = datetime.now().date()
-                    #Actualizar el estado en la DB
-                    self.logica_tabla.updateEstadoEstudiante(self.seccion,dniSeleccionado,hora_actual,fecha_actual,1)
+                    # Actualizar el estado en la DB
+                    self.logica_tabla.updateEstadoEstudiante(self.seccion, dniSeleccionado, hora_actual, fecha_actual,
+                                                             1)
                 else:
                     hora_actual = '00:00:00'
                     fecha_actual = '2000-01-01'
-                    self.logica_tabla.updateEstadoEstudiante(self.seccion,dniSeleccionado,hora_actual,fecha_actual,0)
+                    self.logica_tabla.updateEstadoEstudiante(self.seccion, dniSeleccionado, hora_actual, fecha_actual,
+                                                             0)
                     hora_actual = "-"
                 item_hour.setText(hora_actual)
         except Exception as ex:
@@ -362,9 +369,9 @@ class MainWindow(QtWidgets.QMainWindow):
         movie.start()
 
     def filtroVerTodo(self):
-        self.configTablaTomaAsistencia() # :V
+        self.configTablaTomaAsistencia()
 
-    def filtroVerSoloAsistio(self,estado :int):
+    def filtroVerSoloAsistio(self, estado: int):
         try:
             # Consultar NRC en la base de datos
             self.seccion = Seccion(NRC=self.comboBoxAsignaturaCurrentNRC)
@@ -378,7 +385,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 NRC = seccionEncontrada.getNRC()
                 # Consultar estudiantes con NRC encontrado
                 try:
-                    listaObjetosEstudiantes = self.logica_tabla.getEstudientes_by_Filter_Asistio(NRC,estado)
+                    listaObjetosEstudiantes = self.logica_tabla.getEstudientes_by_Filter_Asistio(NRC, estado)
                     if listaObjetosEstudiantes is None:
                         raise ValueError("No se encontraron estudiantes para el NRC proporcionado.")
                 except Exception as e:
@@ -396,35 +403,43 @@ class MainWindow(QtWidgets.QMainWindow):
 
                     # Establecer los datos en las celdas de la fila
                     # Hacer no editable las columnas DNI(0), Estudiante(1), Asistencia(2) y Hora(4)
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, self.crear_item_no_editable(dni))
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, self.crear_item_no_editable(
-                        f"{nombre} {ap_paterno} {ap_materno}"))
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, self.crear_item_no_editable("0%"))
+                    item_dni = self.crear_item_no_editable(dni)
+                    item_nombre = self.crear_item_no_editable(f"{nombre} {ap_paterno} {ap_materno}")
+                    item_asistencia = self.crear_item_no_editable("0%")
+
+                    # Centrar el texto de las columnas DNI(0), %Asistencia(2) y Hora(3)
+                    item_dni.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    item_asistencia.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 0, item_dni)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 1, item_nombre)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item_asistencia)
 
                     # Insertar checkbox de estado a la columna 3 de la tablaTomarAsistencia encontrada
-                    item = QTableWidgetItem()
-                    item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
+                    item_checkbox = QTableWidgetItem()
+                    item_checkbox.setFlags(item_checkbox.flags() | Qt.ItemFlag.ItemIsUserCheckable)
 
-                    #Agarrar Estado del estudiante de la DB
-                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion,dni)
+                    # Agarrar Estado del estudiante de la DB
+                    estado_estudiante = self.logica_tabla.getEstadoEstudiante_by_NRC(self.seccion, dni)
                     if estado_estudiante == 1:
-                        item.setCheckState(Qt.CheckState.Checked)
-                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion,dni))
+                        item_checkbox.setCheckState(Qt.CheckState.Checked)
+                        horaRegistrado = str(self.logica_tabla.getDatosHoraRegistro(self.seccion, dni))
                     else:
-                        item.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
+                        item_checkbox.setCheckState(Qt.CheckState.Unchecked)  # Estado inicial: desmarcado
 
-
-                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 2, item_checkbox)
                     self.mainWindow.tablaTomarAsistencia.resizeColumnsToContents()
-                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 100)
-                    
+                    self.mainWindow.tablaTomarAsistencia.setColumnWidth(2, 120)
+
                     if horaRegistrado:
-                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable(horaRegistrado))
+                        item_hora = self.crear_item_no_editable(horaRegistrado)
                     else:
-                        self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, self.crear_item_no_editable("-"))
+                        item_hora = self.crear_item_no_editable("-")
 
-                    # centrar los textos de las columnas DNI(0), %Asistencia(2) y Hora(4)
+                    item_hora.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    self.mainWindow.tablaTomarAsistencia.setItem(fila, 3, item_hora)
 
+                    print(self.mainWindow.tablaTomarAsistencia.width())
             else:
                 mensaje = "Aún no existe sección con el NRC solicitado en la base de datos"
                 MensajesWindow.mostrarMensajeRegistroError(mensaje)
@@ -456,6 +471,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.desmarcarCheckboxColumna2()
 
     def initGUI(self):
+        # Configuración de labelDate
+        fechaActualString = str(datetime.now().date())
+        self.mainWindow.labelDate.setText(fechaActualString)
+
         # Configuración de datos según username
         self.configDatosUsuario()
 

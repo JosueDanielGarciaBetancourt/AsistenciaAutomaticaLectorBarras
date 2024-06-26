@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
+    <width>1253</width>
     <height>551</height>
    </rect>
   </property>
@@ -1067,7 +1067,7 @@
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="page_6">
                 <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -1397,18 +1397,18 @@
                   <number>0</number>
                  </property>
                  <property name="leftMargin">
-                  <number>0</number>
+                  <number>10</number>
                  </property>
                  <property name="topMargin">
                   <number>0</number>
                  </property>
                  <property name="rightMargin">
-                  <number>0</number>
+                  <number>10</number>
                  </property>
                  <property name="bottomMargin">
                   <number>0</number>
                  </property>
-                 <item>
+                 <item alignment="Qt::AlignTop">
                   <widget class="QWidget" name="widget_5" native="true">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1446,9 +1446,15 @@
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>700</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="maximumSize">
                        <size>
-                        <width>9999</width>
+                        <width>1000</width>
                         <height>50</height>
                        </size>
                       </property>
@@ -1474,7 +1480,7 @@
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
-                       <item>
+                       <item alignment="Qt::AlignLeft">
                         <widget class="QFrame" name="frame_16">
                          <property name="minimumSize">
                           <size>
@@ -1501,8 +1507,20 @@
                           <property name="bottomMargin">
                            <number>0</number>
                           </property>
-                          <item>
+                          <item alignment="Qt::AlignLeft">
                            <widget class="QLabel" name="label_11">
+                            <property name="minimumSize">
+                             <size>
+                              <width>90</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>90</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
                             <property name="font">
                              <font>
                               <pointsize>11</pointsize>
@@ -1517,7 +1535,7 @@
                             </property>
                            </widget>
                           </item>
-                          <item>
+                          <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
                            <widget class="QComboBox" name="cmbBoxAsignatura">
                             <property name="maximumSize">
                              <size>
@@ -1603,214 +1621,25 @@
                          </layout>
                         </widget>
                        </item>
-                       <item>
-                        <spacer name="horizontalSpacer_2">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>100</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item alignment="Qt::AlignLeft">
-                        <widget class="QFrame" name="frame_14">
+                       <item alignment="Qt::AlignRight">
+                        <widget class="QWidget" name="widget_6" native="true">
                          <property name="minimumSize">
                           <size>
-                           <width>150</width>
-                           <height>50</height>
+                           <width>0</width>
+                           <height>30</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>250</width>
-                           <height>16777215</height>
+                           <width>200</width>
+                           <height>30</height>
                           </size>
                          </property>
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_2">
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
-                          </property>
-                          <item>
-                           <widget class="QLabel" name="labelAsistioDNI">
-                            <property name="minimumSize">
-                             <size>
-                              <width>130</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>10</pointsize>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">color: rgb(104, 199, 107)</string>
-                            </property>
-                            <property name="text">
-                             <string>Asistencia por DNI:</string>
-                            </property>
-                            <property name="margin">
-                             <number>0</number>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLineEdit" name="lineEditDNI">
-                            <property name="minimumSize">
-                             <size>
-                              <width>90</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>90</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <pointsize>10</pointsize>
-                              <italic>false</italic>
-                              <bold>false</bold>
-                              <stylestrategy>PreferDefault</stylestrategy>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>IBeamCursor</cursorShape>
-                            </property>
-                            <property name="tabletTracking">
-                             <bool>false</bool>
-                            </property>
-                            <property name="toolTip">
-                             <string>Enter para registrar asistencia</string>
-                            </property>
-                            <property name="layoutDirection">
-                             <enum>Qt::LeftToRight</enum>
-                            </property>
-                            <property name="autoFillBackground">
-                             <bool>false</bool>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">color: black;
-background-color: white;</string>
-                            </property>
-                            <property name="inputMethodHints">
-                             <set>Qt::ImhNone</set>
-                            </property>
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="maxLength">
-                             <number>8</number>
-                            </property>
-                            <property name="echoMode">
-                             <enum>QLineEdit::Normal</enum>
-                            </property>
-                            <property name="cursorPosition">
-                             <number>0</number>
-                            </property>
-                            <property name="dragEnabled">
-                             <bool>false</bool>
-                            </property>
-                            <property name="readOnly">
-                             <bool>false</bool>
-                            </property>
-                            <property name="placeholderText">
-                             <string>12345678</string>
-                            </property>
-                            <property name="cursorMoveStyle">
-                             <enum>Qt::LogicalMoveStyle</enum>
-                            </property>
-                            <property name="clearButtonEnabled">
-                             <bool>true</bool>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="labelRegistrado">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <italic>true</italic>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(46, 255, 60);</string>
-                      </property>
-                      <property name="text">
-                       <string>DNI Registrado</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item alignment="Qt::AlignLeft">
-                     <widget class="QFrame" name="frame_13">
-                      <property name="minimumSize">
-                       <size>
-                        <width>700</width>
-                        <height>60</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>9999</width>
-                        <height>60</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::NoFrame</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_16">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>10</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item alignment="Qt::AlignLeft">
-                        <widget class="QWidget" name="widget_6" native="true">
                          <layout class="QHBoxLayout" name="horizontalLayout_19">
-                          <item>
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <item alignment="Qt::AlignLeft">
                            <widget class="QLabel" name="label_16">
                             <property name="minimumSize">
                              <size>
@@ -1838,7 +1667,7 @@ background-color: white;</string>
                             </property>
                            </widget>
                           </item>
-                          <item>
+                          <item alignment="Qt::AlignLeft">
                            <widget class="QLabel" name="labelDate">
                             <property name="maximumSize">
                              <size>
@@ -1854,24 +1683,369 @@ background-color: white;</string>
                          </layout>
                         </widget>
                        </item>
-                       <item>
-                        <widget class="QWidget" name="widget_4" native="true">
+                      </layout>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignLeft">
+                     <widget class="QFrame" name="frame_14">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>999</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_2">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item alignment="Qt::AlignLeft">
+                        <widget class="QLabel" name="labelAsistioDNI">
                          <property name="minimumSize">
                           <size>
-                           <width>120</width>
+                           <width>70</width>
                            <height>0</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>220</width>
+                           <width>70</width>
                            <height>16777215</height>
                           </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(104, 199, 107)</string>
+                         </property>
+                         <property name="text">
+                          <string>Asistencia 
+por DNI:</string>
+                         </property>
+                         <property name="margin">
+                          <number>0</number>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+                        <widget class="QLineEdit" name="lineEditDNI">
+                         <property name="minimumSize">
+                          <size>
+                           <width>90</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>90</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                           <italic>false</italic>
+                           <bold>false</bold>
+                           <stylestrategy>PreferDefault</stylestrategy>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>IBeamCursor</cursorShape>
+                         </property>
+                         <property name="tabletTracking">
+                          <bool>false</bool>
+                         </property>
+                         <property name="toolTip">
+                          <string>Enter para registrar asistencia</string>
+                         </property>
+                         <property name="layoutDirection">
+                          <enum>Qt::LeftToRight</enum>
+                         </property>
+                         <property name="autoFillBackground">
+                          <bool>false</bool>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: black;
+background-color: white;</string>
+                         </property>
+                         <property name="inputMethodHints">
+                          <set>Qt::ImhNone</set>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="maxLength">
+                          <number>8</number>
+                         </property>
+                         <property name="echoMode">
+                          <enum>QLineEdit::Normal</enum>
+                         </property>
+                         <property name="cursorPosition">
+                          <number>0</number>
+                         </property>
+                         <property name="dragEnabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="readOnly">
+                          <bool>false</bool>
+                         </property>
+                         <property name="placeholderText">
+                          <string>12345678</string>
+                         </property>
+                         <property name="cursorMoveStyle">
+                          <enum>Qt::LogicalMoveStyle</enum>
+                         </property>
+                         <property name="clearButtonEnabled">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="widget_12" native="true">
+                         <layout class="QHBoxLayout" name="horizontalLayout_21">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>10</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item alignment="Qt::AlignLeft">
+                           <widget class="QLabel" name="labelRegistrado">
+                            <property name="minimumSize">
+                             <size>
+                              <width>300</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>300</width>
+                              <height>25</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <italic>true</italic>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(46, 255, 60);</string>
+                            </property>
+                            <property name="text">
+                             <string>DNI Registrado</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignLeft|Qt::AlignTop">
+                     <widget class="QWidget" name="widget_11" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_17">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>10</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QPushButton" name="btnTodo">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>70</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
                          </property>
                          <property name="styleSheet">
                           <string notr="true"/>
                          </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                         <property name="text">
+                          <string>Todo</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btnAsistio">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>70</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>Asistió</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btnNoAsistio">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>70</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>No asistió</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_7" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>500</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>800</height>
+                       </size>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_20">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>10</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QWidget" name="widget_13" native="true">
+                         <property name="minimumSize">
+                          <size>
+                           <width>500</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>1000</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_26">
                           <property name="spacing">
                            <number>0</number>
                           </property>
@@ -1888,147 +2062,33 @@ background-color: white;</string>
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QPushButton" name="btnTodo">
+                           <widget class="QTableWidget" name="tablaTomarAsistencia">
+                            <property name="enabled">
+                             <bool>true</bool>
+                            </property>
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
                             <property name="minimumSize">
                              <size>
-                              <width>70</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true"/>
-                            </property>
-                            <property name="text">
-                             <string>Todo</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="btnAsistio">
-                            <property name="minimumSize">
-                             <size>
-                              <width>70</width>
-                              <height>30</height>
+                              <width>550</width>
+                              <height>700</height>
                              </size>
                             </property>
                             <property name="maximumSize">
                              <size>
-                              <width>50</width>
-                              <height>16777215</height>
+                              <width>600</width>
+                              <height>1000</height>
                              </size>
                             </property>
-                            <property name="font">
-                             <font>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
+                            <property name="focusPolicy">
+                             <enum>Qt::NoFocus</enum>
                             </property>
                             <property name="styleSheet">
-                             <string notr="true"/>
-                            </property>
-                            <property name="text">
-                             <string>Asistió</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="btnNoAsistio">
-                            <property name="minimumSize">
-                             <size>
-                              <width>70</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>50</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <bold>true</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true"/>
-                            </property>
-                            <property name="text">
-                             <string>No asistió</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="widget_7" native="true">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>100</height>
-                       </size>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_20">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item alignment="Qt::AlignLeft|Qt::AlignTop">
-                        <widget class="QTableWidget" name="tablaTomarAsistencia">
-                         <property name="enabled">
-                          <bool>true</bool>
-                         </property>
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="minimumSize">
-                          <size>
-                           <width>600</width>
-                           <height>300</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>600</width>
-                           <height>600</height>
-                          </size>
-                         </property>
-                         <property name="focusPolicy">
-                          <enum>Qt::NoFocus</enum>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">QHeaderView::section {
+                             <string notr="true">QHeaderView::section {
    background-color: rgb(43, 69, 34);
    color: white;
 }
@@ -2055,182 +2115,271 @@ QTableWidget::indicator:checked {
 	background-color: green;
 	image: url(:/icons/icons/smile.svg);
 }</string>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::NoFrame</enum>
-                         </property>
-                         <property name="lineWidth">
-                          <number>1</number>
-                         </property>
-                         <property name="midLineWidth">
-                          <number>1</number>
-                         </property>
-                         <property name="verticalScrollBarPolicy">
-                          <enum>Qt::ScrollBarAsNeeded</enum>
-                         </property>
-                         <property name="horizontalScrollBarPolicy">
-                          <enum>Qt::ScrollBarAsNeeded</enum>
-                         </property>
-                         <property name="autoScroll">
-                          <bool>true</bool>
-                         </property>
-                         <property name="autoScrollMargin">
-                          <number>4</number>
-                         </property>
-                         <property name="iconSize">
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::NoFrame</enum>
+                            </property>
+                            <property name="lineWidth">
+                             <number>1</number>
+                            </property>
+                            <property name="midLineWidth">
+                             <number>1</number>
+                            </property>
+                            <property name="verticalScrollBarPolicy">
+                             <enum>Qt::ScrollBarAsNeeded</enum>
+                            </property>
+                            <property name="horizontalScrollBarPolicy">
+                             <enum>Qt::ScrollBarAsNeeded</enum>
+                            </property>
+                            <property name="autoScroll">
+                             <bool>true</bool>
+                            </property>
+                            <property name="autoScrollMargin">
+                             <number>4</number>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="verticalScrollMode">
+                             <enum>QAbstractItemView::ScrollPerItem</enum>
+                            </property>
+                            <property name="gridStyle">
+                             <enum>Qt::NoPen</enum>
+                            </property>
+                            <property name="sortingEnabled">
+                             <bool>false</bool>
+                            </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
+                            <attribute name="horizontalHeaderVisible">
+                             <bool>true</bool>
+                            </attribute>
+                            <attribute name="horizontalHeaderCascadingSectionResizes">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="horizontalHeaderDefaultSectionSize">
+                             <number>120</number>
+                            </attribute>
+                            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="horizontalHeaderStretchLastSection">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderVisible">
+                             <bool>true</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderCascadingSectionResizes">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderHighlightSections">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                             <bool>false</bool>
+                            </attribute>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <column>
+                             <property name="text">
+                              <string>DNI</string>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Estudiante</string>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Estado de asistencia</string>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Hora de registro</string>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                            </column>
+                            <item row="0" column="0">
+                             <property name="text">
+                              <string>wdwdwdw</string>
+                             </property>
+                            </item>
+                            <item row="0" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                             <property name="checkState">
+                              <enum>Checked</enum>
+                             </property>
+                             <property name="flags">
+                              <set>ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                             </property>
+                            </item>
+                            <item row="0" column="3">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="1" column="2">
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="checkState">
+                              <enum>Checked</enum>
+                             </property>
+                            </item>
+                            <item row="1" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="2" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="3" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="4" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="5" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="6" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="7" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="8" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="9" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="10" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="11" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                            <item row="12" column="3">
+                             <property name="textAlignment">
+                              <set>AlignCenter</set>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+                        <widget class="QWidget" name="widget_4" native="true">
+                         <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>100</width>
                            <height>0</height>
                           </size>
                          </property>
-                         <property name="verticalScrollMode">
-                          <enum>QAbstractItemView::ScrollPerItem</enum>
-                         </property>
-                         <property name="gridStyle">
-                          <enum>Qt::NoPen</enum>
-                         </property>
-                         <property name="sortingEnabled">
-                          <bool>false</bool>
-                         </property>
-                         <property name="wordWrap">
-                          <bool>true</bool>
-                         </property>
-                         <attribute name="horizontalHeaderVisible">
-                          <bool>true</bool>
-                         </attribute>
-                         <attribute name="horizontalHeaderCascadingSectionResizes">
-                          <bool>false</bool>
-                         </attribute>
-                         <attribute name="horizontalHeaderDefaultSectionSize">
-                          <number>120</number>
-                         </attribute>
-                         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                          <bool>false</bool>
-                         </attribute>
-                         <attribute name="horizontalHeaderStretchLastSection">
-                          <bool>false</bool>
-                         </attribute>
-                         <attribute name="verticalHeaderVisible">
-                          <bool>true</bool>
-                         </attribute>
-                         <attribute name="verticalHeaderCascadingSectionResizes">
-                          <bool>false</bool>
-                         </attribute>
-                         <attribute name="verticalHeaderHighlightSections">
-                          <bool>false</bool>
-                         </attribute>
-                         <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-                          <bool>false</bool>
-                         </attribute>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <row/>
-                         <column>
-                          <property name="text">
-                           <string>DNI</string>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Estudiante</string>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Estado de asistencia</string>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                         </column>
-                         <column>
-                          <property name="text">
-                           <string>Hora de registro</string>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                         </column>
-                         <item row="0" column="0">
-                          <property name="text">
-                           <string>wdwdwdw</string>
-                          </property>
-                         </item>
-                         <item row="0" column="2">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="textAlignment">
-                           <set>AlignCenter</set>
-                          </property>
-                          <property name="checkState">
-                           <enum>Checked</enum>
-                          </property>
-                          <property name="flags">
-                           <set>ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                          </property>
-                         </item>
-                         <item row="1" column="2">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="checkState">
-                           <enum>Checked</enum>
-                          </property>
-                         </item>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="btnGeneraReporte">
                          <property name="maximumSize">
                           <size>
                            <width>100</width>
                            <height>16777215</height>
                           </size>
                          </property>
-                         <property name="font">
-                          <font>
-                           <bold>true</bold>
-                          </font>
-                         </property>
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">border-radius: 12px;</string>
-                         </property>
-                         <property name="text">
-                          <string>Generar 
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <item>
+                           <widget class="QPushButton" name="btnGeneraReporte">
+                            <property name="maximumSize">
+                             <size>
+                              <width>100</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">border-radius: 12px;</string>
+                            </property>
+                            <property name="text">
+                             <string>Generar 
 reporte</string>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="resourcesFile.qrc">
-                           <normaloff>:/icons/icons/file-text.svg</normaloff>:/icons/icons/file-text.svg</iconset>
-                         </property>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resourcesFile.qrc">
+                              <normaloff>:/icons/icons/file-text.svg</normaloff>:/icons/icons/file-text.svg</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                       </layout>
@@ -2510,7 +2659,7 @@ se gaste la voz al intentar llamara cada estudiante,</string>
                 <property name="bottomMargin">
                  <number>5</number>
                 </property>
-                <item>
+                <item alignment="Qt::AlignLeft">
                  <widget class="QFrame" name="frame_8">
                   <property name="minimumSize">
                    <size>
